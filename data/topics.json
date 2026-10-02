@@ -1,0 +1,7517 @@
+{
+  "categories": [
+    {
+      "key": "game",
+      "label": "游戏",
+      "color": "#5b9dff"
+    },
+    {
+      "key": "game_char",
+      "label": "游戏角色",
+      "color": "#7fb4ff"
+    },
+    {
+      "key": "game_term",
+      "label": "游戏术语",
+      "color": "#4a7dd1"
+    },
+    {
+      "key": "meme",
+      "label": "梗",
+      "color": "#f2c14e"
+    },
+    {
+      "key": "jargon",
+      "label": "直播间术语",
+      "color": "#fb7299"
+    },
+    {
+      "key": "anime",
+      "label": "番剧",
+      "color": "#b28dff"
+    },
+    {
+      "key": "anime_char",
+      "label": "番剧角色",
+      "color": "#c9adff"
+    },
+    {
+      "key": "anime_term",
+      "label": "番剧术语",
+      "color": "#9670e0"
+    },
+    {
+      "key": "tv",
+      "label": "电视剧",
+      "color": "#ff9f68"
+    },
+    {
+      "key": "movie",
+      "label": "电影",
+      "color": "#ffb37a"
+    },
+    {
+      "key": "music",
+      "label": "音乐",
+      "color": "#3ecf8e"
+    },
+    {
+      "key": "travel",
+      "label": "地名旅游",
+      "color": "#66d9e8"
+    },
+    {
+      "key": "hobby",
+      "label": "兴趣爱好",
+      "color": "#a0e57c"
+    }
+  ],
+  "topics": [
+    {
+      "name": "原神",
+      "category": "game",
+      "desc": "米哈游开放世界冒险游戏，以元素反应和七国地图为核心",
+      "aliases": [
+        "原神",
+        "genshin"
+      ]
+    },
+    {
+      "name": "崩坏：星穹铁道",
+      "category": "game",
+      "desc": "米哈游回合制 RPG，简称崩铁 / 星铁",
+      "aliases": [
+        "星穹铁道",
+        "崩铁",
+        "星铁"
+      ]
+    },
+    {
+      "name": "绝区零",
+      "category": "game",
+      "desc": "米哈游都市动作游戏，主打高速连招战斗",
+      "aliases": [
+        "绝区零",
+        "zzz"
+      ]
+    },
+    {
+      "name": "鸣潮",
+      "category": "game",
+      "desc": "库洛开放世界动作游戏，常与原神对比",
+      "aliases": [
+        "鸣潮"
+      ]
+    },
+    {
+      "name": "王者荣耀",
+      "category": "game",
+      "desc": "腾讯 5v5 手游 MOBA，国内用户量最大",
+      "aliases": [
+        "王者荣耀",
+        "王者"
+      ]
+    },
+    {
+      "name": "英雄联盟",
+      "category": "game",
+      "desc": "拳头 5v5 MOBA 端游，赛事简称 LPL / S 赛",
+      "aliases": [
+        "英雄联盟",
+        "lol",
+        "lpl",
+        "云顶"
+      ]
+    },
+    {
+      "name": "永劫无间",
+      "category": "game",
+      "desc": "国产武侠吃鸡类动作游戏，主打拼刀",
+      "aliases": [
+        "永劫无间",
+        "永劫"
+      ]
+    },
+    {
+      "name": "黑神话：悟空",
+      "category": "game",
+      "desc": "2024 年国产单机动作游戏，以西游为题材",
+      "aliases": [
+        "黑神话",
+        "黑猴"
+      ]
+    },
+    {
+      "name": "反恐精英",
+      "category": "game",
+      "desc": "经典战术射击游戏，指 CS2 / CSGO",
+      "aliases": [
+        "csgo",
+        "cs2",
+        "反恐精英"
+      ]
+    },
+    {
+      "name": "无畏契约",
+      "category": "game",
+      "desc": "拳头 5v5 战术射击，国服叫无畏契约，俗称瓦",
+      "aliases": [
+        "无畏契约",
+        "瓦罗兰特",
+        "valorant"
+      ]
+    },
+    {
+      "name": "和平精英",
+      "category": "game",
+      "desc": "腾讯战术竞技手游，俗称吃鸡 / PUBG",
+      "aliases": [
+        "和平精英",
+        "吃鸡",
+        "pubg",
+        "绝地求生"
+      ]
+    },
+    {
+      "name": "蛋仔派对",
+      "category": "game",
+      "desc": "网易休闲派对游戏，画风可爱、地图多样",
+      "aliases": [
+        "蛋仔派对",
+        "蛋仔"
+      ]
+    },
+    {
+      "name": "我的世界",
+      "category": "game",
+      "desc": "沙盒建造游戏，玩家常聊红石与模组",
+      "aliases": [
+        "我的世界",
+        "minecraft"
+      ]
+    },
+    {
+      "name": "第五人格",
+      "category": "game",
+      "desc": "网易 1v4 非对称对抗游戏，俗称屠夫与求生者",
+      "aliases": [
+        "第五人格"
+      ]
+    },
+    {
+      "name": "金铲铲之战",
+      "category": "game",
+      "desc": "腾讯自走棋手游，对应端游云顶之弈",
+      "aliases": [
+        "金铲铲",
+        "云顶之弈"
+      ]
+    },
+    {
+      "name": "DOTA2",
+      "category": "game",
+      "desc": "V 社 MOBA 端游，赛事最高为 TI 国际邀请赛",
+      "aliases": [
+        "dota2",
+        "dota"
+      ]
+    },
+    {
+      "name": "艾尔登法环",
+      "category": "game",
+      "desc": "宫崎英高魂系开放世界，俗称老头环",
+      "aliases": [
+        "艾尔登法环",
+        "老头环",
+        "魂系"
+      ]
+    },
+    {
+      "name": "幻兽帕鲁",
+      "category": "game",
+      "desc": "2024 年爆火的抓宠生存建造游戏",
+      "aliases": [
+        "幻兽帕鲁",
+        "帕鲁"
+      ]
+    },
+    {
+      "name": "泰拉瑞亚",
+      "category": "game",
+      "desc": "2D 沙盒冒险游戏，主打探索与打 Boss",
+      "aliases": [
+        "泰拉瑞亚"
+      ]
+    },
+    {
+      "name": "明日方舟",
+      "category": "game",
+      "desc": "鹰角塔防养成手游，衍生作有终末地",
+      "aliases": [
+        "明日方舟",
+        "方舟",
+        "终末地"
+      ]
+    },
+    {
+      "name": "碧蓝航线",
+      "category": "game",
+      "desc": "舰娘题材弹幕养成手游",
+      "aliases": [
+        "碧蓝航线"
+      ]
+    },
+    {
+      "name": "蔚蓝档案",
+      "category": "game",
+      "desc": "日服养成 RPG，玩家自称老师",
+      "aliases": [
+        "蔚蓝档案",
+        "碧蓝档案"
+      ]
+    },
+    {
+      "name": "三角洲行动",
+      "category": "game",
+      "desc": "腾讯战术撤离射击游戏",
+      "aliases": [
+        "三角洲行动"
+      ]
+    },
+    {
+      "name": "逃离塔科夫",
+      "category": "game",
+      "desc": "硬核撤离类射击游戏，俗称塔科夫",
+      "aliases": [
+        "逃离塔科夫",
+        "塔科夫"
+      ]
+    },
+    {
+      "name": "塞尔达传说",
+      "category": "game",
+      "desc": "任天堂开放世界冒险，代表作旷野之息 / 王国之泪",
+      "aliases": [
+        "塞尔达",
+        "旷野之息",
+        "王国之泪"
+      ]
+    },
+    {
+      "name": "动物森友会",
+      "category": "game",
+      "desc": "任天堂慢节奏岛屿生活游戏，俗称动森",
+      "aliases": [
+        "动森",
+        "动物森友会"
+      ]
+    },
+    {
+      "name": "双人成行",
+      "category": "game",
+      "desc": "主打双人合作通关的冒险游戏",
+      "aliases": [
+        "双人成行"
+      ]
+    },
+    {
+      "name": "破防",
+      "category": "meme",
+      "desc": "指被戳到痛处、情绪绷不住了",
+      "aliases": [
+        "破防"
+      ]
+    },
+    {
+      "name": "绷不住了",
+      "category": "meme",
+      "desc": "忍不住笑或绷不住情绪，谐音「蚌埠住了」",
+      "aliases": [
+        "蚌埠住了",
+        "绷不住了"
+      ]
+    },
+    {
+      "name": "yyds",
+      "category": "meme",
+      "desc": "「永远的神」拼音缩写，用来夸人或事物",
+      "aliases": [
+        "yyds"
+      ]
+    },
+    {
+      "name": "退钱",
+      "category": "meme",
+      "desc": "源自国足采访，现泛指「不值、快退钱」的吐槽",
+      "aliases": [
+        "退钱"
+      ]
+    },
+    {
+      "name": "寄了",
+      "category": "meme",
+      "desc": "「GG 了」的谐音，表示完蛋 / 没救了",
+      "aliases": [
+        "寄了"
+      ]
+    },
+    {
+      "name": "抽象",
+      "category": "meme",
+      "desc": "形容内容离谱、看不懂的行为艺术式搞笑",
+      "aliases": [
+        "抽象"
+      ]
+    },
+    {
+      "name": "整活",
+      "category": "meme",
+      "desc": "指刻意制造节目效果、搞事情",
+      "aliases": [
+        "整活"
+      ]
+    },
+    {
+      "name": "遥遥领先",
+      "category": "meme",
+      "desc": "发布会金句，现多用于反讽式吹捧",
+      "aliases": [
+        "遥遥领先"
+      ]
+    },
+    {
+      "name": "栓Q",
+      "category": "meme",
+      "desc": "「thank you」的谐音，表达无奈或无语",
+      "aliases": [
+        "栓q"
+      ]
+    },
+    {
+      "name": "已老实",
+      "category": "meme",
+      "desc": "表示认怂、服气了",
+      "aliases": [
+        "已老实",
+        "老实了"
+      ]
+    },
+    {
+      "name": "下饭",
+      "category": "meme",
+      "desc": "形容操作太菜，配上吃饭看很助消化",
+      "aliases": [
+        "下饭"
+      ]
+    },
+    {
+      "name": "干饭",
+      "category": "meme",
+      "desc": "吃饭的意思，多带急切语气",
+      "aliases": [
+        "干饭"
+      ]
+    },
+    {
+      "name": "emo",
+      "category": "meme",
+      "desc": "情绪低落、伤感的状态",
+      "aliases": [
+        "emo"
+      ]
+    },
+    {
+      "name": "典中典",
+      "category": "meme",
+      "desc": "「经典中的经典」，多用于嘲讽套路化发言",
+      "aliases": [
+        "典中典"
+      ]
+    },
+    {
+      "name": "急急急",
+      "category": "meme",
+      "desc": "调侃对方着急上火的连发句式",
+      "aliases": [
+        "急急急"
+      ]
+    },
+    {
+      "name": "汗流浃背",
+      "category": "meme",
+      "desc": "形容紧张、慌得不行的状态",
+      "aliases": [
+        "汗流浃背"
+      ]
+    },
+    {
+      "name": "city不city",
+      "category": "meme",
+      "desc": "2024 年热梗，意为洋气不洋气",
+      "aliases": [
+        "city不city"
+      ]
+    },
+    {
+      "name": "情绪价值",
+      "category": "meme",
+      "desc": "指能提供好心情、让人舒服的陪伴感",
+      "aliases": [
+        "情绪价值"
+      ]
+    },
+    {
+      "name": "火影忍者",
+      "category": "anime",
+      "desc": "岸本齐史热血忍者漫画 / 动画",
+      "aliases": [
+        "火影忍者",
+        "火影"
+      ]
+    },
+    {
+      "name": "海贼王",
+      "category": "anime",
+      "desc": "尾田荣一郎长连载冒险漫画 / 动画",
+      "aliases": [
+        "海贼王",
+        "one piece"
+      ]
+    },
+    {
+      "name": "名侦探柯南",
+      "category": "anime",
+      "desc": "青山刚昌推理漫画 / 动画，主角江户川柯南",
+      "aliases": [
+        "名侦探柯南",
+        "柯南"
+      ]
+    },
+    {
+      "name": "咒术回战",
+      "category": "anime",
+      "desc": "芥见下下战斗漫画 / 动画，五条悟人气极高",
+      "aliases": [
+        "咒术回战",
+        "咒术"
+      ]
+    },
+    {
+      "name": "鬼灭之刃",
+      "category": "anime",
+      "desc": "吾峠呼世晴战斗漫画 / 动画，ufotable 制作",
+      "aliases": [
+        "鬼灭之刃",
+        "鬼灭"
+      ]
+    },
+    {
+      "name": "进击的巨人",
+      "category": "anime",
+      "desc": "谏山创暗黑奇幻漫画 / 动画",
+      "aliases": [
+        "进击的巨人",
+        "巨人"
+      ]
+    },
+    {
+      "name": "间谍过家家",
+      "category": "anime",
+      "desc": "远藤达哉家庭喜剧漫画 / 动画，主角阿尼亚",
+      "aliases": [
+        "间谍过家家",
+        "阿尼亚"
+      ]
+    },
+    {
+      "name": "孤独摇滚",
+      "category": "anime",
+      "desc": "后藤一里（波奇酱）为主角的乐队题材动画",
+      "aliases": [
+        "孤独摇滚",
+        "波奇"
+      ]
+    },
+    {
+      "name": "排球少年",
+      "category": "anime",
+      "desc": "古馆春一热血排球漫画 / 动画",
+      "aliases": [
+        "排球少年"
+      ]
+    },
+    {
+      "name": "灌篮高手",
+      "category": "anime",
+      "desc": "井上雄彦篮球漫画 / 动画，主角樱木花道",
+      "aliases": [
+        "灌篮高手",
+        "樱木"
+      ]
+    },
+    {
+      "name": "七龙珠",
+      "category": "anime",
+      "desc": "鸟山明经典热血漫画 / 动画",
+      "aliases": [
+        "七龙珠",
+        "龙珠"
+      ]
+    },
+    {
+      "name": "死神",
+      "category": "anime",
+      "desc": "久保带人漫画 / 动画，全名 BLEACH",
+      "aliases": [
+        "bleach"
+      ]
+    },
+    {
+      "name": "高达",
+      "category": "anime",
+      "desc": "日升机器人系列动画，机体俗称高达",
+      "aliases": [
+        "高达"
+      ]
+    },
+    {
+      "name": "初音未来",
+      "category": "anime",
+      "desc": "Crypton 虚拟歌手，VOCALOID 代表角色",
+      "aliases": [
+        "初音未来",
+        "初音",
+        "miku"
+      ]
+    },
+    {
+      "name": "你的名字",
+      "category": "anime",
+      "desc": "新海诚动画电影，2016 年现象级作品",
+      "aliases": [
+        "你的名字"
+      ]
+    },
+    {
+      "name": "天气之子",
+      "category": "anime",
+      "desc": "新海诚动画电影，2019 年上映",
+      "aliases": [
+        "天气之子"
+      ]
+    },
+    {
+      "name": "赛马娘",
+      "category": "anime",
+      "desc": "以赛马拟人化为题材的动画与手游",
+      "aliases": [
+        "赛马娘"
+      ]
+    },
+    {
+      "name": "周杰伦",
+      "category": "music",
+      "desc": "华语流行歌手，代表作《晴天》《稻香》",
+      "aliases": [
+        "周杰伦",
+        "杰伦"
+      ]
+    },
+    {
+      "name": "林俊杰",
+      "category": "music",
+      "desc": "华语流行歌手，代表作《江南》《修炼爱情》",
+      "aliases": [
+        "林俊杰",
+        "jj"
+      ]
+    },
+    {
+      "name": "陈奕迅",
+      "category": "music",
+      "desc": "香港歌手，代表作《十年》《浮夸》",
+      "aliases": [
+        "陈奕迅",
+        "eason"
+      ]
+    },
+    {
+      "name": "邓紫棋",
+      "category": "music",
+      "desc": "香港歌手，代表作《光年之外》《泡沫》",
+      "aliases": [
+        "邓紫棋"
+      ]
+    },
+    {
+      "name": "薛之谦",
+      "category": "music",
+      "desc": "内地歌手，代表作《演员》《丑八怪》",
+      "aliases": [
+        "薛之谦"
+      ]
+    },
+    {
+      "name": "五月天",
+      "category": "music",
+      "desc": "台湾摇滚乐队，代表作《倔强》《突然好想你》",
+      "aliases": [
+        "五月天"
+      ]
+    },
+    {
+      "name": "华晨宇",
+      "category": "music",
+      "desc": "内地歌手，以高音与舞台表现力著称",
+      "aliases": [
+        "华晨宇"
+      ]
+    },
+    {
+      "name": "毛不易",
+      "category": "music",
+      "desc": "内地创作歌手，代表作《消愁》《像我这样的人》",
+      "aliases": [
+        "毛不易"
+      ]
+    },
+    {
+      "name": "周深",
+      "category": "music",
+      "desc": "内地歌手，以空灵音色与多语种翻唱著称",
+      "aliases": [
+        "周深"
+      ]
+    },
+    {
+      "name": "许嵩",
+      "category": "music",
+      "desc": "内地创作歌手，代表作《有何不可》《素颜》",
+      "aliases": [
+        "许嵩"
+      ]
+    },
+    {
+      "name": "汪苏泷",
+      "category": "music",
+      "desc": "内地歌手，代表作《一笑倾城》《万有引力》",
+      "aliases": [
+        "汪苏泷"
+      ]
+    },
+    {
+      "name": "说唱",
+      "category": "music",
+      "desc": "Rap 曲风，常讨论 flow 与押韵",
+      "aliases": [
+        "说唱",
+        "rap"
+      ]
+    },
+    {
+      "name": "摇滚",
+      "category": "music",
+      "desc": "Rock 曲风，强调吉他失真与现场感",
+      "aliases": [
+        "摇滚"
+      ]
+    },
+    {
+      "name": "民谣",
+      "category": "music",
+      "desc": "以叙事和木吉他为主的抒情曲风",
+      "aliases": [
+        "民谣"
+      ]
+    },
+    {
+      "name": "古风",
+      "category": "music",
+      "desc": "融合传统乐器与文言意象的国风曲风",
+      "aliases": [
+        "古风",
+        "国风"
+      ]
+    },
+    {
+      "name": "电音",
+      "category": "music",
+      "desc": "电子舞曲，含 House / EDM 等子风格",
+      "aliases": [
+        "电音",
+        "edm"
+      ]
+    },
+    {
+      "name": "上舰",
+      "category": "jargon",
+      "desc": "开通直播间大航海，按价格分舰长 / 提督 / 总督",
+      "aliases": [
+        "上舰",
+        "大航海"
+      ]
+    },
+    {
+      "name": "舰长",
+      "category": "jargon",
+      "desc": "大航海最低档，月费 138 元",
+      "aliases": [
+        "舰长"
+      ]
+    },
+    {
+      "name": "提督",
+      "category": "jargon",
+      "desc": "大航海第二档，月费 1998 元",
+      "aliases": [
+        "提督"
+      ]
+    },
+    {
+      "name": "总督",
+      "category": "jargon",
+      "desc": "大航海最高档，月费 19998 元",
+      "aliases": [
+        "总督"
+      ]
+    },
+    {
+      "name": "粉丝牌",
+      "category": "jargon",
+      "desc": "佩戴后可累积亲密度升级的灯牌，代表长期消费",
+      "aliases": [
+        "粉丝牌",
+        "灯牌",
+        "牌子"
+      ]
+    },
+    {
+      "name": "恰饭",
+      "category": "jargon",
+      "desc": "指接广告商单赚钱",
+      "aliases": [
+        "恰饭"
+      ]
+    },
+    {
+      "name": "白嫖",
+      "category": "jargon",
+      "desc": "只看不消费、不投币不打赏的行为",
+      "aliases": [
+        "白嫖"
+      ]
+    },
+    {
+      "name": "一键三连",
+      "category": "jargon",
+      "desc": "B 站的点赞、投币、收藏三连支持",
+      "aliases": [
+        "一键三连",
+        "三连"
+      ]
+    },
+    {
+      "name": "空降",
+      "category": "jargon",
+      "desc": "跳过前面内容直接跳到精彩片段",
+      "aliases": [
+        "空降"
+      ]
+    },
+    {
+      "name": "名场面",
+      "category": "jargon",
+      "desc": "指极其经典、值得反复回看的一幕",
+      "aliases": [
+        "名场面"
+      ]
+    },
+    {
+      "name": "二创",
+      "category": "jargon",
+      "desc": "粉丝基于原作的二次创作",
+      "aliases": [
+        "二创"
+      ]
+    },
+    {
+      "name": "鬼畜",
+      "category": "jargon",
+      "desc": "B 站特有的高重复剪切搞笑剪辑形式",
+      "aliases": [
+        "鬼畜"
+      ]
+    },
+    {
+      "name": "超管",
+      "category": "jargon",
+      "desc": "平台超管，负责巡查违规直播间",
+      "aliases": [
+        "超管"
+      ]
+    },
+    {
+      "name": "醒目留言",
+      "category": "jargon",
+      "desc": "SC / SuperChat，付费置顶的弹幕",
+      "aliases": [
+        "醒目留言",
+        "sc",
+        "superchat"
+      ]
+    },
+    {
+      "name": "三角洲行动",
+      "category": "game",
+      "desc": "腾讯战术射击游戏，分烽火地带撤离和全面战场两种玩法",
+      "aliases": [
+        "三角洲行动",
+        "三角洲",
+        "delta force"
+      ]
+    },
+    {
+      "name": "烽火地带",
+      "category": "game_term",
+      "desc": "三角洲行动的撤离玩法，带装备进场、活着带出战利品",
+      "aliases": [
+        "烽火地带",
+        "烽火"
+      ]
+    },
+    {
+      "name": "全面战场",
+      "category": "game_term",
+      "desc": "三角洲行动的大战场玩法，载具兵种齐上阵的大规模对抗",
+      "aliases": [
+        "全面战场"
+      ]
+    },
+    {
+      "name": "密令",
+      "category": "game_term",
+      "desc": "三角洲行动的高难关卡模式，风险更大但回报也更丰厚",
+      "aliases": [
+        "密令",
+        "机密行动"
+      ]
+    },
+    {
+      "name": "撤离",
+      "category": "game_term",
+      "desc": "带着搜刮到的物资从地图指定撤离点安全撤出",
+      "aliases": [
+        "撤离",
+        "撤离点"
+      ]
+    },
+    {
+      "name": "零号大坝",
+      "category": "game_term",
+      "desc": "三角洲行动经典地图，中间是水坝建筑群、资源集中",
+      "aliases": [
+        "零号大坝",
+        "大坝"
+      ]
+    },
+    {
+      "name": "巴克什",
+      "category": "game_term",
+      "desc": "三角洲行动的沙漠城镇地图，房屋密集适合近战",
+      "aliases": [
+        "巴克什"
+      ]
+    },
+    {
+      "name": "长弓溪谷",
+      "category": "game_term",
+      "desc": "三角洲行动的山谷地图，地形起伏、适合远程架枪",
+      "aliases": [
+        "长弓溪谷",
+        "长弓"
+      ]
+    },
+    {
+      "name": "航天基地",
+      "category": "game_term",
+      "desc": "三角洲行动的航天主题地图，建筑大、物资多",
+      "aliases": [
+        "航天基地"
+      ]
+    },
+    {
+      "name": "红狼",
+      "category": "game_char",
+      "desc": "《三角洲行动》的突击干员，机动性强、适合冲锋开路",
+      "aliases": [
+        "红狼"
+      ]
+    },
+    {
+      "name": "威龙",
+      "category": "game_char",
+      "desc": "《三角洲行动》的干员，擅重火力压制与正面刚枪",
+      "aliases": [
+        "威龙"
+      ]
+    },
+    {
+      "name": "露娜",
+      "category": "game_char",
+      "desc": "《三角洲行动》的女性干员，擅侦察与情报支援",
+      "aliases": [
+        "露娜"
+      ]
+    },
+    {
+      "name": "比特",
+      "category": "game_char",
+      "desc": "《三角洲行动》的干员，用科技手段辅助团队作战",
+      "aliases": [
+        "比特"
+      ]
+    },
+    {
+      "name": "蜂医",
+      "category": "game_char",
+      "desc": "《三角洲行动》的医疗干员，负责回血和扶起倒地队友",
+      "aliases": [
+        "蜂医"
+      ]
+    },
+    {
+      "name": "牧羊人",
+      "category": "game_char",
+      "desc": "《三角洲行动》的支援干员，能放庇护装置护住队友",
+      "aliases": [
+        "牧羊人"
+      ]
+    },
+    {
+      "name": "蜂刺",
+      "category": "game_char",
+      "desc": "《三角洲行动》的突击干员，主打近身突进与爆发",
+      "aliases": [
+        "蜂刺"
+      ]
+    },
+    {
+      "name": "乌兹",
+      "category": "game_char",
+      "desc": "《三角洲行动》的干员，机动灵活、擅长游击打法",
+      "aliases": [
+        "乌兹"
+      ]
+    },
+    {
+      "name": "枪匠",
+      "category": "game_term",
+      "desc": "三角洲行动的武器改装系统，可自由搭配配件改枪",
+      "aliases": [
+        "枪匠"
+      ]
+    },
+    {
+      "name": "护甲",
+      "category": "game_term",
+      "desc": "抵挡子弹伤害的装备，按防护能力分不同等级",
+      "aliases": [
+        "护甲"
+      ]
+    },
+    {
+      "name": "攒点",
+      "category": "game_term",
+      "desc": "慢慢积攒游戏积分求稳发育，不急着正面开战",
+      "aliases": [
+        "攒点"
+      ]
+    },
+    {
+      "name": "卡点",
+      "category": "game_term",
+      "desc": "提前守在地图关键位置，卡住对手必经之路",
+      "aliases": [
+        "卡点"
+      ]
+    },
+    {
+      "name": "白给",
+      "category": "game_term",
+      "desc": "白白送人头，把好装备和人头拱手送给对手",
+      "aliases": [
+        "白给"
+      ]
+    },
+    {
+      "name": "架枪",
+      "category": "game_term",
+      "desc": "举枪对准通道或转角，等对手露头再打",
+      "aliases": [
+        "架枪"
+      ]
+    },
+    {
+      "name": "舔包",
+      "category": "game_term",
+      "desc": "击杀对手后搜刮其掉落的装备物资",
+      "aliases": [
+        "舔包"
+      ]
+    },
+    {
+      "name": "摸金",
+      "category": "game_term",
+      "desc": "专门跑图搜刮高价值物资、追求赚钱的打法",
+      "aliases": [
+        "摸金",
+        "摸金校尉"
+      ]
+    },
+    {
+      "name": "红卡",
+      "category": "game_term",
+      "desc": "三角洲行动里高价值的门禁卡，一张能卖不少钱",
+      "aliases": [
+        "红卡"
+      ]
+    },
+    {
+      "name": "安全箱",
+      "category": "game_term",
+      "desc": "死亡也不会丢失的保底储物格，常装最贵的物资",
+      "aliases": [
+        "安全箱"
+      ]
+    },
+    {
+      "name": "平头哥",
+      "category": "game_term",
+      "desc": "指一头扎进枪林弹雨硬刚的莽夫玩家",
+      "aliases": [
+        "平头哥"
+      ]
+    },
+    {
+      "name": "送快递",
+      "category": "game_term",
+      "desc": "带一身好装备出门，没多久就被打死让人捡走",
+      "aliases": [
+        "送快递"
+      ]
+    },
+    {
+      "name": "一穿三",
+      "category": "game_term",
+      "desc": "一个人连续击杀对面三人，打出高光操作",
+      "aliases": [
+        "一穿三"
+      ]
+    },
+    {
+      "name": "干拉",
+      "category": "game_term",
+      "desc": "不丢烟不探信息，直接迎面冲上去打的莽夫行为",
+      "aliases": [
+        "干拉"
+      ]
+    },
+    {
+      "name": "报点",
+      "category": "game_term",
+      "desc": "把敌人位置、人数等情报快速喊给队友",
+      "aliases": [
+        "报点"
+      ]
+    },
+    {
+      "name": "压枪",
+      "category": "game_term",
+      "desc": "连续射击时下压鼠标，抵消枪口上抬让子弹更准",
+      "aliases": [
+        "压枪"
+      ]
+    },
+    {
+      "name": "大金",
+      "category": "game_term",
+      "desc": "地图里价值最高的金色物资，捡到就等于发大财",
+      "aliases": [
+        "大金"
+      ]
+    },
+    {
+      "name": "六套",
+      "category": "game_term",
+      "desc": "最高等级的六件套装备，穿上就是行走的五花肉",
+      "aliases": [
+        "六套"
+      ]
+    },
+    {
+      "name": "开箱",
+      "category": "game_term",
+      "desc": "打开地图上的箱子或补给，搜刮里面的物资",
+      "aliases": [
+        "开箱"
+      ]
+    },
+    {
+      "name": "打药",
+      "category": "game_term",
+      "desc": "战斗中给自己或队友补血、回状态的简称",
+      "aliases": [
+        "打药",
+        "嗑药"
+      ]
+    },
+    {
+      "name": "无畏契约",
+      "category": "game",
+      "desc": "拳头 5v5 战术射击游戏，国服叫无畏契约、玩家俗称瓦",
+      "aliases": [
+        "无畏契约",
+        "瓦罗兰特",
+        "valorant"
+      ]
+    },
+    {
+      "name": "捷风",
+      "category": "game_char",
+      "desc": "《无畏契约》决斗者，能高速位移、灵活切入",
+      "aliases": [
+        "捷风",
+        "jett"
+      ]
+    },
+    {
+      "name": "贤者",
+      "category": "game_char",
+      "desc": "《无畏契约》哨位，能造墙放减速还可用技能复活队友",
+      "aliases": [
+        "贤者",
+        "sage"
+      ]
+    },
+    {
+      "name": "幽影",
+      "category": "game_char",
+      "desc": "《无畏契约》控场者，能放烟并短距传送偷袭",
+      "aliases": [
+        "幽影",
+        "omen"
+      ]
+    },
+    {
+      "name": "雷兹",
+      "category": "game_char",
+      "desc": "《无畏契约》决斗者，玩炸弹和火箭筒的爆破手",
+      "aliases": [
+        "雷兹",
+        "raze"
+      ]
+    },
+    {
+      "name": "不死鸟",
+      "category": "game_char",
+      "desc": "《无畏契约》决斗者，能自燃回血、放火墙封路",
+      "aliases": [
+        "不死鸟",
+        "phoenix"
+      ]
+    },
+    {
+      "name": "猎枭",
+      "category": "game_char",
+      "desc": "《无畏契约》情报位，射震荡箭和侦查箭来探信息",
+      "aliases": [
+        "猎枭",
+        "sova"
+      ]
+    },
+    {
+      "name": "圣祈",
+      "category": "game_char",
+      "desc": "《无畏契约》先锋，能放治疗、探路鹰和闪光",
+      "aliases": [
+        "圣祈",
+        "skye"
+      ]
+    },
+    {
+      "name": "瑞娜",
+      "category": "game_char",
+      "desc": "《无畏契约》决斗者，靠击杀灵魂回血、开大变更强",
+      "aliases": [
+        "瑞娜",
+        "reyna"
+      ]
+    },
+    {
+      "name": "零",
+      "category": "game_char",
+      "desc": "《无畏契约》情报位，放摄像头和绊线封锁地图",
+      "aliases": [
+        "cypher"
+      ]
+    },
+    {
+      "name": "霓虹",
+      "category": "game_char",
+      "desc": "《无畏契约》决斗者，高速冲刺放电、速度感极强",
+      "aliases": [
+        "霓虹",
+        "neon"
+      ]
+    },
+    {
+      "name": "钱博",
+      "category": "game_char",
+      "desc": "《无畏契约》哨位，靠金枪和传送点看家守点",
+      "aliases": [
+        "钱博",
+        "chamber"
+      ]
+    },
+    {
+      "name": "盖可",
+      "category": "game_char",
+      "desc": "《无畏契约》先锋，带一群小宠物丢闪光和炸弹",
+      "aliases": [
+        "盖可",
+        "gekko"
+      ]
+    },
+    {
+      "name": "死锁",
+      "category": "game_char",
+      "desc": "《无畏契约》哨位，放重力网和声波网封锁冲锋",
+      "aliases": [
+        "死锁",
+        "deadlock"
+      ]
+    },
+    {
+      "name": "ISO",
+      "category": "game_char",
+      "desc": "《无畏契约》决斗者，开护盾单挑、越打越强",
+      "aliases": [
+        "iso"
+      ]
+    },
+    {
+      "name": "布史东",
+      "category": "game_char",
+      "desc": "《无畏契约》控场者，老队长，能放烟雾和轨道轰炸",
+      "aliases": [
+        "布史东",
+        "brimstone"
+      ]
+    },
+    {
+      "name": "蝰蛇",
+      "category": "game_char",
+      "desc": "《无畏契约》控场者，用毒墙和毒气分割战场",
+      "aliases": [
+        "蝰蛇",
+        "viper"
+      ]
+    },
+    {
+      "name": "经济局",
+      "category": "game_term",
+      "desc": "没钱只能买手枪或半甲的省吃俭用回合",
+      "aliases": [
+        "经济局",
+        "eco"
+      ]
+    },
+    {
+      "name": "点内",
+      "category": "game_term",
+      "desc": "炸弹安放区里面的位置，进攻方要冲进去占住",
+      "aliases": [
+        "点内",
+        "包点"
+      ]
+    },
+    {
+      "name": "假打",
+      "category": "game_term",
+      "desc": "佯攻一个点吸引敌人，实际转去打另一个点",
+      "aliases": [
+        "假打"
+      ]
+    },
+    {
+      "name": "爆头",
+      "category": "game_term",
+      "desc": "一枪打中头部造成高额伤害、往往直接秒杀",
+      "aliases": [
+        "爆头"
+      ]
+    },
+    {
+      "name": "烟雾弹",
+      "category": "game_term",
+      "desc": "扔出后形成烟幕，遮挡视线封锁枪线",
+      "aliases": [
+        "烟雾弹",
+        "烟雾"
+      ]
+    },
+    {
+      "name": "残局",
+      "category": "game_term",
+      "desc": "队友都倒下后一人面对多个敌人的收拾局面",
+      "aliases": [
+        "残局"
+      ]
+    },
+    {
+      "name": "架点",
+      "category": "game_term",
+      "desc": "守在关键位置对准来路，等敌人送上门",
+      "aliases": [
+        "架点"
+      ]
+    },
+    {
+      "name": "大狙",
+      "category": "game_term",
+      "desc": "无畏契约里的狙击枪，一枪毙命、价值很高",
+      "aliases": [
+        "大狙",
+        "狙击枪"
+      ]
+    },
+    {
+      "name": "拆包",
+      "category": "game_term",
+      "desc": "防守方在炸弹爆炸之前把它安全拆除",
+      "aliases": [
+        "拆包"
+      ]
+    },
+    {
+      "name": "Ace",
+      "category": "game_term",
+      "desc": "一回合内单人击杀对面全部五人的神操作",
+      "aliases": [
+        "ace"
+      ]
+    },
+    {
+      "name": "赛点",
+      "category": "game_term",
+      "desc": "先拿到赛点的一方再赢一局就拿下比赛",
+      "aliases": [
+        "赛点"
+      ]
+    },
+    {
+      "name": "VCT",
+      "category": "game_term",
+      "desc": "无畏契约冠军巡回赛，官方最高级别赛事体系",
+      "aliases": [
+        "vct"
+      ]
+    },
+    {
+      "name": "CN瓦",
+      "category": "game_term",
+      "desc": "中国赛区的无畏契约圈，也指国服玩家群体",
+      "aliases": [
+        "cn瓦"
+      ]
+    },
+    {
+      "name": "腾竞",
+      "category": "game_term",
+      "desc": "腾讯电竞的简称，国内多项电竞赛事的运营方",
+      "aliases": [
+        "腾竞"
+      ]
+    },
+    {
+      "name": "瓦学妹",
+      "category": "game_term",
+      "desc": "调侃玩无畏契约的女玩家，弹幕里的玩梗称呼",
+      "aliases": [
+        "瓦学妹"
+      ]
+    },
+    {
+      "name": "英雄联盟",
+      "category": "game",
+      "desc": "拳头 5v5 MOBA 端游，全球最火的电竞项目之一",
+      "aliases": [
+        "英雄联盟",
+        "lol"
+      ]
+    },
+    {
+      "name": "亚索",
+      "category": "game_char",
+      "desc": "《英雄联盟》疾风剑豪，能连招位移、被戏称快乐风男",
+      "aliases": [
+        "亚索",
+        "yasuo"
+      ]
+    },
+    {
+      "name": "劫",
+      "category": "game_char",
+      "desc": "《英雄联盟》影流之主，用影分身切入秒杀后排",
+      "aliases": [
+        "zed"
+      ]
+    },
+    {
+      "name": "盖伦",
+      "category": "game_char",
+      "desc": "《英雄联盟》德玛西亚之力，新手入门英雄、能转圈",
+      "aliases": [
+        "盖伦",
+        "garen"
+      ]
+    },
+    {
+      "name": "锐雯",
+      "category": "game_char",
+      "desc": "《英雄联盟》放逐之刃，光速连招、操作上限高",
+      "aliases": [
+        "锐雯",
+        "riven"
+      ]
+    },
+    {
+      "name": "艾希",
+      "category": "game_char",
+      "desc": "《英雄联盟》寒冰射手，平 A 输出、大招全图开团",
+      "aliases": [
+        "艾希",
+        "ashe"
+      ]
+    },
+    {
+      "name": "金克丝",
+      "category": "game_char",
+      "desc": "《英雄联盟》暴走萝莉，攻速起来后火力凶猛",
+      "aliases": [
+        "金克丝",
+        "jinx"
+      ]
+    },
+    {
+      "name": "永恩",
+      "category": "game_char",
+      "desc": "《英雄联盟》封魔剑魂，亚索的哥哥，能突进收割",
+      "aliases": [
+        "永恩",
+        "yone"
+      ]
+    },
+    {
+      "name": "厄斐琉斯",
+      "category": "game_char",
+      "desc": "《英雄联盟》残月之肃，五把武器轮换、门槛高",
+      "aliases": [
+        "厄斐琉斯",
+        "aphelios"
+      ]
+    },
+    {
+      "name": "卡莎",
+      "category": "game_char",
+      "desc": "《英雄联盟》虚空之女，能进化技能、后期射手",
+      "aliases": [
+        "卡莎",
+        "kaisa"
+      ]
+    },
+    {
+      "name": "盲僧",
+      "category": "game_char",
+      "desc": "《英雄联盟》李青，招牌摸眼回旋踢、打野常青树",
+      "aliases": [
+        "盲僧",
+        "lee sin"
+      ]
+    },
+    {
+      "name": "亚托克斯",
+      "category": "game_char",
+      "desc": "《英雄联盟》暗裔剑魔，能吸血复活的战士",
+      "aliases": [
+        "亚托克斯",
+        "剑魔",
+        "aatrox"
+      ]
+    },
+    {
+      "name": "薇恩",
+      "category": "game_char",
+      "desc": "《英雄联盟》暗夜猎手，靠三环真伤收割的射手",
+      "aliases": [
+        "薇恩",
+        "vayne"
+      ]
+    },
+    {
+      "name": "ez",
+      "category": "game_char",
+      "desc": "《英雄联盟》探险家伊泽瑞尔，弹幕常直接喊 ez",
+      "aliases": [
+        "ezreal"
+      ]
+    },
+    {
+      "name": "锤石",
+      "category": "game_char",
+      "desc": "《英雄联盟》魂锁典狱长，钩子和灯笼的招牌辅助",
+      "aliases": [
+        "锤石",
+        "thresh"
+      ]
+    },
+    {
+      "name": "莫甘娜",
+      "category": "game_char",
+      "desc": "《英雄联盟》堕落天使，黑盾免控、团控专家",
+      "aliases": [
+        "莫甘娜",
+        "morgana"
+      ]
+    },
+    {
+      "name": "佛耶戈",
+      "category": "game_char",
+      "desc": "《英雄联盟》破败之王，击杀后能夺舍对手英雄",
+      "aliases": [
+        "佛耶戈",
+        "viego"
+      ]
+    },
+    {
+      "name": "提莫",
+      "category": "game_char",
+      "desc": "《英雄联盟》迅捷斥候，种蘑菇阴人、最招人恨英雄",
+      "aliases": [
+        "提莫",
+        "teemo"
+      ]
+    },
+    {
+      "name": "剑圣",
+      "category": "game_char",
+      "desc": "《英雄联盟》无极剑圣易大师，开大招追杀收割",
+      "aliases": [
+        "剑圣",
+        "master yi"
+      ]
+    },
+    {
+      "name": "石头人",
+      "category": "game_char",
+      "desc": "《英雄联盟》熔岩巨兽墨菲特，团控大招一撞一群",
+      "aliases": [
+        "石头人",
+        "malphite"
+      ]
+    },
+    {
+      "name": "打野",
+      "category": "game_term",
+      "desc": "在野区刷野升级、游走支援各路的定位",
+      "aliases": [
+        "打野"
+      ]
+    },
+    {
+      "name": "上单",
+      "category": "game_term",
+      "desc": "单人走上路的定位，多为坦克或战士",
+      "aliases": [
+        "上单"
+      ]
+    },
+    {
+      "name": "中单",
+      "category": "game_term",
+      "desc": "单人走中路、负责游走带节奏的定位",
+      "aliases": [
+        "中单"
+      ]
+    },
+    {
+      "name": "ADC",
+      "category": "game_term",
+      "desc": "下路远程物理输出核心，后期团队主要伤害来源",
+      "aliases": [
+        "adc"
+      ]
+    },
+    {
+      "name": "辅助",
+      "category": "game_term",
+      "desc": "陪 ADC 走下路、负责保护与开视野的定位",
+      "aliases": [
+        "辅助"
+      ]
+    },
+    {
+      "name": "gank",
+      "category": "game_term",
+      "desc": "打野或队友突然从侧面包夹抓人的战术",
+      "aliases": [
+        "gank"
+      ]
+    },
+    {
+      "name": "控龙",
+      "category": "game_term",
+      "desc": "争夺并击杀小龙大龙，为团队拿增益",
+      "aliases": [
+        "控龙",
+        "打龙"
+      ]
+    },
+    {
+      "name": "团战",
+      "category": "game_term",
+      "desc": "双方五个人正面开打的大规模混战",
+      "aliases": [
+        "团战"
+      ]
+    },
+    {
+      "name": "四保一",
+      "category": "game_term",
+      "desc": "四个人保护一个核心输出的战术体系",
+      "aliases": [
+        "四保一"
+      ]
+    },
+    {
+      "name": "对线",
+      "category": "game_term",
+      "desc": "前期在线上清兵、换血、压制对手的阶段",
+      "aliases": [
+        "对线"
+      ]
+    },
+    {
+      "name": "补刀",
+      "category": "game_term",
+      "desc": "打最后一下击杀小兵拿金币的基本功",
+      "aliases": [
+        "补刀"
+      ]
+    },
+    {
+      "name": "BAN",
+      "category": "game_term",
+      "desc": "禁选环节禁用英雄，防止对手拿到招牌",
+      "aliases": [
+        "ban"
+      ]
+    },
+    {
+      "name": "PICK",
+      "category": "game_term",
+      "desc": "禁选环节挑选自己这一局要用的英雄",
+      "aliases": [
+        "pick"
+      ]
+    },
+    {
+      "name": "双边",
+      "category": "game_term",
+      "desc": "指两边双人路的对线，也泛指上下两路的博弈",
+      "aliases": [
+        "双边"
+      ]
+    },
+    {
+      "name": "闪现",
+      "category": "game_term",
+      "desc": "通用召唤师技能，瞬间位移一段距离",
+      "aliases": [
+        "闪现"
+      ]
+    },
+    {
+      "name": "五杀",
+      "category": "game_term",
+      "desc": "一个人连续击杀对面全部五名英雄的高光",
+      "aliases": [
+        "五杀",
+        "penta"
+      ]
+    },
+    {
+      "name": "超神",
+      "category": "game_term",
+      "desc": "连续击杀到 8 个以上不死，弹幕会刷屏称赞",
+      "aliases": [
+        "超神"
+      ]
+    },
+    {
+      "name": "LPL",
+      "category": "game_term",
+      "desc": "英雄联盟职业联赛中国大陆赛区，国内最高级别赛事",
+      "aliases": [
+        "lpl"
+      ]
+    },
+    {
+      "name": "S赛",
+      "category": "game_term",
+      "desc": "英雄联盟全球总决赛，一年一度的最高荣誉",
+      "aliases": [
+        "s赛",
+        "全球总决赛"
+      ]
+    },
+    {
+      "name": "MSI",
+      "category": "game_term",
+      "desc": "英雄联盟季中冠军赛，各赛区冠军对决",
+      "aliases": [
+        "msi"
+      ]
+    },
+    {
+      "name": "韩援",
+      "category": "game_term",
+      "desc": "来自韩国的外援选手，LPL 战队常见配置",
+      "aliases": [
+        "韩援"
+      ]
+    },
+    {
+      "name": "全华班",
+      "category": "game_term",
+      "desc": "全部由中国选手组成的战队阵容配置",
+      "aliases": [
+        "全华班"
+      ]
+    },
+    {
+      "name": "TES",
+      "category": "game_term",
+      "desc": "滔搏电子竞技俱乐部，LPL 知名战队",
+      "aliases": [
+        "tes"
+      ]
+    },
+    {
+      "name": "BLG",
+      "category": "game_term",
+      "desc": "哔哩哔哩电子竞技俱乐部，LPL 人气战队",
+      "aliases": [
+        "blg"
+      ]
+    },
+    {
+      "name": "JDG",
+      "category": "game_term",
+      "desc": "京东星宇电子竞技俱乐部，LPL 强队",
+      "aliases": [
+        "jdg"
+      ]
+    },
+    {
+      "name": "德杯",
+      "category": "game_term",
+      "desc": "德玛西亚杯，LPL 各队参加的国内赛事",
+      "aliases": [
+        "德杯"
+      ]
+    },
+    {
+      "name": "王者荣耀",
+      "category": "game",
+      "desc": "腾讯 5v5 手游 MOBA，国内用户量最大的手机游戏",
+      "aliases": [
+        "王者荣耀",
+        "王者"
+      ]
+    },
+    {
+      "name": "安琪拉",
+      "category": "game_char",
+      "desc": "《王者荣耀》法师，技能连招伤害高、新手爱用",
+      "aliases": [
+        "安琪拉"
+      ]
+    },
+    {
+      "name": "妲己",
+      "category": "game_char",
+      "desc": "《王者荣耀》法师，锁定技能加高爆发、蹲草秒人",
+      "aliases": [
+        "妲己"
+      ]
+    },
+    {
+      "name": "鲁班七号",
+      "category": "game_char",
+      "desc": "《王者荣耀》射手，个子矮输出高、常被对面针对",
+      "aliases": [
+        "鲁班七号",
+        "鲁班"
+      ]
+    },
+    {
+      "name": "后羿",
+      "category": "game_char",
+      "desc": "《王者荣耀》射手，普攻流、大招全图定人",
+      "aliases": [
+        "后羿"
+      ]
+    },
+    {
+      "name": "花木兰",
+      "category": "game_char",
+      "desc": "《王者荣耀》战士，双形态切换、操作上限高",
+      "aliases": [
+        "花木兰"
+      ]
+    },
+    {
+      "name": "李白",
+      "category": "game_char",
+      "desc": "《王者荣耀》刺客，技能帅、大招无敌帧多",
+      "aliases": [
+        "李白"
+      ]
+    },
+    {
+      "name": "韩信",
+      "category": "game_char",
+      "desc": "《王者荣耀》刺客，位移多、跑图带节奏的野王",
+      "aliases": [
+        "韩信"
+      ]
+    },
+    {
+      "name": "貂蝉",
+      "category": "game_char",
+      "desc": "《王者荣耀》法师，开大减速黏人、团战收割",
+      "aliases": [
+        "貂蝉"
+      ]
+    },
+    {
+      "name": "马超",
+      "category": "game_char",
+      "desc": "《王者荣耀》战士，投枪突进、牵马冲锋秀操作",
+      "aliases": [
+        "马超"
+      ]
+    },
+    {
+      "name": "百里守约",
+      "category": "game_char",
+      "desc": "《王者荣耀》射手，远程狙击、能放视野装置",
+      "aliases": [
+        "百里守约",
+        "守约"
+      ]
+    },
+    {
+      "name": "镜",
+      "category": "game_char",
+      "desc": "《王者荣耀》刺客，靠镜像分身连招、操作极秀",
+      "aliases": [
+        "jing"
+      ]
+    },
+    {
+      "name": "澜",
+      "category": "game_char",
+      "desc": "《王者荣耀》刺客，水中突进、适合切后排",
+      "aliases": [
+        "lan"
+      ]
+    },
+    {
+      "name": "瑶",
+      "category": "game_char",
+      "desc": "《王者荣耀》辅助，能附身队友、套护盾保人",
+      "aliases": [
+        "yao"
+      ]
+    },
+    {
+      "name": "蔡文姬",
+      "category": "game_char",
+      "desc": "《王者荣耀》辅助，弹琴回血、奶量充足",
+      "aliases": [
+        "蔡文姬"
+      ]
+    },
+    {
+      "name": "程咬金",
+      "category": "game_char",
+      "desc": "《王者荣耀》坦克，血越少越猛、大招回血",
+      "aliases": [
+        "程咬金"
+      ]
+    },
+    {
+      "name": "公孙离",
+      "category": "game_char",
+      "desc": "《王者荣耀》射手，靠纸伞位移、风筝输出",
+      "aliases": [
+        "公孙离"
+      ]
+    },
+    {
+      "name": "上官婉儿",
+      "category": "game_char",
+      "desc": "《王者荣耀》法师，笔墨连招、能超远突进",
+      "aliases": [
+        "上官婉儿",
+        "婉儿"
+      ]
+    },
+    {
+      "name": "孙悟空",
+      "category": "game_char",
+      "desc": "《王者荣耀》刺客，金箍棒暴击、连跳切后排",
+      "aliases": [
+        "孙悟空",
+        "猴子"
+      ]
+    },
+    {
+      "name": "王昭君",
+      "category": "game_char",
+      "desc": "《王者荣耀》法师，冰霜控制、大招范围减速",
+      "aliases": [
+        "王昭君"
+      ]
+    },
+    {
+      "name": "推塔",
+      "category": "game_term",
+      "desc": "打掉防御塔，兵线推进的核心目标",
+      "aliases": [
+        "推塔"
+      ]
+    },
+    {
+      "name": "红蓝buff",
+      "category": "game_term",
+      "desc": "野区增益野怪，红 buff 加伤害、蓝 buff 减 CD",
+      "aliases": [
+        "红蓝buff",
+        "红buff",
+        "蓝buff"
+      ]
+    },
+    {
+      "name": "主宰",
+      "category": "game_term",
+      "desc": "王者荣耀的野区大 boss，击杀后给全队增益",
+      "aliases": [
+        "主宰"
+      ]
+    },
+    {
+      "name": "暴君",
+      "category": "game_term",
+      "desc": "前期野区 boss，击杀获得团队增益",
+      "aliases": [
+        "暴君"
+      ]
+    },
+    {
+      "name": "打野刀",
+      "category": "game_term",
+      "desc": "打野专用装备，能提升刷野和发育效率",
+      "aliases": [
+        "打野刀"
+      ]
+    },
+    {
+      "name": "对抗路",
+      "category": "game_term",
+      "desc": "上路的单人对抗线，多为战士坦克",
+      "aliases": [
+        "对抗路"
+      ]
+    },
+    {
+      "name": "发育路",
+      "category": "game_term",
+      "desc": "下路的双人线，射手在此发育成长",
+      "aliases": [
+        "发育路"
+      ]
+    },
+    {
+      "name": "游走",
+      "category": "game_term",
+      "desc": "辅助或打野全图跑动支援的定位与打法",
+      "aliases": [
+        "游走"
+      ]
+    },
+    {
+      "name": "巅峰赛",
+      "category": "game_term",
+      "desc": "高水平玩家参与的排位模式，按分数排名",
+      "aliases": [
+        "巅峰赛"
+      ]
+    },
+    {
+      "name": "星耀",
+      "category": "game_term",
+      "desc": "排位段位之一，位于钻石与王者之间",
+      "aliases": [
+        "星耀"
+      ]
+    },
+    {
+      "name": "五排",
+      "category": "game_term",
+      "desc": "五个人凑齐组队开黑打排位的玩法",
+      "aliases": [
+        "五排"
+      ]
+    },
+    {
+      "name": "铭文",
+      "category": "game_term",
+      "desc": "提升英雄属性的符文系统，需要长期积累",
+      "aliases": [
+        "铭文"
+      ]
+    },
+    {
+      "name": "KPL",
+      "category": "game_term",
+      "desc": "王者荣耀职业联赛，国内顶级赛事",
+      "aliases": [
+        "kpl"
+      ]
+    },
+    {
+      "name": "K甲",
+      "category": "game_term",
+      "desc": "王者荣耀职业联赛的次级赛事体系",
+      "aliases": [
+        "k甲"
+      ]
+    },
+    {
+      "name": "原神",
+      "category": "game",
+      "desc": "米哈游开放世界冒险游戏，以元素反应和七国地图为核心",
+      "aliases": [
+        "原神",
+        "genshin"
+      ]
+    },
+    {
+      "name": "刻晴",
+      "category": "game_char",
+      "desc": "《原神》璃月七星，雷系单手剑、人气五星角色",
+      "aliases": [
+        "刻晴"
+      ]
+    },
+    {
+      "name": "钟离",
+      "category": "game_char",
+      "desc": "《原神》岩神，护盾厚、站场能力极强的五星",
+      "aliases": [
+        "钟离"
+      ]
+    },
+    {
+      "name": "胡桃",
+      "category": "game_char",
+      "desc": "《原神》往生堂主，火系输出、燃烧血量换伤害",
+      "aliases": [
+        "胡桃"
+      ]
+    },
+    {
+      "name": "雷电将军",
+      "category": "game_char",
+      "desc": "《原神》稻妻雷神，充能快、大招伤害拉满",
+      "aliases": [
+        "雷电将军",
+        "雷神"
+      ]
+    },
+    {
+      "name": "纳西妲",
+      "category": "game_char",
+      "desc": "《原神》须弥草神，精通反应队的核心辅助",
+      "aliases": [
+        "纳西妲",
+        "草神"
+      ]
+    },
+    {
+      "name": "元素反应",
+      "category": "game_term",
+      "desc": "用不同元素攻击触发蒸发冻结等额外效果的机制",
+      "aliases": [
+        "元素反应"
+      ]
+    },
+    {
+      "name": "树脂",
+      "category": "game_term",
+      "desc": "原神的体力值，刷副本和领奖励都要消耗",
+      "aliases": [
+        "树脂"
+      ]
+    },
+    {
+      "name": "星穹铁道",
+      "category": "game",
+      "desc": "米哈游回合制 RPG，简称崩铁或星铁",
+      "aliases": [
+        "星穹铁道",
+        "崩铁",
+        "星铁"
+      ]
+    },
+    {
+      "name": "卡芙卡",
+      "category": "game_char",
+      "desc": "《星穹铁道》星核猎手，持续伤害队的核心",
+      "aliases": [
+        "卡芙卡"
+      ]
+    },
+    {
+      "name": "银狼",
+      "category": "game_char",
+      "desc": "《星穹铁道》星核猎手，能扒敌人弱点、挂减益",
+      "aliases": [
+        "银狼"
+      ]
+    },
+    {
+      "name": "景元",
+      "category": "game_char",
+      "desc": "《星穹铁道》罗浮将军，靠神君追击输出",
+      "aliases": [
+        "景元"
+      ]
+    },
+    {
+      "name": "花火",
+      "category": "game_char",
+      "desc": "《星穹铁道》同谐角色，能拉行动条、加暴伤",
+      "aliases": [
+        "花火"
+      ]
+    },
+    {
+      "name": "流萤",
+      "category": "game_char",
+      "desc": "《星穹铁道》巡猎角色，机甲形态、能自爆打工",
+      "aliases": [
+        "流萤"
+      ]
+    },
+    {
+      "name": "命途",
+      "category": "game_term",
+      "desc": "星铁里角色的职业定位分类，如存护巡猎等",
+      "aliases": [
+        "命途"
+      ]
+    },
+    {
+      "name": "光锥",
+      "category": "game_term",
+      "desc": "星铁里的武器系统，相当于角色的装备",
+      "aliases": [
+        "光锥"
+      ]
+    },
+    {
+      "name": "遗器",
+      "category": "game_term",
+      "desc": "星铁的角色装备，靠刷副本凑套装词条",
+      "aliases": [
+        "遗器"
+      ]
+    },
+    {
+      "name": "绝区零",
+      "category": "game",
+      "desc": "米哈游都市动作游戏，主打高速连招战斗",
+      "aliases": [
+        "绝区零",
+        "zzz"
+      ]
+    },
+    {
+      "name": "安比",
+      "category": "game_char",
+      "desc": "《绝区零》狡兔屋成员，电系双刀、手感极佳",
+      "aliases": [
+        "安比"
+      ]
+    },
+    {
+      "name": "妮可",
+      "category": "game_char",
+      "desc": "《绝区零》狡兔屋社长，能开黑洞聚怪",
+      "aliases": [
+        "妮可"
+      ]
+    },
+    {
+      "name": "星见雅",
+      "category": "game_char",
+      "desc": "《绝区零》虚狩之一，冰系太刀、人气极高",
+      "aliases": [
+        "星见雅"
+      ]
+    },
+    {
+      "name": "空洞",
+      "category": "game_term",
+      "desc": "绝区零里的探索副本区域，有随机事件与奖励",
+      "aliases": [
+        "空洞"
+      ]
+    },
+    {
+      "name": "反恐精英",
+      "category": "game",
+      "desc": "经典战术射击游戏，指 CS2 或 CSGO",
+      "aliases": [
+        "cs2",
+        "csgo",
+        "反恐精英"
+      ]
+    },
+    {
+      "name": "沙二",
+      "category": "game_term",
+      "desc": "CS 经典地图 Dust2 的俗称，中路对狙名场面多",
+      "aliases": [
+        "沙二",
+        "dust2"
+      ]
+    },
+    {
+      "name": "沙鹰",
+      "category": "game_term",
+      "desc": "CS 里的高伤害手枪，爆头一枪一个、性价比高",
+      "aliases": [
+        "沙鹰",
+        "沙漠之鹰"
+      ]
+    },
+    {
+      "name": "AWP",
+      "category": "game_term",
+      "desc": "CS 里的经典狙击枪，一枪毙命、走位灵活",
+      "aliases": [
+        "awp"
+      ]
+    },
+    {
+      "name": "磨损",
+      "category": "game_term",
+      "desc": "CS 皮肤的磨损度，决定外观新旧和价格高低",
+      "aliases": [
+        "磨损"
+      ]
+    },
+    {
+      "name": "DOTA2",
+      "category": "game",
+      "desc": "V 社 MOBA 端游，赛事最高为 TI 国际邀请赛",
+      "aliases": [
+        "dota2",
+        "dota"
+      ]
+    },
+    {
+      "name": "影魔",
+      "category": "game_char",
+      "desc": "《DOTA2》中路刺客，攒灵魂叠攻击、操作上限高",
+      "aliases": [
+        "影魔",
+        "sf"
+      ]
+    },
+    {
+      "name": "敌法师",
+      "category": "game_char",
+      "desc": "《DOTA2》后期核心，削蓝加跳刀、能牵制带线",
+      "aliases": [
+        "敌法师"
+      ]
+    },
+    {
+      "name": "屠夫",
+      "category": "game_char",
+      "desc": "《DOTA2》帕吉，钩子加咬人秒杀、人气极高",
+      "aliases": [
+        "屠夫",
+        "帕吉"
+      ]
+    },
+    {
+      "name": "反补",
+      "category": "game_term",
+      "desc": "打死自家残血小兵，让对手吃不到经验和金币",
+      "aliases": [
+        "反补"
+      ]
+    },
+    {
+      "name": "TI",
+      "category": "game_term",
+      "desc": "DOTA2 国际邀请赛，奖金池常年全球第一",
+      "aliases": [
+        "ti",
+        "国际邀请赛"
+      ]
+    },
+    {
+      "name": "永劫无间",
+      "category": "game",
+      "desc": "国产武侠吃鸡类动作游戏，主打拼刀与冷兵器对战",
+      "aliases": [
+        "永劫无间",
+        "永劫"
+      ]
+    },
+    {
+      "name": "振刀",
+      "category": "game_term",
+      "desc": "格挡后反击的核心机制，会玩就能反打",
+      "aliases": [
+        "振刀"
+      ]
+    },
+    {
+      "name": "拼刀",
+      "category": "game_term",
+      "desc": "双方近身对拼、比拼攻击判定的博弈",
+      "aliases": [
+        "拼刀"
+      ]
+    },
+    {
+      "name": "宁红夜",
+      "category": "game_char",
+      "desc": "《永劫无间》人气女角色，双刀刺客、身法飘逸",
+      "aliases": [
+        "宁红夜"
+      ]
+    },
+    {
+      "name": "迦南",
+      "category": "game_char",
+      "desc": "《永劫无间》机动型角色，能瞬移偷袭",
+      "aliases": [
+        "迦南"
+      ]
+    },
+    {
+      "name": "魂玉",
+      "category": "game_term",
+      "desc": "永劫无间里的强化道具，装上能改技能与属性",
+      "aliases": [
+        "魂玉"
+      ]
+    },
+    {
+      "name": "我的世界",
+      "category": "game",
+      "desc": "沙盒建造游戏，玩家常聊红石、模组与生存",
+      "aliases": [
+        "我的世界",
+        "minecraft",
+        "mc"
+      ]
+    },
+    {
+      "name": "红石",
+      "category": "game_term",
+      "desc": "我的世界里的电路系统，能造自动机械",
+      "aliases": [
+        "红石"
+      ]
+    },
+    {
+      "name": "苦力怕",
+      "category": "game_term",
+      "desc": "会自爆的绿色怪物，靠近就炸、阴人一把手",
+      "aliases": [
+        "苦力怕",
+        "creeper"
+      ]
+    },
+    {
+      "name": "末影龙",
+      "category": "game_term",
+      "desc": "我的世界的最终 boss，打完通关末地",
+      "aliases": [
+        "末影龙"
+      ]
+    },
+    {
+      "name": "附魔",
+      "category": "game_term",
+      "desc": "给装备加属性的强化方式，需要经验与青金石",
+      "aliases": [
+        "附魔"
+      ]
+    },
+    {
+      "name": "第五人格",
+      "category": "game",
+      "desc": "网易 1v4 非对称对抗游戏，俗称屠夫与求生者",
+      "aliases": [
+        "第五人格"
+      ]
+    },
+    {
+      "name": "求生者",
+      "category": "game_term",
+      "desc": "第五人格里负责破译逃生的四人阵营",
+      "aliases": [
+        "求生者"
+      ]
+    },
+    {
+      "name": "监管者",
+      "category": "game_term",
+      "desc": "第五人格里负责抓人的单人阵营，俗称屠夫",
+      "aliases": [
+        "监管者"
+      ]
+    },
+    {
+      "name": "破译",
+      "category": "game_term",
+      "desc": "求生者解密码机的主要任务与得分方式",
+      "aliases": [
+        "破译"
+      ]
+    },
+    {
+      "name": "杰克",
+      "category": "game_char",
+      "desc": "《第五人格》经典监管者，雾刃与雾区是招牌",
+      "aliases": [
+        "杰克"
+      ]
+    },
+    {
+      "name": "红蝶",
+      "category": "game_char",
+      "desc": "《第五人格》监管者，能化蝶位移追击求生者",
+      "aliases": [
+        "红蝶"
+      ]
+    },
+    {
+      "name": "金铲铲之战",
+      "category": "game",
+      "desc": "腾讯自走棋手游，对应端游云顶之弈",
+      "aliases": [
+        "金铲铲",
+        "云顶之弈"
+      ]
+    },
+    {
+      "name": "羁绊",
+      "category": "game_term",
+      "desc": "自走棋里凑齐同类别棋子获得的加成效果",
+      "aliases": [
+        "羁绊"
+      ]
+    },
+    {
+      "name": "海克斯",
+      "category": "game_term",
+      "desc": "开局选择的强化天赋，决定阵容走向",
+      "aliases": [
+        "海克斯"
+      ]
+    },
+    {
+      "name": "五费卡",
+      "category": "game_term",
+      "desc": "最贵的五费棋子，抽到往往就是阵容核心",
+      "aliases": [
+        "五费卡"
+      ]
+    },
+    {
+      "name": "拉人口",
+      "category": "game_term",
+      "desc": "花钱买经验提升等级，好多上一个棋子",
+      "aliases": [
+        "拉人口"
+      ]
+    },
+    {
+      "name": "黑神话：悟空",
+      "category": "game",
+      "desc": "2024 年国产单机动作游戏，以西游为题材",
+      "aliases": [
+        "黑神话",
+        "黑猴",
+        "悟空"
+      ]
+    },
+    {
+      "name": "棍法",
+      "category": "game_term",
+      "desc": "黑神话的三种棍势切换，劈棍立棍戳棍各有妙用",
+      "aliases": [
+        "棍法",
+        "棍势"
+      ]
+    },
+    {
+      "name": "定身术",
+      "category": "game_term",
+      "desc": "黑神话的法术，定住敌人后可以尽情输出",
+      "aliases": [
+        "定身术"
+      ]
+    },
+    {
+      "name": "二郎神",
+      "category": "game_char",
+      "desc": "《黑神话：悟空》终极 boss，三尖两刃刀、难度极高",
+      "aliases": [
+        "二郎神"
+      ]
+    },
+    {
+      "name": "和平精英",
+      "category": "game",
+      "desc": "腾讯战术竞技手游，玩家俗称吃鸡",
+      "aliases": [
+        "和平精英",
+        "吃鸡",
+        "pubg"
+      ]
+    },
+    {
+      "name": "决赛圈",
+      "category": "game_term",
+      "desc": "缩圈到最后的小范围，剩最后几队决战",
+      "aliases": [
+        "决赛圈"
+      ]
+    },
+    {
+      "name": "空投",
+      "category": "game_term",
+      "desc": "飞机扔下的补给箱，里面有高级装备",
+      "aliases": [
+        "空投"
+      ]
+    },
+    {
+      "name": "三级头",
+      "category": "game_term",
+      "desc": "最高级头盔，能挡不少伤害的保命装备",
+      "aliases": [
+        "三级头"
+      ]
+    },
+    {
+      "name": "缩圈",
+      "category": "game_term",
+      "desc": "安全区不断缩小，逼着玩家向中心靠拢",
+      "aliases": [
+        "缩圈",
+        "安全区"
+      ]
+    },
+    {
+      "name": "钢枪",
+      "category": "game_term",
+      "desc": "正面硬碰硬对枪，比谁的反应和枪法更好",
+      "aliases": [
+        "钢枪"
+      ]
+    },
+    {
+      "name": "蛋仔派对",
+      "category": "game",
+      "desc": "网易休闲派对游戏，画风可爱、地图多样",
+      "aliases": [
+        "蛋仔派对",
+        "蛋仔"
+      ]
+    },
+    {
+      "name": "滚动",
+      "category": "game_term",
+      "desc": "蛋仔的招牌动作，滚起来速度快还能撞人",
+      "aliases": [
+        "滚动"
+      ]
+    },
+    {
+      "name": "派对季",
+      "category": "game_term",
+      "desc": "蛋仔的赛季玩法，每个赛季主题和奖励不同",
+      "aliases": [
+        "派对季"
+      ]
+    },
+    {
+      "name": "逃离塔科夫",
+      "category": "game",
+      "desc": "硬核撤离类射击游戏，俗称塔科夫",
+      "aliases": [
+        "逃离塔科夫",
+        "塔科夫"
+      ]
+    },
+    {
+      "name": "跳蚤市场",
+      "category": "game_term",
+      "desc": "塔科夫里的玩家交易市场，可自由买卖物资",
+      "aliases": [
+        "跳蚤市场"
+      ]
+    },
+    {
+      "name": "钥匙卡",
+      "category": "game_term",
+      "desc": "塔科夫里打开高价值房间的门禁卡",
+      "aliases": [
+        "钥匙卡"
+      ]
+    },
+    {
+      "name": "幻兽帕鲁",
+      "category": "game",
+      "desc": "2024 年爆火的抓宠生存建造游戏",
+      "aliases": [
+        "幻兽帕鲁",
+        "帕鲁"
+      ]
+    },
+    {
+      "name": "配种",
+      "category": "game_term",
+      "desc": "让两只帕鲁繁殖，孵出更强或更稀有的新帕鲁",
+      "aliases": [
+        "配种"
+      ]
+    },
+    {
+      "name": "塔主",
+      "category": "game_term",
+      "desc": "地图塔顶的 boss 首领，打完解锁传送点",
+      "aliases": [
+        "塔主"
+      ]
+    },
+    {
+      "name": "鸣潮",
+      "category": "game",
+      "desc": "库洛开放世界动作游戏，常与原神对比",
+      "aliases": [
+        "鸣潮"
+      ]
+    },
+    {
+      "name": "忌炎",
+      "category": "game_char",
+      "desc": "《鸣潮》五星角色，长枪输出、是开服人气担当",
+      "aliases": [
+        "忌炎"
+      ]
+    },
+    {
+      "name": "长离",
+      "category": "game_char",
+      "desc": "《鸣潮》五星角色，火系、输出与辅助兼具",
+      "aliases": [
+        "长离"
+      ]
+    },
+    {
+      "name": "守岸人",
+      "category": "game_char",
+      "desc": "《鸣潮》五星辅助，能大幅提升队伍伤害",
+      "aliases": [
+        "守岸人"
+      ]
+    },
+    {
+      "name": "声骸",
+      "category": "game_term",
+      "desc": "鸣潮的装备系统，击败怪物获得并加以强化",
+      "aliases": [
+        "声骸"
+      ]
+    },
+    {
+      "name": "明日方舟",
+      "category": "game",
+      "desc": "鹰角塔防养成手游，衍生作有终末地",
+      "aliases": [
+        "明日方舟",
+        "方舟"
+      ]
+    },
+    {
+      "name": "阿米娅",
+      "category": "game_char",
+      "desc": "《明日方舟》看板娘，罗德岛领袖、剧情核心",
+      "aliases": [
+        "阿米娅"
+      ]
+    },
+    {
+      "name": "能天使",
+      "category": "game_char",
+      "desc": "《明日方舟》人气狙击干员，早期开荒神器",
+      "aliases": [
+        "能天使"
+      ]
+    },
+    {
+      "name": "银灰",
+      "category": "game_char",
+      "desc": "《明日方舟》喀兰贸易老板，人气六星近卫",
+      "aliases": [
+        "银灰"
+      ]
+    },
+    {
+      "name": "干员",
+      "category": "game_term",
+      "desc": "明日方舟里可部署的作战单位统称",
+      "aliases": [
+        "干员"
+      ]
+    },
+    {
+      "name": "源石",
+      "category": "game_term",
+      "desc": "明日方舟的核心设定与货币，抽卡强化都要它",
+      "aliases": [
+        "源石"
+      ]
+    },
+    {
+      "name": "精二",
+      "category": "game_term",
+      "desc": "干员精英化第二阶段，大幅提升强度",
+      "aliases": [
+        "精二",
+        "精英化"
+      ]
+    },
+    {
+      "name": "危机合约",
+      "category": "game_term",
+      "desc": "明日方舟的高难挑战玩法，玩家自选难度词条",
+      "aliases": [
+        "危机合约"
+      ]
+    },
+    {
+      "name": "火影忍者",
+      "category": "anime",
+      "desc": "岸本齐史热血忍者漫画与动画，讲鸣人立志成为火影",
+      "aliases": [
+        "火影忍者",
+        "火影",
+        "naruto"
+      ]
+    },
+    {
+      "name": "漩涡鸣人",
+      "category": "anime_char",
+      "desc": "《火影忍者》主角，九尾人柱力，口头禅是说到做到",
+      "aliases": [
+        "漩涡鸣人",
+        "鸣人"
+      ]
+    },
+    {
+      "name": "宇智波佐助",
+      "category": "anime_char",
+      "desc": "《火影忍者》男二，宇智波一族天才忍者，擅长千鸟",
+      "aliases": [
+        "宇智波佐助",
+        "佐助"
+      ]
+    },
+    {
+      "name": "旗木卡卡西",
+      "category": "anime_char",
+      "desc": "《火影忍者》第七班老师，外号拷贝忍者卡卡西",
+      "aliases": [
+        "旗木卡卡西",
+        "卡卡西"
+      ]
+    },
+    {
+      "name": "写轮眼",
+      "category": "anime_term",
+      "desc": "《火影忍者》宇智波一族的瞳术，可复制忍术并施幻术",
+      "aliases": [
+        "写轮眼"
+      ]
+    },
+    {
+      "name": "海贼王",
+      "category": "anime",
+      "desc": "尾田荣一郎冒险漫画，讲路飞率草帽团寻找大秘宝",
+      "aliases": [
+        "海贼王",
+        "one piece"
+      ]
+    },
+    {
+      "name": "路飞",
+      "category": "anime_char",
+      "desc": "《海贼王》主角，橡胶果实能力者，目标是海贼王",
+      "aliases": [
+        "路飞",
+        "luffy"
+      ]
+    },
+    {
+      "name": "索隆",
+      "category": "anime_char",
+      "desc": "《海贼王》草帽团剑士，三刀流，立志成为世界第一大剑豪",
+      "aliases": [
+        "索隆",
+        "zoro"
+      ]
+    },
+    {
+      "name": "娜美",
+      "category": "anime_char",
+      "desc": "《海贼王》草帽团航海士，梦想绘制全世界海图",
+      "aliases": [
+        "娜美",
+        "nami"
+      ]
+    },
+    {
+      "name": "恶魔果实",
+      "category": "anime_term",
+      "desc": "《海贼王》设定，吃下可获超能力但被大海厌弃",
+      "aliases": [
+        "恶魔果实"
+      ]
+    },
+    {
+      "name": "名侦探柯南",
+      "category": "anime",
+      "desc": "青山刚昌推理漫画，高中生侦探变小后破案",
+      "aliases": [
+        "名侦探柯南",
+        "柯南",
+        "conan"
+      ]
+    },
+    {
+      "name": "工藤新一",
+      "category": "anime_char",
+      "desc": "《名侦探柯南》主角，高中生名侦探，变小成柯南",
+      "aliases": [
+        "工藤新一",
+        "新一"
+      ]
+    },
+    {
+      "name": "毛利兰",
+      "category": "anime_char",
+      "desc": "《名侦探柯南》女主，新一青梅竹马，空手道高手",
+      "aliases": [
+        "毛利兰",
+        "小兰"
+      ]
+    },
+    {
+      "name": "黑衣组织",
+      "category": "anime_term",
+      "desc": "《名侦探柯南》里的神秘犯罪集团，代号琴酒等酒名",
+      "aliases": [
+        "黑衣组织"
+      ]
+    },
+    {
+      "name": "安室透",
+      "category": "anime_char",
+      "desc": "《名侦探柯南》人气角色，组织卧底，咖啡厅店员",
+      "aliases": [
+        "安室透"
+      ]
+    },
+    {
+      "name": "咒术回战",
+      "category": "anime",
+      "desc": "芥见下下战斗漫画，讲咒术师祓除咒灵的故事",
+      "aliases": [
+        "咒术回战",
+        "咒术"
+      ]
+    },
+    {
+      "name": "五条悟",
+      "category": "anime_char",
+      "desc": "《咒术回战》最强咒术师，白发蓝眼、人气极高",
+      "aliases": [
+        "五条悟",
+        "五条"
+      ]
+    },
+    {
+      "name": "虎杖悠仁",
+      "category": "anime_char",
+      "desc": "《咒术回战》主角，身体被宿傩寄宿的少年",
+      "aliases": [
+        "虎杖悠仁",
+        "虎杖"
+      ]
+    },
+    {
+      "name": "宿傩",
+      "category": "anime_char",
+      "desc": "《咒术回战》最强咒灵，寄宿在虎杖体内的诅咒之王",
+      "aliases": [
+        "宿傩",
+        "两面宿傩"
+      ]
+    },
+    {
+      "name": "领域展开",
+      "category": "anime_term",
+      "desc": "《咒术回战》把自身术式铺开成领域的终极技能",
+      "aliases": [
+        "领域展开"
+      ]
+    },
+    {
+      "name": "鬼灭之刃",
+      "category": "anime",
+      "desc": "吾峠呼世晴战斗漫画，ufotable 制作，讲炭治郎灭鬼",
+      "aliases": [
+        "鬼灭之刃",
+        "鬼灭"
+      ]
+    },
+    {
+      "name": "灶门炭治郎",
+      "category": "anime_char",
+      "desc": "《鬼灭之刃》主角，为救变鬼的妹妹加入鬼杀队",
+      "aliases": [
+        "灶门炭治郎",
+        "炭治郎"
+      ]
+    },
+    {
+      "name": "祢豆子",
+      "category": "anime_char",
+      "desc": "《鬼灭之刃》炭治郎之妹，被鬼化后咬着竹筒",
+      "aliases": [
+        "祢豆子"
+      ]
+    },
+    {
+      "name": "我妻善逸",
+      "category": "anime_char",
+      "desc": "《鬼灭之刃》胆小剑士，睡着后使雷之呼吸",
+      "aliases": [
+        "我妻善逸",
+        "善逸"
+      ]
+    },
+    {
+      "name": "富冈义勇",
+      "category": "anime_char",
+      "desc": "《鬼灭之刃》水柱，沉默寡言，救了炭治郎兄妹",
+      "aliases": [
+        "富冈义勇",
+        "义勇"
+      ]
+    },
+    {
+      "name": "呼吸法",
+      "category": "anime_term",
+      "desc": "《鬼灭之刃》剑士借呼吸强化身体与刀法的战斗术",
+      "aliases": [
+        "呼吸法",
+        "全集中呼吸"
+      ]
+    },
+    {
+      "name": "进击的巨人",
+      "category": "anime",
+      "desc": "谏山创暗黑奇幻漫画，讲人类对抗巨人与真相",
+      "aliases": [
+        "进击的巨人",
+        "attack on titan"
+      ]
+    },
+    {
+      "name": "艾伦",
+      "category": "anime_char",
+      "desc": "《进击的巨人》主角，誓要驱逐所有巨人的少年",
+      "aliases": [
+        "艾伦",
+        "艾伦耶格尔"
+      ]
+    },
+    {
+      "name": "三笠",
+      "category": "anime_char",
+      "desc": "《进击的巨人》女主，战斗力超强的阿克曼一族",
+      "aliases": [
+        "三笠"
+      ]
+    },
+    {
+      "name": "利威尔",
+      "category": "anime_char",
+      "desc": "《进击的巨人》人类最强士兵，调查兵团兵长",
+      "aliases": [
+        "利威尔",
+        "兵长"
+      ]
+    },
+    {
+      "name": "调查兵团",
+      "category": "anime_term",
+      "desc": "《进击的巨人》墙外作战的军队，标志为自由之翼",
+      "aliases": [
+        "调查兵团"
+      ]
+    },
+    {
+      "name": "地鸣",
+      "category": "anime_term",
+      "desc": "《进击的巨人》里唤醒墙内超大型巨人踏平世界",
+      "aliases": [
+        "地鸣"
+      ]
+    },
+    {
+      "name": "间谍过家家",
+      "category": "anime",
+      "desc": "远藤达哉家庭喜剧漫画，间谍与杀手组建家庭",
+      "aliases": [
+        "间谍过家家",
+        "spy family"
+      ]
+    },
+    {
+      "name": "阿尼亚",
+      "category": "anime_char",
+      "desc": "《间谍过家家》会读心的超能力小女孩，超可爱",
+      "aliases": [
+        "阿尼亚",
+        "anya"
+      ]
+    },
+    {
+      "name": "劳埃德·福杰",
+      "category": "anime_char",
+      "desc": "《间谍过家家》男主，代号黄昏的顶尖间谍",
+      "aliases": [
+        "劳埃德·福杰",
+        "劳埃德"
+      ]
+    },
+    {
+      "name": "约尔",
+      "category": "anime_char",
+      "desc": "《间谍过家家》女主，代号睡美人的职业杀手",
+      "aliases": [
+        "约尔"
+      ]
+    },
+    {
+      "name": "孤独摇滚",
+      "category": "anime",
+      "desc": "讲社恐少女后藤一里加入乐队后成长的音乐动画",
+      "aliases": [
+        "孤独摇滚"
+      ]
+    },
+    {
+      "name": "后藤一里",
+      "category": "anime_char",
+      "desc": "《孤独摇滚》主角，社恐吉他手，外号波奇酱",
+      "aliases": [
+        "后藤一里",
+        "波奇",
+        "波奇酱"
+      ]
+    },
+    {
+      "name": "结束乐队",
+      "category": "anime_term",
+      "desc": "《孤独摇滚》中主角们组建的四人女子乐队",
+      "aliases": [
+        "结束乐队"
+      ]
+    },
+    {
+      "name": "排球少年",
+      "category": "anime",
+      "desc": "古馆春一热血排球漫画，讲乌野高中排球队",
+      "aliases": [
+        "排球少年"
+      ]
+    },
+    {
+      "name": "日向翔阳",
+      "category": "anime_char",
+      "desc": "《排球少年》主角，个子矮却弹跳惊人的副攻",
+      "aliases": [
+        "日向翔阳",
+        "日向"
+      ]
+    },
+    {
+      "name": "影山飞雄",
+      "category": "anime_char",
+      "desc": "《排球少年》天才二传手，与日向组成怪人快攻",
+      "aliases": [
+        "影山飞雄",
+        "影山"
+      ]
+    },
+    {
+      "name": "灌篮高手",
+      "category": "anime",
+      "desc": "井上雄彦篮球漫画，讲湘北高中篮球队的热血故事",
+      "aliases": [
+        "灌篮高手"
+      ]
+    },
+    {
+      "name": "樱木花道",
+      "category": "anime_char",
+      "desc": "《灌篮高手》主角，红发新人，天才篮板王",
+      "aliases": [
+        "樱木花道",
+        "樱木"
+      ]
+    },
+    {
+      "name": "流川枫",
+      "category": "anime_char",
+      "desc": "《灌篮高手》王牌球员，冷酷寡言的得分机器",
+      "aliases": [
+        "流川枫",
+        "流川"
+      ]
+    },
+    {
+      "name": "七龙珠",
+      "category": "anime",
+      "desc": "鸟山明经典热血漫画，讲悟空收集龙珠与战斗",
+      "aliases": [
+        "七龙珠",
+        "龙珠"
+      ]
+    },
+    {
+      "name": "孙悟空",
+      "category": "anime_char",
+      "desc": "《七龙珠》主角，赛亚人，不断突破极限变强",
+      "aliases": [
+        "孙悟空"
+      ]
+    },
+    {
+      "name": "超级赛亚人",
+      "category": "anime_term",
+      "desc": "《七龙珠》赛亚人的变身形态，头发金黄气焰冲天",
+      "aliases": [
+        "超级赛亚人",
+        "赛亚人"
+      ]
+    },
+    {
+      "name": "贝吉塔",
+      "category": "anime_char",
+      "desc": "《七龙珠》赛亚人王子，悟空亦敌亦友的劲敌",
+      "aliases": [
+        "贝吉塔"
+      ]
+    },
+    {
+      "name": "死神",
+      "category": "anime",
+      "desc": "久保带人漫画，讲黑崎一护成为死神斩虚的故事",
+      "aliases": [
+        "死神",
+        "bleach"
+      ]
+    },
+    {
+      "name": "黑崎一护",
+      "category": "anime_char",
+      "desc": "《死神》主角，橙发高中生，持斩魄刀斩虚",
+      "aliases": [
+        "黑崎一护",
+        "一护"
+      ]
+    },
+    {
+      "name": "斩魄刀",
+      "category": "anime_term",
+      "desc": "《死神》中死神的佩刀，可解放为卍解施展能力",
+      "aliases": [
+        "斩魄刀",
+        "卍解"
+      ]
+    },
+    {
+      "name": "机动战士高达",
+      "category": "anime",
+      "desc": "日升机器人动画系列，标志性机体与战争题材",
+      "aliases": [
+        "机动战士高达",
+        "高达"
+      ]
+    },
+    {
+      "name": "阿姆罗",
+      "category": "anime_char",
+      "desc": "《机动战士高达》初代主角，传奇新人类机师",
+      "aliases": [
+        "阿姆罗"
+      ]
+    },
+    {
+      "name": "夏亚",
+      "category": "anime_char",
+      "desc": "《机动战士高达》人气角色，红色机体与复仇者",
+      "aliases": [
+        "夏亚"
+      ]
+    },
+    {
+      "name": "新世纪福音战士",
+      "category": "anime",
+      "desc": "庵野秀明机战动画，讲少年少女驾驶 EVA 战斗",
+      "aliases": [
+        "新世纪福音战士",
+        "eva"
+      ]
+    },
+    {
+      "name": "绫波丽",
+      "category": "anime_char",
+      "desc": "《新世纪福音战士》驾驶员，沉默神秘的蓝发少女",
+      "aliases": [
+        "绫波丽",
+        "绫波"
+      ]
+    },
+    {
+      "name": "明日香",
+      "category": "anime_char",
+      "desc": "《新世纪福音战士》驾驶员，傲娇好胜的红发少女",
+      "aliases": [
+        "明日香"
+      ]
+    },
+    {
+      "name": "命运石之门",
+      "category": "anime",
+      "desc": "科幻悬疑动画，讲冈部用电话微波炉改变世界线",
+      "aliases": [
+        "命运石之门",
+        "石头门",
+        "steins gate"
+      ]
+    },
+    {
+      "name": "冈部伦太郎",
+      "category": "anime_char",
+      "desc": "《命运石之门》主角，自称凤凰院凶真的科学家",
+      "aliases": [
+        "冈部伦太郎",
+        "冈部"
+      ]
+    },
+    {
+      "name": "世界线",
+      "category": "anime_term",
+      "desc": "《命运石之门》里时间分支的设定，变动会有收束",
+      "aliases": [
+        "世界线"
+      ]
+    },
+    {
+      "name": "Re:从零开始的异世界生活",
+      "category": "anime",
+      "desc": "长月达平轻小说改编，主角死亡后会回到存档点",
+      "aliases": [
+        "从零开始的异世界生活",
+        "re:zero",
+        "re0"
+      ]
+    },
+    {
+      "name": "蕾姆",
+      "category": "anime_char",
+      "desc": "《Re:从零开始》人气女仆角色，蓝发，忠于昴",
+      "aliases": [
+        "蕾姆",
+        "rem"
+      ]
+    },
+    {
+      "name": "艾米莉娅",
+      "category": "anime_char",
+      "desc": "《Re:从零开始》女主，银发半精灵，王选候选人",
+      "aliases": [
+        "艾米莉娅",
+        "爱蜜莉雅"
+      ]
+    },
+    {
+      "name": "刀剑神域",
+      "category": "anime",
+      "desc": "川原砾轻小说改编，玩家被困 VR 游戏里通关求生",
+      "aliases": [
+        "刀剑神域",
+        "sao"
+      ]
+    },
+    {
+      "name": "桐人",
+      "category": "anime_char",
+      "desc": "《刀剑神域》主角，黑衣剑士，通关死亡游戏",
+      "aliases": [
+        "桐人",
+        "桐谷和人"
+      ]
+    },
+    {
+      "name": "亚丝娜",
+      "category": "anime_char",
+      "desc": "《刀剑神域》女主，细剑使，人称闪光的亚丝娜",
+      "aliases": [
+        "亚丝娜"
+      ]
+    },
+    {
+      "name": "Fate",
+      "category": "anime",
+      "desc": "型月世界观系列，围绕圣杯战争与英灵召唤展开",
+      "aliases": [
+        "fate",
+        "命运之夜"
+      ]
+    },
+    {
+      "name": "Saber",
+      "category": "anime_char",
+      "desc": "《Fate》系列代表英灵，阿尔托莉雅，持誓约之剑",
+      "aliases": [
+        "saber",
+        "阿尔托莉雅"
+      ]
+    },
+    {
+      "name": "圣杯战争",
+      "category": "anime_term",
+      "desc": "《Fate》设定，英灵互斗争夺能实现愿望的圣杯",
+      "aliases": [
+        "圣杯战争"
+      ]
+    },
+    {
+      "name": "一拳超人",
+      "category": "anime",
+      "desc": "ONE 原作漫画，讲光头英雄埼玉一拳解决敌人",
+      "aliases": [
+        "一拳超人"
+      ]
+    },
+    {
+      "name": "埼玉",
+      "category": "anime_char",
+      "desc": "《一拳超人》主角，光头，任何敌人都能一拳解决",
+      "aliases": [
+        "埼玉"
+      ]
+    },
+    {
+      "name": "杰诺斯",
+      "category": "anime_char",
+      "desc": "《一拳超人》改造人，埼玉的弟子，火力全开",
+      "aliases": [
+        "杰诺斯"
+      ]
+    },
+    {
+      "name": "电锯人",
+      "category": "anime",
+      "desc": "藤本树暗黑战斗漫画，讲少年电次与恶魔猎人",
+      "aliases": [
+        "电锯人",
+        "chainsaw man"
+      ]
+    },
+    {
+      "name": "电次",
+      "category": "anime_char",
+      "desc": "《电锯人》主角，心脏与电锯恶魔融合的少年",
+      "aliases": [
+        "电次"
+      ]
+    },
+    {
+      "name": "玛奇玛",
+      "category": "anime_char",
+      "desc": "《电锯人》里的神秘女上司，公安对魔特异课",
+      "aliases": [
+        "玛奇玛"
+      ]
+    },
+    {
+      "name": "帕瓦",
+      "category": "anime_char",
+      "desc": "《电锯人》血之魔人，自称天才的粉色头发少女",
+      "aliases": [
+        "帕瓦"
+      ]
+    },
+    {
+      "name": "赛马娘",
+      "category": "anime",
+      "desc": "以赛马拟人化为题材的动画与养成手游",
+      "aliases": [
+        "赛马娘"
+      ]
+    },
+    {
+      "name": "特别周",
+      "category": "anime_char",
+      "desc": "《赛马娘》主角，来自北海道的元气赛马娘",
+      "aliases": [
+        "特别周"
+      ]
+    },
+    {
+      "name": "无声铃鹿",
+      "category": "anime_char",
+      "desc": "《赛马娘》里擅长领跑的大逃马娘，命运悲情",
+      "aliases": [
+        "无声铃鹿"
+      ]
+    },
+    {
+      "name": "蓝色监狱",
+      "category": "anime",
+      "desc": "足球漫画，讲三百名前锋封闭训练争夺最强",
+      "aliases": [
+        "蓝色监狱",
+        "blue lock"
+      ]
+    },
+    {
+      "name": "洁世一",
+      "category": "anime_char",
+      "desc": "《蓝色监狱》主角，以自我为中心的进球型前锋",
+      "aliases": [
+        "洁世一"
+      ]
+    },
+    {
+      "name": "凪诚士郎",
+      "category": "anime_char",
+      "desc": "《蓝色监狱》天才前锋，慵懒却拥有惊人球感",
+      "aliases": [
+        "凪诚士郎"
+      ]
+    },
+    {
+      "name": "我推的孩子",
+      "category": "anime",
+      "desc": "赤坂明漫画，讲转生为偶像之子的复仇与演艺圈",
+      "aliases": [
+        "我推的孩子"
+      ]
+    },
+    {
+      "name": "星野爱",
+      "category": "anime_char",
+      "desc": "《我推的孩子》传奇偶像，B 小町成员，双胞胎之母",
+      "aliases": [
+        "星野爱"
+      ]
+    },
+    {
+      "name": "阿库亚",
+      "category": "anime_char",
+      "desc": "《我推的孩子》男主，为调查母亲之死进入演艺圈",
+      "aliases": [
+        "阿库亚"
+      ]
+    },
+    {
+      "name": "露比",
+      "category": "anime_char",
+      "desc": "《我推的孩子》女主，爱的女儿，立志当偶像",
+      "aliases": [
+        "露比"
+      ]
+    },
+    {
+      "name": "葬送的芙莉莲",
+      "category": "anime",
+      "desc": "2023 年奇幻动画，讲长生精灵芙莉莲重走冒险之路",
+      "aliases": [
+        "葬送的芙莉莲",
+        "芙莉莲"
+      ]
+    },
+    {
+      "name": "菲伦",
+      "category": "anime_char",
+      "desc": "《葬送的芙莉莲》女主，芙莉莲的弟子，魔法使",
+      "aliases": [
+        "菲伦"
+      ]
+    },
+    {
+      "name": "修塔尔克",
+      "category": "anime_char",
+      "desc": "《葬送的芙莉莲》战士，胆小却实力超群的少年",
+      "aliases": [
+        "修塔尔克"
+      ]
+    },
+    {
+      "name": "辛美尔",
+      "category": "anime_char",
+      "desc": "《葬送的芙莉莲》勇者，已故却贯穿全作的白月光",
+      "aliases": [
+        "辛美尔"
+      ]
+    },
+    {
+      "name": "药屋少女的呢喃",
+      "category": "anime",
+      "desc": "后宫题材推理小说改编，讲药师猫猫破解谜案",
+      "aliases": [
+        "药屋少女的呢喃",
+        "药屋少女"
+      ]
+    },
+    {
+      "name": "猫猫",
+      "category": "anime_char",
+      "desc": "《药屋少女的呢喃》女主，懂药理的宫中试毒少女",
+      "aliases": [
+        "猫猫"
+      ]
+    },
+    {
+      "name": "壬氏",
+      "category": "anime_char",
+      "desc": "《药屋少女的呢喃》男主，美貌宦官，实为皇弟",
+      "aliases": [
+        "壬氏"
+      ]
+    },
+    {
+      "name": "赛博朋克：边缘行者",
+      "category": "anime",
+      "desc": "扳机社制作的赛博朋克动画，讲大卫一家的悲剧",
+      "aliases": [
+        "赛博朋克：边缘行者",
+        "赛博朋克边缘行者",
+        "边缘行者",
+        "cyberpunk edgerunners"
+      ]
+    },
+    {
+      "name": "露西",
+      "category": "anime_char",
+      "desc": "《赛博朋克：边缘行者》女主，想上月球的女黑客",
+      "aliases": [
+        "露西"
+      ]
+    },
+    {
+      "name": "大卫·马丁内斯",
+      "category": "anime_char",
+      "desc": "《赛博朋克：边缘行者》主角，装义体的边缘行者",
+      "aliases": [
+        "大卫·马丁内斯"
+      ]
+    },
+    {
+      "name": "我的英雄学院",
+      "category": "anime",
+      "desc": "堀越耕平漫画，讲超能力社会里绿谷成为英雄",
+      "aliases": [
+        "我的英雄学院",
+        "我英"
+      ]
+    },
+    {
+      "name": "绿谷出久",
+      "category": "anime_char",
+      "desc": "《我的英雄学院》主角，无个性却继承最强之力",
+      "aliases": [
+        "绿谷出久",
+        "绿谷"
+      ]
+    },
+    {
+      "name": "爆豪胜己",
+      "category": "anime_char",
+      "desc": "《我的英雄学院》主角劲敌，爆炸个性，脾气火爆",
+      "aliases": [
+        "爆豪胜己",
+        "爆豪"
+      ]
+    },
+    {
+      "name": "JOJO的奇妙冒险",
+      "category": "anime",
+      "desc": "荒木飞吕彦漫画，以替身战斗和家族血统为主线",
+      "aliases": [
+        "jojo",
+        "jojo的奇妙冒险"
+      ]
+    },
+    {
+      "name": "空条承太郎",
+      "category": "anime_char",
+      "desc": "《JOJO》第三部主角，白金之星使用者，无敌气场",
+      "aliases": [
+        "空条承太郎",
+        "承太郎"
+      ]
+    },
+    {
+      "name": "替身",
+      "category": "anime_term",
+      "desc": "《JOJO》里精神力量具现化的战斗伙伴与能力",
+      "aliases": [
+        "替身"
+      ]
+    },
+    {
+      "name": "欧拉欧拉",
+      "category": "anime_term",
+      "desc": "《JOJO》承太郎替身连打的招牌战吼，木大木大同理",
+      "aliases": [
+        "欧拉欧拉",
+        "木大木大"
+      ]
+    },
+    {
+      "name": "银魂",
+      "category": "anime",
+      "desc": "空知英秋搞笑漫画，讲万事屋与江户的吐槽日常",
+      "aliases": [
+        "银魂"
+      ]
+    },
+    {
+      "name": "坂田银时",
+      "category": "anime_char",
+      "desc": "《银魂》主角，万事屋老板，爱甜食的废柴武士",
+      "aliases": [
+        "坂田银时",
+        "银时"
+      ]
+    },
+    {
+      "name": "志村新八",
+      "category": "anime_char",
+      "desc": "《银魂》万事屋成员，吐槽担当，眼镜本体",
+      "aliases": [
+        "志村新八",
+        "新八"
+      ]
+    },
+    {
+      "name": "神乐",
+      "category": "anime_char",
+      "desc": "《银魂》万事屋成员，夜兔族少女，力大爱吃醋昆布",
+      "aliases": [
+        "神乐"
+      ]
+    },
+    {
+      "name": "夏目友人帐",
+      "category": "anime",
+      "desc": "绿川幸漫画，讲能看到妖怪的夏目归还名字的故事",
+      "aliases": [
+        "夏目友人帐"
+      ]
+    },
+    {
+      "name": "夏目贵志",
+      "category": "anime_char",
+      "desc": "《夏目友人帐》主角，能看见妖怪的温柔少年",
+      "aliases": [
+        "夏目贵志",
+        "夏目"
+      ]
+    },
+    {
+      "name": "猫咪老师",
+      "category": "anime_char",
+      "desc": "《夏目友人帐》里的招财猫妖怪，真身是斑",
+      "aliases": [
+        "猫咪老师",
+        "娘口三三"
+      ]
+    },
+    {
+      "name": "轻音少女",
+      "category": "anime",
+      "desc": "京都动画音乐日常番，讲轻音部少女们的校园生活",
+      "aliases": [
+        "轻音少女",
+        "轻音"
+      ]
+    },
+    {
+      "name": "平泽唯",
+      "category": "anime_char",
+      "desc": "《轻音少女》主角，天然呆吉他手，绰号唯",
+      "aliases": [
+        "平泽唯"
+      ]
+    },
+    {
+      "name": "中野梓",
+      "category": "anime_char",
+      "desc": "《轻音少女》后辈吉他手，外号梓喵，认真可爱",
+      "aliases": [
+        "中野梓",
+        "梓喵"
+      ]
+    },
+    {
+      "name": "秋山澪",
+      "category": "anime_char",
+      "desc": "《轻音少女》贝斯手，胆小易羞，人气很高",
+      "aliases": [
+        "秋山澪"
+      ]
+    },
+    {
+      "name": "辉夜大小姐想让我告白",
+      "category": "anime",
+      "desc": "恋爱头脑战喜剧，讲学生会正副会长互相算计",
+      "aliases": [
+        "辉夜大小姐想让我告白",
+        "辉夜大小姐"
+      ]
+    },
+    {
+      "name": "四宫辉夜",
+      "category": "anime_char",
+      "desc": "《辉夜大小姐》女主，四宫家千金，傲娇学生会长",
+      "aliases": [
+        "四宫辉夜"
+      ]
+    },
+    {
+      "name": "白银御行",
+      "category": "anime_char",
+      "desc": "《辉夜大小姐》男主，平民出身的学生会长学霸",
+      "aliases": [
+        "白银御行",
+        "白银"
+      ]
+    },
+    {
+      "name": "藤原千花",
+      "category": "anime_char",
+      "desc": "《辉夜大小姐》书记，天真爱搞事，想当首相",
+      "aliases": [
+        "藤原千花",
+        "千花"
+      ]
+    },
+    {
+      "name": "五等分的新娘",
+      "category": "anime",
+      "desc": "恋爱喜剧漫画，讲五胞胎姐妹与家庭教师的恋情",
+      "aliases": [
+        "五等分的新娘",
+        "五等分"
+      ]
+    },
+    {
+      "name": "中野三玖",
+      "category": "anime_char",
+      "desc": "《五等分的新娘》三女，爱战国史，早期人气最高",
+      "aliases": [
+        "中野三玖",
+        "三玖"
+      ]
+    },
+    {
+      "name": "中野四叶",
+      "category": "anime_char",
+      "desc": "《五等分的新娘》四女，元气运动系，最终赢家",
+      "aliases": [
+        "中野四叶",
+        "四叶"
+      ]
+    },
+    {
+      "name": "擅长捉弄的高木同学",
+      "category": "anime",
+      "desc": "校园恋爱漫画，讲高木同学总爱捉弄西片",
+      "aliases": [
+        "擅长捉弄的高木同学",
+        "高木同学"
+      ]
+    },
+    {
+      "name": "西片",
+      "category": "anime_char",
+      "desc": "《擅长捉弄的高木同学》男主，总被高木捉弄",
+      "aliases": [
+        "西片"
+      ]
+    },
+    {
+      "name": "pop子和pipi美的日常",
+      "category": "anime",
+      "desc": "大川bkub 漫画改编，无厘头搞笑玩梗动画",
+      "aliases": [
+        "pop子和pipi美的日常",
+        "pop子pipi美"
+      ]
+    },
+    {
+      "name": "pop子",
+      "category": "anime_char",
+      "desc": "动漫里的主角之一，脾气火爆却总在吐槽",
+      "aliases": [
+        "pop子"
+      ]
+    },
+    {
+      "name": "pipi美",
+      "category": "anime_char",
+      "desc": "动漫里的主角之一，冷静温和的搞笑担当",
+      "aliases": [
+        "pipi美"
+      ]
+    },
+    {
+      "name": "碧蓝之海",
+      "category": "anime",
+      "desc": "井上坚二漫画，讲大学生潜水部与醉酒爆笑日常",
+      "aliases": [
+        "碧蓝之海"
+      ]
+    },
+    {
+      "name": "北原伊织",
+      "category": "anime_char",
+      "desc": "《碧蓝之海》主角，被拉进潜水部的新生，酒量惊人",
+      "aliases": [
+        "北原伊织",
+        "伊织"
+      ]
+    },
+    {
+      "name": "齐木楠雄的灾难",
+      "category": "anime",
+      "desc": "麻生周一搞笑漫画，讲超能力者楠雄的日常烦恼",
+      "aliases": [
+        "齐木楠雄的灾难"
+      ]
+    },
+    {
+      "name": "齐木楠雄",
+      "category": "anime_char",
+      "desc": "《齐木楠雄的灾难》主角，拥有几乎无所不能的超能力",
+      "aliases": [
+        "齐木楠雄"
+      ]
+    },
+    {
+      "name": "为美好的世界献上祝福",
+      "category": "anime",
+      "desc": "轻小说改编异世界喜剧，讲宅男转生后组队冒险",
+      "aliases": [
+        "为美好的世界献上祝福",
+        "konosuba"
+      ]
+    },
+    {
+      "name": "阿库娅",
+      "category": "anime_char",
+      "desc": "《为美好世界献上祝福》水之女神，常被吐槽为废物",
+      "aliases": [
+        "阿库娅",
+        "aqua"
+      ]
+    },
+    {
+      "name": "惠惠",
+      "category": "anime_char",
+      "desc": "《为美好世界献上祝福》红魔族少女，只会爆裂魔法",
+      "aliases": [
+        "惠惠"
+      ]
+    },
+    {
+      "name": "达克妮丝",
+      "category": "anime_char",
+      "desc": "《为美好世界献上祝福》女骑士，防御力惊人却爱受虐",
+      "aliases": [
+        "达克妮丝"
+      ]
+    },
+    {
+      "name": "overlord",
+      "category": "anime",
+      "desc": "讲玩家穿越游戏成为骷髅法师统治异世界的动画",
+      "aliases": [
+        "overlord",
+        "不死者之王"
+      ]
+    },
+    {
+      "name": "安兹乌尔恭",
+      "category": "anime_char",
+      "desc": "《overlord》主角，公会会长转生后的不死者之王",
+      "aliases": [
+        "安兹乌尔恭",
+        "安兹",
+        "骨傲天"
+      ]
+    },
+    {
+      "name": "雅儿贝德",
+      "category": "anime_char",
+      "desc": "《overlord》纳萨力克总管，对安兹一心一意忠诚",
+      "aliases": [
+        "雅儿贝德"
+      ]
+    },
+    {
+      "name": "夏日重现",
+      "category": "anime",
+      "desc": "田中靖规漫画，讲慎平在小岛上对抗影子的循环",
+      "aliases": [
+        "夏日重现",
+        "summertime render"
+      ]
+    },
+    {
+      "name": "网代慎平",
+      "category": "anime_char",
+      "desc": "《夏日重现》主角，为妹妹之死回到岛上调查",
+      "aliases": [
+        "网代慎平",
+        "慎平"
+      ]
+    },
+    {
+      "name": "冰雪奇缘",
+      "category": "anime",
+      "desc": "迪士尼动画电影，讲艾莎与安娜姐妹的冰雪奇缘",
+      "aliases": [
+        "冰雪奇缘",
+        "frozen"
+      ]
+    },
+    {
+      "name": "艾莎",
+      "category": "anime_char",
+      "desc": "《冰雪奇缘》女主，能操控冰雪的女王，人气极高",
+      "aliases": [
+        "艾莎",
+        "elsa"
+      ]
+    },
+    {
+      "name": "斗罗大陆",
+      "category": "anime",
+      "desc": "唐家三少小说改编国漫，讲唐三修炼武魂的故事",
+      "aliases": [
+        "斗罗大陆"
+      ]
+    },
+    {
+      "name": "唐三",
+      "category": "anime_char",
+      "desc": "《斗罗大陆》主角，双生武魂，从唐门穿越而来",
+      "aliases": [
+        "唐三"
+      ]
+    },
+    {
+      "name": "小舞",
+      "category": "anime_char",
+      "desc": "《斗罗大陆》女主，十万年柔骨兔魂兽化形",
+      "aliases": [
+        "小舞"
+      ]
+    },
+    {
+      "name": "秦时明月",
+      "category": "anime",
+      "desc": "国产武侠动画，讲荆天明在秦末乱世成长的故事",
+      "aliases": [
+        "秦时明月"
+      ]
+    },
+    {
+      "name": "荆天明",
+      "category": "anime_char",
+      "desc": "《秦时明月》主角，荆轲之子，顽劣又重情义",
+      "aliases": [
+        "荆天明",
+        "天明"
+      ]
+    },
+    {
+      "name": "盖聂",
+      "category": "anime_char",
+      "desc": "《秦时明月》剑圣，荆天明的监护人，剑术登峰造极",
+      "aliases": [
+        "盖聂"
+      ]
+    },
+    {
+      "name": "雾山五行",
+      "category": "anime",
+      "desc": "国产水墨风奇幻动画，讲雾山五行封印妖兽",
+      "aliases": [
+        "雾山五行"
+      ]
+    },
+    {
+      "name": "时光代理人",
+      "category": "anime",
+      "desc": "国产悬疑动画，讲两人进入照片改变他人过去",
+      "aliases": [
+        "时光代理人"
+      ]
+    },
+    {
+      "name": "程小时",
+      "category": "anime_char",
+      "desc": "《时光代理人》主角，能进入照片操控拍照者",
+      "aliases": [
+        "程小时"
+      ]
+    },
+    {
+      "name": "陆光",
+      "category": "anime_char",
+      "desc": "《时光代理人》主角，能预见照片后十二小时",
+      "aliases": [
+        "陆光"
+      ]
+    },
+    {
+      "name": "罗小黑战记",
+      "category": "anime",
+      "desc": "木头执导国产动画，讲妖灵罗小黑的冒险",
+      "aliases": [
+        "罗小黑战记"
+      ]
+    },
+    {
+      "name": "罗小黑",
+      "category": "anime_char",
+      "desc": "《罗小黑战记》主角，能变身的小黑猫妖灵",
+      "aliases": [
+        "罗小黑"
+      ]
+    },
+    {
+      "name": "一人之下",
+      "category": "anime",
+      "desc": "米二漫画改编国漫，讲异人世界与炁的修炼",
+      "aliases": [
+        "一人之下"
+      ]
+    },
+    {
+      "name": "张楚岚",
+      "category": "anime_char",
+      "desc": "《一人之下》主角，炁体源流传人，痞气又机灵",
+      "aliases": [
+        "张楚岚"
+      ]
+    },
+    {
+      "name": "冯宝宝",
+      "category": "anime_char",
+      "desc": "《一人之下》女主，不老不死，武力值爆表",
+      "aliases": [
+        "冯宝宝"
+      ]
+    },
+    {
+      "name": "天官赐福",
+      "category": "anime",
+      "desc": "墨香铜臭小说改编国漫，讲谢怜与花城的仙侠情缘",
+      "aliases": [
+        "天官赐福"
+      ]
+    },
+    {
+      "name": "谢怜",
+      "category": "anime_char",
+      "desc": "《天官赐福》主角，三次飞升的太子，温柔坚韧",
+      "aliases": [
+        "谢怜"
+      ]
+    },
+    {
+      "name": "花城",
+      "category": "anime_char",
+      "desc": "《天官赐福》男主，鬼王，痴情守护谢怜八百年",
+      "aliases": [
+        "花城"
+      ]
+    },
+    {
+      "name": "魔道祖师",
+      "category": "anime",
+      "desc": "墨香铜臭小说改编国漫，讲魏无羡重生后查真相",
+      "aliases": [
+        "魔道祖师"
+      ]
+    },
+    {
+      "name": "魏无羡",
+      "category": "anime_char",
+      "desc": "《魔道祖师》主角，夷陵老祖，乐观不羁的修士",
+      "aliases": [
+        "魏无羡"
+      ]
+    },
+    {
+      "name": "蓝忘机",
+      "category": "anime_char",
+      "desc": "《魔道祖师》男主，含光君，清冷守规的琴修",
+      "aliases": [
+        "蓝忘机"
+      ]
+    },
+    {
+      "name": "厨",
+      "category": "anime_term",
+      "desc": "二次元圈里指对某角色作品极度狂热的人，含贬义",
+      "aliases": [
+        "厨"
+      ]
+    },
+    {
+      "name": "单推",
+      "category": "anime_term",
+      "desc": "只专一喜欢一个角色或偶像，不动摇不花心",
+      "aliases": [
+        "单推"
+      ]
+    },
+    {
+      "name": "嗑",
+      "category": "anime_term",
+      "desc": "指喜欢把两人凑成一对并享受其互动，嗑 CP",
+      "aliases": [
+        "嗑",
+        "嗑cp"
+      ]
+    },
+    {
+      "name": "本命",
+      "category": "anime_term",
+      "desc": "指自己最爱、最支持的那个角色或偶像",
+      "aliases": [
+        "本命"
+      ]
+    },
+    {
+      "name": "圣地",
+      "category": "anime_term",
+      "desc": "指作品取景地或粉丝必去的朝圣场所",
+      "aliases": [
+        "圣地"
+      ]
+    },
+    {
+      "name": "痛包",
+      "category": "anime_term",
+      "desc": "挂着大量角色徽章挂件的应援包，展示厨力",
+      "aliases": [
+        "痛包"
+      ]
+    },
+    {
+      "name": "谷子",
+      "category": "anime_term",
+      "desc": "goods 的音译，指动漫周边的徽章立牌等小物",
+      "aliases": [
+        "谷子"
+      ]
+    },
+    {
+      "name": "手办",
+      "category": "anime_term",
+      "desc": "指以角色为原型制作的收藏用立体模型",
+      "aliases": [
+        "手办"
+      ]
+    },
+    {
+      "name": "粘土人",
+      "category": "anime_term",
+      "desc": "GSC 出品的 Q 版可动手办系列，俗称黏土人",
+      "aliases": [
+        "粘土人",
+        "黏土人"
+      ]
+    },
+    {
+      "name": "声优",
+      "category": "anime_term",
+      "desc": "指动画角色的配音演员，日本也叫 CV 声优",
+      "aliases": [
+        "声优",
+        "cv"
+      ]
+    },
+    {
+      "name": "白学",
+      "category": "anime_term",
+      "desc": "源自白色相簿 2，指研究三角恋站队的戏谑说法",
+      "aliases": [
+        "白学"
+      ]
+    },
+    {
+      "name": "新番",
+      "category": "anime_term",
+      "desc": "指每季新播出的动画，通常按季度划分",
+      "aliases": [
+        "新番"
+      ]
+    },
+    {
+      "name": "追番",
+      "category": "anime_term",
+      "desc": "指跟着更新一集一集地看当季动画",
+      "aliases": [
+        "追番"
+      ]
+    },
+    {
+      "name": "入坑",
+      "category": "anime_term",
+      "desc": "指开始接触并喜欢上某个作品或圈子",
+      "aliases": [
+        "入坑"
+      ]
+    },
+    {
+      "name": "补番",
+      "category": "anime_term",
+      "desc": "指把以前没看过或错过的旧番补看回来",
+      "aliases": [
+        "补番"
+      ]
+    },
+    {
+      "name": "完结撒花",
+      "category": "anime_term",
+      "desc": "庆祝一部作品连载或播出完结时刷的弹幕",
+      "aliases": [
+        "完结撒花"
+      ]
+    },
+    {
+      "name": "催更",
+      "category": "anime_term",
+      "desc": "观众催促作者或UP主尽快更新后续内容的说法",
+      "aliases": [
+        "催更"
+      ]
+    },
+    {
+      "name": "狂飙",
+      "category": "tv",
+      "desc": "2023 年扫黑题材国产剧，张颂文饰演高启强",
+      "aliases": [
+        "狂飙"
+      ]
+    },
+    {
+      "name": "漫长的季节",
+      "category": "tv",
+      "desc": "2023 年悬疑剧，范伟秦昊主演东北碎尸案",
+      "aliases": [
+        "漫长的季节"
+      ]
+    },
+    {
+      "name": "隐秘的角落",
+      "category": "tv",
+      "desc": "2020 年悬疑剧，秦昊主演，梗「一起去爬山吗」",
+      "aliases": [
+        "隐秘的角落"
+      ]
+    },
+    {
+      "name": "沉默的真相",
+      "category": "tv",
+      "desc": "2020 年悬疑剧，廖凡白宇主演，改编自紫金陈小说",
+      "aliases": [
+        "沉默的真相"
+      ]
+    },
+    {
+      "name": "庆余年",
+      "category": "tv",
+      "desc": "改编自猫腻小说的古装权谋剧，范闲为主角",
+      "aliases": [
+        "庆余年"
+      ]
+    },
+    {
+      "name": "琅琊榜",
+      "category": "tv",
+      "desc": "胡歌主演古装权谋剧，梅长苏复仇翻案",
+      "aliases": [
+        "琅琊榜"
+      ]
+    },
+    {
+      "name": "甄嬛传",
+      "category": "tv",
+      "desc": "孙俪主演经典清宫剧，宫斗题材巅峰之作",
+      "aliases": [
+        "甄嬛传"
+      ]
+    },
+    {
+      "name": "知否知否应是绿肥红瘦",
+      "category": "tv",
+      "desc": "赵丽颖冯绍峰主演古装宅斗剧，改编自关心则乱小说",
+      "aliases": [
+        "知否知否应是绿肥红瘦",
+        "知否"
+      ]
+    },
+    {
+      "name": "都挺好",
+      "category": "tv",
+      "desc": "2019 年家庭剧，倪大红饰苏大强，爹味名场面",
+      "aliases": [
+        "都挺好"
+      ]
+    },
+    {
+      "name": "人世间",
+      "category": "tv",
+      "desc": "2022 年年代剧，改编自梁晓声小说，周家三兄妹",
+      "aliases": [
+        "人世间"
+      ]
+    },
+    {
+      "name": "繁花",
+      "category": "tv",
+      "desc": "王家卫执导，胡歌主演的上海年代剧",
+      "aliases": [
+        "繁花"
+      ]
+    },
+    {
+      "name": "三体",
+      "category": "tv",
+      "desc": "刘慈欣科幻小说改编的国产剧，腾讯版",
+      "aliases": [
+        "三体"
+      ]
+    },
+    {
+      "name": "开端",
+      "category": "tv",
+      "desc": "2022 年时间循环题材剧，白敬亭赵今麦主演",
+      "aliases": [
+        "开端"
+      ]
+    },
+    {
+      "name": "苍兰诀",
+      "category": "tv",
+      "desc": "虞书欣王鹤棣主演的古装仙侠爱情剧",
+      "aliases": [
+        "苍兰诀"
+      ]
+    },
+    {
+      "name": "星汉灿烂",
+      "category": "tv",
+      "desc": "吴磊赵露思主演古装剧，改编自关心则乱小说",
+      "aliases": [
+        "星汉灿烂"
+      ]
+    },
+    {
+      "name": "莲花楼",
+      "category": "tv",
+      "desc": "成毅主演武侠悬疑剧，改编自藤萍小说",
+      "aliases": [
+        "莲花楼"
+      ]
+    },
+    {
+      "name": "长相思",
+      "category": "tv",
+      "desc": "杨紫主演古装仙侠剧，改编自桐华小说",
+      "aliases": [
+        "长相思"
+      ]
+    },
+    {
+      "name": "与凤行",
+      "category": "tv",
+      "desc": "赵丽颖林更新主演的古装仙侠爱情剧",
+      "aliases": [
+        "与凤行"
+      ]
+    },
+    {
+      "name": "墨雨云间",
+      "category": "tv",
+      "desc": "吴谨言主演古装复仇爽剧，改编自小说",
+      "aliases": [
+        "墨雨云间"
+      ]
+    },
+    {
+      "name": "玫瑰的故事",
+      "category": "tv",
+      "desc": "刘亦菲主演的都市女性成长题材剧",
+      "aliases": [
+        "玫瑰的故事"
+      ]
+    },
+    {
+      "name": "我的阿勒泰",
+      "category": "tv",
+      "desc": "改编自李娟散文集的短剧，新疆风光",
+      "aliases": [
+        "我的阿勒泰"
+      ]
+    },
+    {
+      "name": "边水往事",
+      "category": "tv",
+      "desc": "郭麒麟主演的边境悬疑剧，贩毒题材",
+      "aliases": [
+        "边水往事"
+      ]
+    },
+    {
+      "name": "唐朝诡事录",
+      "category": "tv",
+      "desc": "古装探案剧，主角苏无名，取材唐代传说",
+      "aliases": [
+        "唐朝诡事录"
+      ]
+    },
+    {
+      "name": "白夜追凶",
+      "category": "tv",
+      "desc": "潘粤明一人分饰双胞胎的刑侦悬疑剧",
+      "aliases": [
+        "白夜追凶"
+      ]
+    },
+    {
+      "name": "老九门",
+      "category": "tv",
+      "desc": "陈伟霆赵丽颖主演盗墓题材剧，盗墓笔记前传",
+      "aliases": [
+        "老九门"
+      ]
+    },
+    {
+      "name": "鬼吹灯",
+      "category": "tv",
+      "desc": "天下霸唱盗墓小说系列，含精绝古城等改编剧",
+      "aliases": [
+        "鬼吹灯"
+      ]
+    },
+    {
+      "name": "盗墓笔记",
+      "category": "tv",
+      "desc": "南派三叔盗墓冒险小说系列及其改编剧",
+      "aliases": [
+        "盗墓笔记"
+      ]
+    },
+    {
+      "name": "武林外传",
+      "category": "tv",
+      "desc": "2006 年古装情景喜剧，佟湘玉白展堂等角色",
+      "aliases": [
+        "武林外传"
+      ]
+    },
+    {
+      "name": "家有儿女",
+      "category": "tv",
+      "desc": "经典家庭情景喜剧，刘星与夏雪夏雨",
+      "aliases": [
+        "家有儿女",
+        "刘星"
+      ]
+    },
+    {
+      "name": "西游记",
+      "category": "tv",
+      "desc": "四大名著改编神话剧，师徒四人取经",
+      "aliases": [
+        "西游记"
+      ]
+    },
+    {
+      "name": "三国演义",
+      "category": "tv",
+      "desc": "四大名著改编的历史剧，94 版央视最经典",
+      "aliases": [
+        "三国演义",
+        "三国"
+      ]
+    },
+    {
+      "name": "水浒传",
+      "category": "tv",
+      "desc": "四大名著改编的剧，梁山一百零八将",
+      "aliases": [
+        "水浒传",
+        "水浒"
+      ]
+    },
+    {
+      "name": "亮剑",
+      "category": "tv",
+      "desc": "李幼斌主演经典抗战剧，李云龙梗多",
+      "aliases": [
+        "亮剑",
+        "李云龙"
+      ]
+    },
+    {
+      "name": "士兵突击",
+      "category": "tv",
+      "desc": "王宝强主演军旅剧，许三多「不抛弃不放弃」",
+      "aliases": [
+        "士兵突击",
+        "许三多"
+      ]
+    },
+    {
+      "name": "父母爱情",
+      "category": "tv",
+      "desc": "郭涛梅婷主演年代家庭剧，年代感强",
+      "aliases": [
+        "父母爱情"
+      ]
+    },
+    {
+      "name": "大明王朝1566",
+      "category": "tv",
+      "desc": "经典历史剧，讲嘉靖与海瑞的朝堂博弈",
+      "aliases": [
+        "大明王朝1566",
+        "大明王朝"
+      ]
+    },
+    {
+      "name": "觉醒年代",
+      "category": "tv",
+      "desc": "讲新文化运动的革命历史剧，于和伟主演",
+      "aliases": [
+        "觉醒年代"
+      ]
+    },
+    {
+      "name": "山海情",
+      "category": "tv",
+      "desc": "扶贫题材剧，讲西海固移民脱贫故事",
+      "aliases": [
+        "山海情"
+      ]
+    },
+    {
+      "name": "大江大河",
+      "category": "tv",
+      "desc": "改革开放题材的剧，王凯饰演宋运辉",
+      "aliases": [
+        "大江大河"
+      ]
+    },
+    {
+      "name": "鱿鱼游戏",
+      "category": "tv",
+      "desc": "韩剧，主角参加致命童年游戏闯关求生",
+      "aliases": [
+        "鱿鱼游戏",
+        "squid game"
+      ]
+    },
+    {
+      "name": "黑暗荣耀",
+      "category": "tv",
+      "desc": "宋慧乔主演韩剧，校园霸凌复仇题材",
+      "aliases": [
+        "黑暗荣耀"
+      ]
+    },
+    {
+      "name": "顶楼",
+      "category": "tv",
+      "desc": "韩剧，讲述豪宅住户的狗血复仇故事",
+      "aliases": [
+        "顶楼"
+      ]
+    },
+    {
+      "name": "爱的迫降",
+      "category": "tv",
+      "desc": "玄彬孙艺珍主演韩剧，南北韩爱情故事",
+      "aliases": [
+        "爱的迫降"
+      ]
+    },
+    {
+      "name": "请回答1988",
+      "category": "tv",
+      "desc": "经典韩剧，双门洞邻里的温情群像剧",
+      "aliases": [
+        "请回答1988"
+      ]
+    },
+    {
+      "name": "梨泰院class",
+      "category": "tv",
+      "desc": "朴叙俊主演的韩剧，复仇与创业题材",
+      "aliases": [
+        "梨泰院class",
+        "梨泰院"
+      ]
+    },
+    {
+      "name": "legal high",
+      "category": "tv",
+      "desc": "堺雅人主演日剧，毒舌律师古美门研介",
+      "aliases": [
+        "legal high",
+        "李狗嗨"
+      ]
+    },
+    {
+      "name": "半泽直树",
+      "category": "tv",
+      "desc": "堺雅人主演日剧，银行职场复仇爽剧",
+      "aliases": [
+        "半泽直树"
+      ]
+    },
+    {
+      "name": "深夜食堂",
+      "category": "tv",
+      "desc": "日剧，讲述午夜小食堂里的温情故事",
+      "aliases": [
+        "深夜食堂"
+      ]
+    },
+    {
+      "name": "孤独的美食家",
+      "category": "tv",
+      "desc": "日剧，井之头五郎探店的吃饭向作品",
+      "aliases": [
+        "孤独的美食家"
+      ]
+    },
+    {
+      "name": "非自然死亡",
+      "category": "tv",
+      "desc": "石原里美主演日剧，法医题材职场剧",
+      "aliases": [
+        "非自然死亡",
+        "unnatural"
+      ]
+    },
+    {
+      "name": "逃避虽可耻但有用",
+      "category": "tv",
+      "desc": "新垣结衣主演日剧，契约结婚恋爱喜剧",
+      "aliases": [
+        "逃避虽可耻但有用"
+      ]
+    },
+    {
+      "name": "老友记",
+      "category": "tv",
+      "desc": "经典美剧，六个好友的日常情景喜剧",
+      "aliases": [
+        "老友记",
+        "friends"
+      ]
+    },
+    {
+      "name": "生活大爆炸",
+      "category": "tv",
+      "desc": "经典美剧，谢尔顿等科学家室友的喜剧",
+      "aliases": [
+        "生活大爆炸",
+        "谢尔顿"
+      ]
+    },
+    {
+      "name": "权力的游戏",
+      "category": "tv",
+      "desc": "美剧，冰与火之歌改编的史诗奇幻剧",
+      "aliases": [
+        "权力的游戏",
+        "权游",
+        "冰与火之歌"
+      ]
+    },
+    {
+      "name": "绝命毒师",
+      "category": "tv",
+      "desc": "美剧，讲化学老师沃尔特制毒成毒枭",
+      "aliases": [
+        "绝命毒师",
+        "breaking bad"
+      ]
+    },
+    {
+      "name": "怪奇物语",
+      "category": "tv",
+      "desc": "黑暗奇幻美剧，少年们对抗异世界怪物",
+      "aliases": [
+        "怪奇物语",
+        "stranger things"
+      ]
+    },
+    {
+      "name": "切尔诺贝利",
+      "category": "tv",
+      "desc": "美剧，还原切尔诺贝利核事故的灾难剧",
+      "aliases": [
+        "切尔诺贝利"
+      ]
+    },
+    {
+      "name": "最后生还者",
+      "category": "tv",
+      "desc": "美剧，讲述末世中乔尔护送艾莉的冒险",
+      "aliases": [
+        "最后生还者",
+        "the last of us"
+      ]
+    },
+    {
+      "name": "让子弹飞",
+      "category": "movie",
+      "desc": "姜文执导黑色喜剧，名台词「让子弹飞一会儿」",
+      "aliases": [
+        "让子弹飞"
+      ]
+    },
+    {
+      "name": "霸王别姬",
+      "category": "movie",
+      "desc": "张国荣张丰毅主演，讲京剧艺人的一生",
+      "aliases": [
+        "霸王别姬"
+      ]
+    },
+    {
+      "name": "无间道",
+      "category": "movie",
+      "desc": "刘德华梁朝伟主演港片，警匪卧底经典",
+      "aliases": [
+        "无间道"
+      ]
+    },
+    {
+      "name": "功夫",
+      "category": "movie",
+      "desc": "周星驰导演动作喜剧，包租婆等名角色",
+      "aliases": [
+        "功夫"
+      ]
+    },
+    {
+      "name": "少林足球",
+      "category": "movie",
+      "desc": "周星驰执导电影，用少林武功踢足球",
+      "aliases": [
+        "少林足球"
+      ]
+    },
+    {
+      "name": "大话西游",
+      "category": "movie",
+      "desc": "周星驰主演西游题材爱情悲剧，至尊宝",
+      "aliases": [
+        "大话西游",
+        "至尊宝"
+      ]
+    },
+    {
+      "name": "喜剧之王",
+      "category": "movie",
+      "desc": "周星驰主演，讲龙套演员的追梦故事",
+      "aliases": [
+        "喜剧之王"
+      ]
+    },
+    {
+      "name": "美人鱼",
+      "category": "movie",
+      "desc": "周星驰导演的环保题材奇幻喜剧电影",
+      "aliases": [
+        "美人鱼"
+      ]
+    },
+    {
+      "name": "西虹市首富",
+      "category": "movie",
+      "desc": "沈腾主演喜剧，讲述一夜暴富的考验",
+      "aliases": [
+        "西虹市首富"
+      ]
+    },
+    {
+      "name": "夏洛特烦恼",
+      "category": "movie",
+      "desc": "沈腾马丽主演穿越喜剧，开心麻花作品",
+      "aliases": [
+        "夏洛特烦恼"
+      ]
+    },
+    {
+      "name": "你好李焕英",
+      "category": "movie",
+      "desc": "贾玲导演主演，穿越回去见母亲的喜剧",
+      "aliases": [
+        "你好李焕英",
+        "李焕英"
+      ]
+    },
+    {
+      "name": "热辣滚烫",
+      "category": "movie",
+      "desc": "贾玲导演主演，讲减肥逆袭的励志片",
+      "aliases": [
+        "热辣滚烫"
+      ]
+    },
+    {
+      "name": "流浪地球",
+      "category": "movie",
+      "desc": "郭帆导演科幻片，行星发动机推动地球",
+      "aliases": [
+        "流浪地球"
+      ]
+    },
+    {
+      "name": "战狼",
+      "category": "movie",
+      "desc": "吴京自导自演军事动作片，冷锋主角",
+      "aliases": [
+        "战狼"
+      ]
+    },
+    {
+      "name": "长津湖",
+      "category": "movie",
+      "desc": "吴京易烊千玺主演抗美援朝战争片",
+      "aliases": [
+        "长津湖"
+      ]
+    },
+    {
+      "name": "我不是药神",
+      "category": "movie",
+      "desc": "徐峥主演，讲述仿制药与看病难话题",
+      "aliases": [
+        "我不是药神"
+      ]
+    },
+    {
+      "name": "消失的她",
+      "category": "movie",
+      "desc": "朱一龙倪妮主演的悬疑片，结尾反转",
+      "aliases": [
+        "消失的她"
+      ]
+    },
+    {
+      "name": "孤注一掷",
+      "category": "movie",
+      "desc": "反诈题材电影，讲境外网络诈骗故事",
+      "aliases": [
+        "孤注一掷"
+      ]
+    },
+    {
+      "name": "第二十条",
+      "category": "movie",
+      "desc": "张艺谋导演，讲正当防卫的普法喜剧",
+      "aliases": [
+        "第二十条"
+      ]
+    },
+    {
+      "name": "飞驰人生",
+      "category": "movie",
+      "desc": "韩寒导演的赛车题材喜剧片，沈腾主演",
+      "aliases": [
+        "飞驰人生"
+      ]
+    },
+    {
+      "name": "唐人街探案",
+      "category": "movie",
+      "desc": "王宝强刘昊然主演的探案喜剧系列",
+      "aliases": [
+        "唐人街探案",
+        "唐探"
+      ]
+    },
+    {
+      "name": "封神",
+      "category": "movie",
+      "desc": "乌尔善导演神话史诗片，质子团出圈",
+      "aliases": [
+        "封神"
+      ]
+    },
+    {
+      "name": "满江红",
+      "category": "movie",
+      "desc": "张艺谋导演悬疑喜剧，岳飞词为线索",
+      "aliases": [
+        "满江红"
+      ]
+    },
+    {
+      "name": "长安三万里",
+      "category": "movie",
+      "desc": "国产动画电影，讲述李白高适的盛唐故事",
+      "aliases": [
+        "长安三万里"
+      ]
+    },
+    {
+      "name": "哪吒之魔童降世",
+      "category": "movie",
+      "desc": "国产动画，颠覆哪吒形象的魔童设定",
+      "aliases": [
+        "哪吒之魔童降世",
+        "哪吒",
+        "哪咤"
+      ]
+    },
+    {
+      "name": "大鱼海棠",
+      "category": "movie",
+      "desc": "国产动画电影，讲椿与鲲的奇幻故事",
+      "aliases": [
+        "大鱼海棠"
+      ]
+    },
+    {
+      "name": "大圣归来",
+      "category": "movie",
+      "desc": "国产动画电影，孙悟空题材西游改编",
+      "aliases": [
+        "大圣归来"
+      ]
+    },
+    {
+      "name": "白蛇缘起",
+      "category": "movie",
+      "desc": "国产动画，白娘子与许仙的前世故事",
+      "aliases": [
+        "白蛇缘起",
+        "白蛇"
+      ]
+    },
+    {
+      "name": "深海",
+      "category": "movie",
+      "desc": "国产动画电影，讲女孩参宿的深海梦境",
+      "aliases": [
+        "深海"
+      ]
+    },
+    {
+      "name": "雄狮少年",
+      "category": "movie",
+      "desc": "国产动画电影，讲述舞狮少年的成长",
+      "aliases": [
+        "雄狮少年"
+      ]
+    },
+    {
+      "name": "隐入尘烟",
+      "category": "movie",
+      "desc": "小众文艺片，讲述西北农村夫妻的相守",
+      "aliases": [
+        "隐入尘烟"
+      ]
+    },
+    {
+      "name": "宇宙探索编辑部",
+      "category": "movie",
+      "desc": "伪纪录片式科幻喜剧，讲民科寻外星人",
+      "aliases": [
+        "宇宙探索编辑部"
+      ]
+    },
+    {
+      "name": "阿凡达",
+      "category": "movie",
+      "desc": "卡梅隆导演科幻片，潘多拉星球与纳美人",
+      "aliases": [
+        "阿凡达",
+        "avatar"
+      ]
+    },
+    {
+      "name": "复仇者联盟",
+      "category": "movie",
+      "desc": "漫威超级英雄集结电影，灭霸是反派",
+      "aliases": [
+        "复仇者联盟",
+        "复联"
+      ]
+    },
+    {
+      "name": "钢铁侠",
+      "category": "movie",
+      "desc": "漫威电影，小罗伯特唐尼饰托尼史塔克",
+      "aliases": [
+        "钢铁侠",
+        "iron man"
+      ]
+    },
+    {
+      "name": "蜘蛛侠",
+      "category": "movie",
+      "desc": "漫威超级英雄电影，能力越大责任越大",
+      "aliases": [
+        "蜘蛛侠",
+        "spiderman",
+        "spider-man"
+      ]
+    },
+    {
+      "name": "蝙蝠侠",
+      "category": "movie",
+      "desc": "DC旗下超级英雄，哥谭首富布鲁斯韦恩",
+      "aliases": [
+        "蝙蝠侠",
+        "batman"
+      ]
+    },
+    {
+      "name": "蝙蝠侠黑暗骑士",
+      "category": "movie",
+      "desc": "诺兰执导蝙蝠侠电影，小丑是经典反派",
+      "aliases": [
+        "蝙蝠侠黑暗骑士",
+        "黑暗骑士",
+        "the dark knight"
+      ]
+    },
+    {
+      "name": "星际穿越",
+      "category": "movie",
+      "desc": "诺兰科幻片，讲穿越虫洞寻找新家园",
+      "aliases": [
+        "星际穿越",
+        "interstellar"
+      ]
+    },
+    {
+      "name": "盗梦空间",
+      "category": "movie",
+      "desc": "诺兰执导科幻片，讲潜入梦境植入想法",
+      "aliases": [
+        "盗梦空间",
+        "inception"
+      ]
+    },
+    {
+      "name": "信条",
+      "category": "movie",
+      "desc": "诺兰执导科幻片，主打时间倒流设定",
+      "aliases": [
+        "信条",
+        "tenet"
+      ]
+    },
+    {
+      "name": "奥本海默",
+      "category": "movie",
+      "desc": "诺兰执导传记片，讲原子弹之父奥本海默",
+      "aliases": [
+        "奥本海默",
+        "oppenheimer"
+      ]
+    },
+    {
+      "name": "沙丘",
+      "category": "movie",
+      "desc": "维伦纽瓦执导科幻史诗片，讲沙漠星球",
+      "aliases": [
+        "沙丘",
+        "dune"
+      ]
+    },
+    {
+      "name": "疯狂的麦克斯",
+      "category": "movie",
+      "desc": "废土题材动作片，主打飙车与狂暴美学",
+      "aliases": [
+        "疯狂的麦克斯",
+        "mad max"
+      ]
+    },
+    {
+      "name": "疾速追杀",
+      "category": "movie",
+      "desc": "基努里维斯主演动作片，为爱犬复仇",
+      "aliases": [
+        "疾速追杀",
+        "john wick"
+      ]
+    },
+    {
+      "name": "黑客帝国",
+      "category": "movie",
+      "desc": "科幻片，讲人类困在虚拟世界的觉醒",
+      "aliases": [
+        "黑客帝国",
+        "matrix"
+      ]
+    },
+    {
+      "name": "指环王",
+      "category": "movie",
+      "desc": "奇幻史诗片，讲护送魔戒摧毁的故事",
+      "aliases": [
+        "指环王",
+        "魔戒",
+        "lotr"
+      ]
+    },
+    {
+      "name": "哈利波特",
+      "category": "movie",
+      "desc": "魔法题材系列电影，主角哈利与霍格沃茨",
+      "aliases": [
+        "哈利波特",
+        "harry potter"
+      ]
+    },
+    {
+      "name": "加勒比海盗",
+      "category": "movie",
+      "desc": "奇幻冒险电影，杰克船长由德普主演",
+      "aliases": [
+        "加勒比海盗",
+        "杰克船长"
+      ]
+    },
+    {
+      "name": "速度与激情",
+      "category": "movie",
+      "desc": "飙车题材系列电影，主打家人与飞车",
+      "aliases": [
+        "速度与激情",
+        "速激"
+      ]
+    },
+    {
+      "name": "千与千寻",
+      "category": "movie",
+      "desc": "宫崎骏动画，讲少女千寻的神隐冒险",
+      "aliases": [
+        "千与千寻",
+        "spirited away"
+      ]
+    },
+    {
+      "name": "龙猫",
+      "category": "movie",
+      "desc": "宫崎骏动画，讲姐妹与龙猫的温情故事",
+      "aliases": [
+        "龙猫",
+        "totoro"
+      ]
+    },
+    {
+      "name": "哈尔的移动城堡",
+      "category": "movie",
+      "desc": "宫崎骏动画，讲述苏菲与哈尔的爱情",
+      "aliases": [
+        "哈尔的移动城堡",
+        "哈尔"
+      ]
+    },
+    {
+      "name": "铃芽之旅",
+      "category": "movie",
+      "desc": "新海诚动画，讲少女关闭灾难之门的旅程",
+      "aliases": [
+        "铃芽之旅",
+        "铃芽户缔"
+      ]
+    },
+    {
+      "name": "灌篮高手剧场版",
+      "category": "movie",
+      "desc": "井上雄彦电影，讲湘北对战山王工业",
+      "aliases": [
+        "灌篮高手剧场版",
+        "the first slam dunk"
+      ]
+    },
+    {
+      "name": "你的名字",
+      "category": "movie",
+      "desc": "新海诚动画，讲男女互换身体的相遇",
+      "aliases": [
+        "你的名字"
+      ]
+    },
+    {
+      "name": "天气之子",
+      "category": "movie",
+      "desc": "新海诚动画，讲述少年与晴女的故事",
+      "aliases": [
+        "天气之子"
+      ]
+    },
+    {
+      "name": "寄生虫",
+      "category": "movie",
+      "desc": "奉俊昊导演，讲贫富两个家庭的碰撞",
+      "aliases": [
+        "寄生虫",
+        "parasite"
+      ]
+    },
+    {
+      "name": "釜山行",
+      "category": "movie",
+      "desc": "韩国丧尸题材灾难电影，讲述列车求生",
+      "aliases": [
+        "釜山行",
+        "train to busan"
+      ]
+    },
+    {
+      "name": "周星驰",
+      "category": "movie",
+      "desc": "香港喜剧巨星，代表作《功夫》《少林足球》",
+      "aliases": [
+        "周星驰",
+        "星爷"
+      ]
+    },
+    {
+      "name": "姜文",
+      "category": "movie",
+      "desc": "导演兼演员，代表作《让子弹飞》《鬼子来了》",
+      "aliases": [
+        "姜文"
+      ]
+    },
+    {
+      "name": "张艺谋",
+      "category": "movie",
+      "desc": "中国第五代导演代表人物，执导《红高粱》",
+      "aliases": [
+        "张艺谋"
+      ]
+    },
+    {
+      "name": "陈凯歌",
+      "category": "movie",
+      "desc": "中国第五代导演，代表作有《霸王别姬》",
+      "aliases": [
+        "陈凯歌"
+      ]
+    },
+    {
+      "name": "宁浩",
+      "category": "movie",
+      "desc": "内地导演，代表作《疯狂的石头》《无人区》",
+      "aliases": [
+        "宁浩"
+      ]
+    },
+    {
+      "name": "徐峥",
+      "category": "movie",
+      "desc": "演员兼导演，代表作《我不是药神》《泰囧》",
+      "aliases": [
+        "徐峥"
+      ]
+    },
+    {
+      "name": "沈腾",
+      "category": "movie",
+      "desc": "开心麻花演员，喜剧电影的票房担当",
+      "aliases": [
+        "沈腾"
+      ]
+    },
+    {
+      "name": "贾玲",
+      "category": "movie",
+      "desc": "喜剧演员兼导演，代表作《你好李焕英》",
+      "aliases": [
+        "贾玲"
+      ]
+    },
+    {
+      "name": "吴京",
+      "category": "movie",
+      "desc": "动作演员导演，代表作《战狼》《流浪地球》",
+      "aliases": [
+        "吴京"
+      ]
+    },
+    {
+      "name": "刘德华",
+      "category": "movie",
+      "desc": "香港四大天王之一，代表作《无间道》《天下无贼》",
+      "aliases": [
+        "刘德华",
+        "华仔"
+      ]
+    },
+    {
+      "name": "梁朝伟",
+      "category": "movie",
+      "desc": "香港著名影帝，代表作《花样年华》《色戒》",
+      "aliases": [
+        "梁朝伟"
+      ]
+    },
+    {
+      "name": "周润发",
+      "category": "movie",
+      "desc": "香港著名演员，代表作《赌神》《英雄本色》",
+      "aliases": [
+        "周润发",
+        "发哥"
+      ]
+    },
+    {
+      "name": "成龙",
+      "category": "movie",
+      "desc": "功夫动作巨星，代表作《警察故事》《醉拳》",
+      "aliases": [
+        "成龙",
+        "jackie chan"
+      ]
+    },
+    {
+      "name": "李连杰",
+      "category": "movie",
+      "desc": "中国功夫演员，代表作《黄飞鸿》《少林寺》",
+      "aliases": [
+        "李连杰"
+      ]
+    },
+    {
+      "name": "葛优",
+      "category": "movie",
+      "desc": "内地实力演员，代表作《活着》《让子弹飞》",
+      "aliases": [
+        "葛优"
+      ]
+    },
+    {
+      "name": "黄渤",
+      "category": "movie",
+      "desc": "内地实力派演员，代表作《疯狂的石头》《斗牛》",
+      "aliases": [
+        "黄渤"
+      ]
+    },
+    {
+      "name": "王宝强",
+      "category": "movie",
+      "desc": "演员导演，代表作《士兵突击》《唐人街探案》",
+      "aliases": [
+        "王宝强"
+      ]
+    },
+    {
+      "name": "诺兰",
+      "category": "movie",
+      "desc": "英国导演，代表作《盗梦空间》《星际穿越》",
+      "aliases": [
+        "诺兰",
+        "nolan"
+      ]
+    },
+    {
+      "name": "卡梅隆",
+      "category": "movie",
+      "desc": "好莱坞导演，代表作《泰坦尼克号》《阿凡达》",
+      "aliases": [
+        "卡梅隆",
+        "james cameron"
+      ]
+    },
+    {
+      "name": "斯皮尔伯格",
+      "category": "movie",
+      "desc": "好莱坞著名导演，代表作《大白鲨》《辛德勒名单》",
+      "aliases": [
+        "斯皮尔伯格",
+        "spielberg"
+      ]
+    },
+    {
+      "name": "昆汀",
+      "category": "movie",
+      "desc": "好莱坞导演，代表作《低俗小说》《杀死比尔》",
+      "aliases": [
+        "昆汀",
+        "tarantino"
+      ]
+    },
+    {
+      "name": "宫崎骏",
+      "category": "movie",
+      "desc": "日本动画导演，吉卜力工作室代表人物",
+      "aliases": [
+        "宫崎骏",
+        "miyazaki"
+      ]
+    },
+    {
+      "name": "新海诚",
+      "category": "movie",
+      "desc": "日本动画导演，代表作《你的名字》《秒速五厘米》",
+      "aliases": [
+        "新海诚"
+      ]
+    },
+    {
+      "name": "奉俊昊",
+      "category": "movie",
+      "desc": "韩国著名导演，代表作《寄生虫》《杀人回忆》",
+      "aliases": [
+        "奉俊昊"
+      ]
+    },
+    {
+      "name": "我想吃鱼了",
+      "category": "movie",
+      "desc": "《狂飙》高启强名台词，暗示要动手搞事",
+      "aliases": [
+        "我想吃鱼了",
+        "想吃鱼了"
+      ]
+    },
+    {
+      "name": "爷青回",
+      "category": "movie",
+      "desc": "「爷的青春回来了」，怀旧经典内容时刷",
+      "aliases": [
+        "爷青回"
+      ]
+    },
+    {
+      "name": "二营长",
+      "category": "movie",
+      "desc": "《亮剑》梗，二营长你他娘的意大利炮呢",
+      "aliases": [
+        "二营长",
+        "意大利炮"
+      ]
+    },
+    {
+      "name": "我全都要",
+      "category": "movie",
+      "desc": "《九品芝麻官》名台词，表示什么都想要",
+      "aliases": [
+        "我全都要"
+      ]
+    },
+    {
+      "name": "耶稣也留不住他",
+      "category": "movie",
+      "desc": "《功夫》经典台词，形容谁也别想拦住他",
+      "aliases": [
+        "耶稣也留不住他"
+      ]
+    },
+    {
+      "name": "退钱",
+      "category": "movie",
+      "desc": "源于国足采访的吐槽，泛指不值、快退钱",
+      "aliases": [
+        "退钱"
+      ]
+    },
+    {
+      "name": "吃屎啦你",
+      "category": "movie",
+      "desc": "《旺角卡门》张学友台词，做表情包常用",
+      "aliases": [
+        "吃屎啦你",
+        "食屎啦你"
+      ]
+    },
+    {
+      "name": "9527",
+      "category": "movie",
+      "desc": "《唐伯虎点秋香》华府下人编号，周星驰梗",
+      "aliases": [
+        "9527"
+      ]
+    },
+    {
+      "name": "面包会有的",
+      "category": "movie",
+      "desc": "经典台词「面包会有的」，指一切都会有的",
+      "aliases": [
+        "面包会有的"
+      ]
+    },
+    {
+      "name": "你管这叫",
+      "category": "movie",
+      "desc": "吐槽句式「你管这叫」，表示离谱看不懂",
+      "aliases": [
+        "你管这叫"
+      ]
+    },
+    {
+      "name": "我劝你善良",
+      "category": "movie",
+      "desc": "吐槽用语，劝对方别太过分或别乱说",
+      "aliases": [
+        "我劝你善良"
+      ]
+    },
+    {
+      "name": "剧透",
+      "category": "movie",
+      "desc": "提前透露剧情关键内容，弹幕常喊别剧透",
+      "aliases": [
+        "剧透"
+      ]
+    },
+    {
+      "name": "烂尾",
+      "category": "movie",
+      "desc": "指作品后期剧情崩坏、收尾让人失望",
+      "aliases": [
+        "烂尾"
+      ]
+    },
+    {
+      "name": "神结局",
+      "category": "movie",
+      "desc": "指结局设计极其精彩、出人意料的说法",
+      "aliases": [
+        "神结局"
+      ]
+    },
+    {
+      "name": "下饭剧",
+      "category": "movie",
+      "desc": "适合边吃饭边看的轻松不烧脑的剧",
+      "aliases": [
+        "下饭剧"
+      ]
+    },
+    {
+      "name": "电子榨菜",
+      "category": "movie",
+      "desc": "指吃饭时必看的剧综，堪称下饭伴侣",
+      "aliases": [
+        "电子榨菜"
+      ]
+    },
+    {
+      "name": "烂片",
+      "category": "movie",
+      "desc": "质量差、口碑崩坏的电影，往往叫烂片",
+      "aliases": [
+        "烂片"
+      ]
+    },
+    {
+      "name": "爆米花电影",
+      "category": "movie",
+      "desc": "指轻松爽快、无需动脑的商业娱乐片",
+      "aliases": [
+        "爆米花电影"
+      ]
+    },
+    {
+      "name": "云南",
+      "category": "travel",
+      "desc": "西南旅游大省，大理、丽江、香格里拉都在这里",
+      "aliases": [
+        "云南"
+      ]
+    },
+    {
+      "name": "大理",
+      "category": "travel",
+      "desc": "云南城市，苍山洱海与风花雪月是它的代名词",
+      "aliases": [
+        "大理"
+      ]
+    },
+    {
+      "name": "丽江",
+      "category": "travel",
+      "desc": "云南古城，玉龙雪山与束河古镇是必去景点",
+      "aliases": [
+        "丽江"
+      ]
+    },
+    {
+      "name": "香格里拉",
+      "category": "travel",
+      "desc": "云南藏区城市，普达措与松赞林寺所在地",
+      "aliases": [
+        "香格里拉"
+      ]
+    },
+    {
+      "name": "西安",
+      "category": "travel",
+      "desc": "陕西古都，兵马俑、城墙与回民街美食之城",
+      "aliases": [
+        "西安"
+      ]
+    },
+    {
+      "name": "成都",
+      "category": "travel",
+      "desc": "四川省会，熊猫基地与火锅串串遍地都是",
+      "aliases": [
+        "成都"
+      ]
+    },
+    {
+      "name": "重庆",
+      "category": "travel",
+      "desc": "山城雾都，洪崖洞夜景与火锅的代表城市",
+      "aliases": [
+        "重庆"
+      ]
+    },
+    {
+      "name": "长沙",
+      "category": "travel",
+      "desc": "湖南省会，茶颜悦色与夜宵文化很出名",
+      "aliases": [
+        "长沙"
+      ]
+    },
+    {
+      "name": "三亚",
+      "category": "travel",
+      "desc": "海南海滨城市，亚龙湾与天涯海角所在地",
+      "aliases": [
+        "三亚"
+      ]
+    },
+    {
+      "name": "海南",
+      "category": "travel",
+      "desc": "南方海岛省份，三亚海口与免税购物胜地",
+      "aliases": [
+        "海南"
+      ]
+    },
+    {
+      "name": "哈尔滨",
+      "category": "travel",
+      "desc": "黑龙江省会，冰雪大世界与中央大街必逛",
+      "aliases": [
+        "哈尔滨",
+        "冰城"
+      ]
+    },
+    {
+      "name": "漠河",
+      "category": "travel",
+      "desc": "中国最北的城市，可以看极光与北极村",
+      "aliases": [
+        "漠河"
+      ]
+    },
+    {
+      "name": "淄博",
+      "category": "travel",
+      "desc": "山东城市，因烧烤在网络上爆火成为旅游热点",
+      "aliases": [
+        "淄博"
+      ]
+    },
+    {
+      "name": "天水",
+      "category": "travel",
+      "desc": "甘肃城市，因一碗麻辣烫在网上出圈走红",
+      "aliases": [
+        "天水"
+      ]
+    },
+    {
+      "name": "新疆",
+      "category": "travel",
+      "desc": "西北自治区，喀纳斯与独库公路是自驾天堂",
+      "aliases": [
+        "新疆"
+      ]
+    },
+    {
+      "name": "喀什",
+      "category": "travel",
+      "desc": "新疆城市，老城与帕米尔风情的西域门户",
+      "aliases": [
+        "喀什"
+      ]
+    },
+    {
+      "name": "伊犁",
+      "category": "travel",
+      "desc": "新疆地区，那拉提草原与薰衣草花海著名",
+      "aliases": [
+        "伊犁"
+      ]
+    },
+    {
+      "name": "西藏",
+      "category": "travel",
+      "desc": "高原自治区，布达拉宫与雪山圣湖遍布",
+      "aliases": [
+        "西藏"
+      ]
+    },
+    {
+      "name": "拉萨",
+      "category": "travel",
+      "desc": "西藏首府，布达拉宫与八廓街都在这里",
+      "aliases": [
+        "拉萨"
+      ]
+    },
+    {
+      "name": "林芝",
+      "category": "travel",
+      "desc": "西藏地区，桃花与南迦巴瓦峰是标志景观",
+      "aliases": [
+        "林芝"
+      ]
+    },
+    {
+      "name": "婺源",
+      "category": "travel",
+      "desc": "江西乡村，油菜花与徽派古村落代表地",
+      "aliases": [
+        "婺源"
+      ]
+    },
+    {
+      "name": "张家界",
+      "category": "travel",
+      "desc": "湖南景区，奇峰石柱与玻璃栈道非常出名",
+      "aliases": [
+        "张家界"
+      ]
+    },
+    {
+      "name": "黄山",
+      "category": "travel",
+      "desc": "安徽名山，云海奇松怪石与迎客松最出名",
+      "aliases": [
+        "黄山"
+      ]
+    },
+    {
+      "name": "敦煌",
+      "category": "travel",
+      "desc": "甘肃城市，莫高窟与鸣沙山月牙泉所在地",
+      "aliases": [
+        "敦煌",
+        "莫高窟"
+      ]
+    },
+    {
+      "name": "青海湖",
+      "category": "travel",
+      "desc": "青海最大的湖泊，环湖骑行与油菜花海",
+      "aliases": [
+        "青海湖"
+      ]
+    },
+    {
+      "name": "茶卡盐湖",
+      "category": "travel",
+      "desc": "青海盐湖，被称为天空之镜的著名拍照地",
+      "aliases": [
+        "茶卡盐湖",
+        "茶卡"
+      ]
+    },
+    {
+      "name": "甘南",
+      "category": "travel",
+      "desc": "甘肃南部藏区，草原风光与拉卜楞寺所在",
+      "aliases": [
+        "甘南"
+      ]
+    },
+    {
+      "name": "内蒙古",
+      "category": "travel",
+      "desc": "北方自治区，草原与沙漠风光的旅游目的地",
+      "aliases": [
+        "内蒙古",
+        "内蒙"
+      ]
+    },
+    {
+      "name": "呼伦贝尔",
+      "category": "travel",
+      "desc": "内蒙古草原，夏季避暑与牧场风光出名",
+      "aliases": [
+        "呼伦贝尔"
+      ]
+    },
+    {
+      "name": "延吉",
+      "category": "travel",
+      "desc": "吉林城市，朝鲜族美食与网红打卡地",
+      "aliases": [
+        "延吉"
+      ]
+    },
+    {
+      "name": "厦门",
+      "category": "travel",
+      "desc": "福建海滨城市，鼓浪屿与环岛路都很出名",
+      "aliases": [
+        "厦门",
+        "鼓浪屿"
+      ]
+    },
+    {
+      "name": "青岛",
+      "category": "travel",
+      "desc": "山东海滨城市，栈桥与啤酒节是代表地",
+      "aliases": [
+        "青岛"
+      ]
+    },
+    {
+      "name": "大连",
+      "category": "travel",
+      "desc": "辽宁海滨城市，星海广场与老虎滩著名",
+      "aliases": [
+        "大连"
+      ]
+    },
+    {
+      "name": "苏州",
+      "category": "travel",
+      "desc": "江苏城市，园林与平江路代表江南水乡",
+      "aliases": [
+        "苏州",
+        "姑苏"
+      ]
+    },
+    {
+      "name": "杭州",
+      "category": "travel",
+      "desc": "浙江省会，西湖与灵隐寺代表江南风光",
+      "aliases": [
+        "杭州",
+        "西湖"
+      ]
+    },
+    {
+      "name": "南京",
+      "category": "travel",
+      "desc": "江苏古都，夫子庙与梧桐大道都在这里",
+      "aliases": [
+        "南京",
+        "金陵"
+      ]
+    },
+    {
+      "name": "洛阳",
+      "category": "travel",
+      "desc": "河南古都，龙门石窟与牡丹花会出名",
+      "aliases": [
+        "洛阳"
+      ]
+    },
+    {
+      "name": "开封",
+      "category": "travel",
+      "desc": "河南古都，清明上河园与夜市小吃闻名",
+      "aliases": [
+        "开封"
+      ]
+    },
+    {
+      "name": "平遥",
+      "category": "travel",
+      "desc": "山西古城，完整保存的明清县城风貌",
+      "aliases": [
+        "平遥",
+        "平遥古城"
+      ]
+    },
+    {
+      "name": "凤凰古城",
+      "category": "travel",
+      "desc": "湖南古城，沱江吊脚楼与沈从文故乡",
+      "aliases": [
+        "凤凰古城"
+      ]
+    },
+    {
+      "name": "西双版纳",
+      "category": "travel",
+      "desc": "云南热带地区，泼水节与热带雨林著名",
+      "aliases": [
+        "西双版纳",
+        "版纳"
+      ]
+    },
+    {
+      "name": "桂林",
+      "category": "travel",
+      "desc": "广西城市，漓江山水甲天下是它的招牌",
+      "aliases": [
+        "桂林",
+        "阳朔"
+      ]
+    },
+    {
+      "name": "稻城亚丁",
+      "category": "travel",
+      "desc": "四川景区，雪山海子被称为最后的香格里拉",
+      "aliases": [
+        "稻城亚丁",
+        "亚丁",
+        "稻城"
+      ]
+    },
+    {
+      "name": "四姑娘山",
+      "category": "travel",
+      "desc": "四川雪山，徒步与登山爱好者的胜地",
+      "aliases": [
+        "四姑娘山"
+      ]
+    },
+    {
+      "name": "武功山",
+      "category": "travel",
+      "desc": "江西高山草甸，露营看云海的热门徒步地",
+      "aliases": [
+        "武功山"
+      ]
+    },
+    {
+      "name": "泰山",
+      "category": "travel",
+      "desc": "山东五岳之首，登顶看日出是经典玩法",
+      "aliases": [
+        "泰山",
+        "爬泰山"
+      ]
+    },
+    {
+      "name": "华山",
+      "category": "travel",
+      "desc": "陕西五岳之一，以险峻的长空栈道出名",
+      "aliases": [
+        "华山"
+      ]
+    },
+    {
+      "name": "峨眉山",
+      "category": "travel",
+      "desc": "四川佛教名山，金顶云海与猴子很出名",
+      "aliases": [
+        "峨眉山",
+        "峨眉"
+      ]
+    },
+    {
+      "name": "莫干山",
+      "category": "travel",
+      "desc": "浙江避暑名山，民宿与竹林度假的好去处",
+      "aliases": [
+        "莫干山"
+      ]
+    },
+    {
+      "name": "阿那亚",
+      "category": "travel",
+      "desc": "河北海边社区，孤独图书馆与礼堂打卡地",
+      "aliases": [
+        "阿那亚"
+      ]
+    },
+    {
+      "name": "崇礼",
+      "category": "travel",
+      "desc": "河北滑雪胜地，冬奥会雪上项目举办地",
+      "aliases": [
+        "崇礼"
+      ]
+    },
+    {
+      "name": "北戴河",
+      "category": "travel",
+      "desc": "河北海滨，夏季避暑与看海的老牌目的地",
+      "aliases": [
+        "北戴河"
+      ]
+    },
+    {
+      "name": "日本",
+      "category": "travel",
+      "desc": "东亚岛国，樱花温泉与动漫文化都很出名",
+      "aliases": [
+        "日本"
+      ]
+    },
+    {
+      "name": "东京",
+      "category": "travel",
+      "desc": "日本首都，涩谷秋叶原与购物美食之都",
+      "aliases": [
+        "东京",
+        "tokyo"
+      ]
+    },
+    {
+      "name": "大阪",
+      "category": "travel",
+      "desc": "日本城市，道顿堀美食与环球影城所在",
+      "aliases": [
+        "大阪",
+        "osaka"
+      ]
+    },
+    {
+      "name": "京都",
+      "category": "travel",
+      "desc": "日本古都，清水寺与千本鸟居都在这里",
+      "aliases": [
+        "京都",
+        "kyoto"
+      ]
+    },
+    {
+      "name": "北海道",
+      "category": "travel",
+      "desc": "日本北部地区，滑雪与薰衣草花田胜地",
+      "aliases": [
+        "北海道",
+        "hokkaido"
+      ]
+    },
+    {
+      "name": "冲绳",
+      "category": "travel",
+      "desc": "日本海岛县，拥有沙滩海景与琉球文化",
+      "aliases": [
+        "冲绳",
+        "okinawa"
+      ]
+    },
+    {
+      "name": "韩国",
+      "category": "travel",
+      "desc": "东亚国家，首尔明洞与济州岛旅游热门",
+      "aliases": [
+        "韩国"
+      ]
+    },
+    {
+      "name": "首尔",
+      "category": "travel",
+      "desc": "韩国首都，明洞弘大与景福宫都在这里",
+      "aliases": [
+        "首尔",
+        "seoul"
+      ]
+    },
+    {
+      "name": "济州岛",
+      "category": "travel",
+      "desc": "韩国海岛，汉拿山与海岸风光很有名",
+      "aliases": [
+        "济州岛",
+        "济州"
+      ]
+    },
+    {
+      "name": "泰国",
+      "category": "travel",
+      "desc": "东南亚国家，海岛与寺庙是旅游热门",
+      "aliases": [
+        "泰国"
+      ]
+    },
+    {
+      "name": "曼谷",
+      "category": "travel",
+      "desc": "泰国首都，大皇宫与夜市美食闻名的城市",
+      "aliases": [
+        "曼谷",
+        "bangkok"
+      ]
+    },
+    {
+      "name": "清迈",
+      "category": "travel",
+      "desc": "泰国北部城市，古城与文艺慢生活出名",
+      "aliases": [
+        "清迈",
+        "chiangmai"
+      ]
+    },
+    {
+      "name": "普吉岛",
+      "category": "travel",
+      "desc": "泰国最大海岛，沙滩与潜水度假胜地",
+      "aliases": [
+        "普吉岛",
+        "普吉"
+      ]
+    },
+    {
+      "name": "巴厘岛",
+      "category": "travel",
+      "desc": "印尼著名海岛，海滩与网红悬崖秋千",
+      "aliases": [
+        "巴厘岛",
+        "巴厘"
+      ]
+    },
+    {
+      "name": "新加坡",
+      "category": "travel",
+      "desc": "东南亚城市国家，花园城市与环球影城",
+      "aliases": [
+        "新加坡",
+        "狮城"
+      ]
+    },
+    {
+      "name": "马来西亚",
+      "category": "travel",
+      "desc": "东南亚国家，吉隆坡与仙本那海岛著名",
+      "aliases": [
+        "马来西亚",
+        "大马"
+      ]
+    },
+    {
+      "name": "越南",
+      "category": "travel",
+      "desc": "东南亚国家，岘港与芽庄海滨旅游热门",
+      "aliases": [
+        "越南"
+      ]
+    },
+    {
+      "name": "岘港",
+      "category": "travel",
+      "desc": "越南海滨城市，美溪沙滩与巴拿山出名",
+      "aliases": [
+        "岘港"
+      ]
+    },
+    {
+      "name": "迪拜",
+      "category": "travel",
+      "desc": "阿联酋城市，哈利法塔与沙漠奢华旅游",
+      "aliases": [
+        "迪拜",
+        "dubai"
+      ]
+    },
+    {
+      "name": "土耳其",
+      "category": "travel",
+      "desc": "横跨欧亚的国家，热气球与清真寺闻名",
+      "aliases": [
+        "土耳其"
+      ]
+    },
+    {
+      "name": "卡帕多奇亚",
+      "category": "travel",
+      "desc": "土耳其中部地区，热气球与奇岩地貌",
+      "aliases": [
+        "卡帕多奇亚"
+      ]
+    },
+    {
+      "name": "埃及",
+      "category": "travel",
+      "desc": "北非国家，金字塔与尼罗河古文明闻名",
+      "aliases": [
+        "埃及"
+      ]
+    },
+    {
+      "name": "冰岛",
+      "category": "travel",
+      "desc": "北欧岛国，极光与蓝湖温泉非常出名",
+      "aliases": [
+        "冰岛"
+      ]
+    },
+    {
+      "name": "挪威",
+      "category": "travel",
+      "desc": "北欧国家，峡湾风光与极光旅游胜地",
+      "aliases": [
+        "挪威"
+      ]
+    },
+    {
+      "name": "瑞士",
+      "category": "travel",
+      "desc": "中欧国家，雪山湖泊与少女峰的风光",
+      "aliases": [
+        "瑞士"
+      ]
+    },
+    {
+      "name": "巴黎",
+      "category": "travel",
+      "desc": "法国首都，埃菲尔铁塔与卢浮宫著名",
+      "aliases": [
+        "巴黎",
+        "paris"
+      ]
+    },
+    {
+      "name": "伦敦",
+      "category": "travel",
+      "desc": "英国首都，大本钟与泰晤士河著名景点",
+      "aliases": [
+        "伦敦",
+        "london"
+      ]
+    },
+    {
+      "name": "罗马",
+      "category": "travel",
+      "desc": "意大利首都，斗兽场与古罗马遗迹众多",
+      "aliases": [
+        "罗马",
+        "rome"
+      ]
+    },
+    {
+      "name": "威尼斯",
+      "category": "travel",
+      "desc": "意大利水城，以贡多拉与圣马可广场闻名",
+      "aliases": [
+        "威尼斯",
+        "venice"
+      ]
+    },
+    {
+      "name": "圣托里尼",
+      "category": "travel",
+      "desc": "希腊海岛，以蓝白房子与爱琴海日落闻名",
+      "aliases": [
+        "圣托里尼",
+        "santorini"
+      ]
+    },
+    {
+      "name": "马尔代夫",
+      "category": "travel",
+      "desc": "印度洋岛国，蜜月与水上屋度假胜地",
+      "aliases": [
+        "马尔代夫",
+        "马代"
+      ]
+    },
+    {
+      "name": "新西兰",
+      "category": "travel",
+      "desc": "大洋洲国家，中土世界与自然风光出名",
+      "aliases": [
+        "新西兰"
+      ]
+    },
+    {
+      "name": "澳洲",
+      "category": "travel",
+      "desc": "大洋洲国家，悉尼歌剧院与袋鼠考拉",
+      "aliases": [
+        "澳洲",
+        "澳大利亚"
+      ]
+    },
+    {
+      "name": "洛杉矶",
+      "category": "travel",
+      "desc": "美国西海岸城市，好莱坞与环球影城",
+      "aliases": [
+        "洛杉矶",
+        "los angeles"
+      ]
+    },
+    {
+      "name": "纽约",
+      "category": "travel",
+      "desc": "美国东海岸城市，自由女神与时代广场",
+      "aliases": [
+        "纽约",
+        "new york"
+      ]
+    },
+    {
+      "name": "拉斯维加斯",
+      "category": "travel",
+      "desc": "美国沙漠城市，赌场与大型秀场之都",
+      "aliases": [
+        "拉斯维加斯",
+        "vegas"
+      ]
+    },
+    {
+      "name": "穷游",
+      "category": "travel",
+      "desc": "花最少的钱去更多地方的旅行方式",
+      "aliases": [
+        "穷游"
+      ]
+    },
+    {
+      "name": "自由行",
+      "category": "travel",
+      "desc": "不跟团旅游、自己规划行程的旅行方式",
+      "aliases": [
+        "自由行"
+      ]
+    },
+    {
+      "name": "自驾",
+      "category": "travel",
+      "desc": "自己开车上路的出行方式，也叫自驾游",
+      "aliases": [
+        "自驾",
+        "自驾游"
+      ]
+    },
+    {
+      "name": "房车",
+      "category": "travel",
+      "desc": "开着房车边行驶边住宿的旅行方式",
+      "aliases": [
+        "房车"
+      ]
+    },
+    {
+      "name": "徒步",
+      "category": "travel",
+      "desc": "靠双脚长距离行走的户外旅行方式",
+      "aliases": [
+        "徒步"
+      ]
+    },
+    {
+      "name": "citywalk",
+      "category": "travel",
+      "desc": "在城市里漫无目的边逛边走的轻旅行",
+      "aliases": [
+        "citywalk"
+      ]
+    },
+    {
+      "name": "特种兵旅游",
+      "category": "travel",
+      "desc": "用极短时间高强度打卡多个景点的玩法",
+      "aliases": [
+        "特种兵旅游",
+        "特种兵式旅游"
+      ]
+    },
+    {
+      "name": "健身",
+      "category": "hobby",
+      "desc": "到健身房锻炼增肌塑形的运动方式",
+      "aliases": [
+        "健身"
+      ]
+    },
+    {
+      "name": "撸铁",
+      "category": "hobby",
+      "desc": "举铁练力量的健身说法，指力量训练",
+      "aliases": [
+        "撸铁"
+      ]
+    },
+    {
+      "name": "跑步",
+      "category": "hobby",
+      "desc": "日常慢跑锻炼身体，也指打卡式的跑步",
+      "aliases": [
+        "跑步"
+      ]
+    },
+    {
+      "name": "马拉松",
+      "category": "hobby",
+      "desc": "长距离公路长跑比赛，全程四十多公里",
+      "aliases": [
+        "马拉松"
+      ]
+    },
+    {
+      "name": "骑行",
+      "category": "hobby",
+      "desc": "骑自行车长途旅行或休闲锻炼的运动",
+      "aliases": [
+        "骑行"
+      ]
+    },
+    {
+      "name": "游泳",
+      "category": "hobby",
+      "desc": "在水中游泳锻炼的全身性运动项目",
+      "aliases": [
+        "游泳"
+      ]
+    },
+    {
+      "name": "羽毛球",
+      "category": "hobby",
+      "desc": "两人或四人对打、隔着球网进行的运动",
+      "aliases": [
+        "羽毛球"
+      ]
+    },
+    {
+      "name": "乒乓球",
+      "category": "hobby",
+      "desc": "被称为国球，两人隔桌对打的球类运动",
+      "aliases": [
+        "乒乓球"
+      ]
+    },
+    {
+      "name": "篮球",
+      "category": "hobby",
+      "desc": "五人对抗的球类运动，投篮进筐得分",
+      "aliases": [
+        "篮球"
+      ]
+    },
+    {
+      "name": "足球",
+      "category": "hobby",
+      "desc": "世界第一运动，双方各十一人上场的对抗",
+      "aliases": [
+        "足球"
+      ]
+    },
+    {
+      "name": "台球",
+      "category": "hobby",
+      "desc": "用球杆击球入袋的桌球类室内运动",
+      "aliases": [
+        "台球"
+      ]
+    },
+    {
+      "name": "网球",
+      "category": "hobby",
+      "desc": "隔着球网并用球拍对打的运动项目",
+      "aliases": [
+        "网球"
+      ]
+    },
+    {
+      "name": "滑雪",
+      "category": "hobby",
+      "desc": "踩着雪板在雪道上滑行的冬季运动",
+      "aliases": [
+        "滑雪"
+      ]
+    },
+    {
+      "name": "滑板",
+      "category": "hobby",
+      "desc": "踩着滑板做各种技巧动作的街头运动",
+      "aliases": [
+        "滑板"
+      ]
+    },
+    {
+      "name": "攀岩",
+      "category": "hobby",
+      "desc": "借助岩点向上攀爬的极限运动项目",
+      "aliases": [
+        "攀岩"
+      ]
+    },
+    {
+      "name": "拳击",
+      "category": "hobby",
+      "desc": "戴着拳套在擂台上对打的格斗运动",
+      "aliases": [
+        "拳击"
+      ]
+    },
+    {
+      "name": "瑜伽",
+      "category": "hobby",
+      "desc": "注重呼吸与柔韧性的健身运动方式",
+      "aliases": [
+        "瑜伽"
+      ]
+    },
+    {
+      "name": "飞盘",
+      "category": "hobby",
+      "desc": "近年流行起来的团队投掷类户外运动",
+      "aliases": [
+        "飞盘"
+      ]
+    },
+    {
+      "name": "装机",
+      "category": "hobby",
+      "desc": "自己组装台式电脑，讨论配置与走线",
+      "aliases": [
+        "装机"
+      ]
+    },
+    {
+      "name": "显卡",
+      "category": "hobby",
+      "desc": "电脑的图形处理器，装机时的核心配件",
+      "aliases": [
+        "显卡"
+      ]
+    },
+    {
+      "name": "机械键盘",
+      "category": "hobby",
+      "desc": "手感清脆的键盘，常聊轴体与客制化",
+      "aliases": [
+        "机械键盘",
+        "客制化键盘"
+      ]
+    },
+    {
+      "name": "耳机",
+      "category": "hobby",
+      "desc": "听歌打游戏用的音频设备，讲究音质",
+      "aliases": [
+        "耳机"
+      ]
+    },
+    {
+      "name": "hifi",
+      "category": "hobby",
+      "desc": "高保真音质，发烧友追求的声音品质",
+      "aliases": [
+        "hifi"
+      ]
+    },
+    {
+      "name": "相机",
+      "category": "hobby",
+      "desc": "拍照用的设备，讨论镜头、机身与画质",
+      "aliases": [
+        "相机"
+      ]
+    },
+    {
+      "name": "微单",
+      "category": "hobby",
+      "desc": "可以更换镜头的无反相机，轻便好用",
+      "aliases": [
+        "微单"
+      ]
+    },
+    {
+      "name": "索尼",
+      "category": "hobby",
+      "desc": "日本电子品牌，相机耳机游戏机都有",
+      "aliases": [
+        "索尼",
+        "sony"
+      ]
+    },
+    {
+      "name": "富士",
+      "category": "hobby",
+      "desc": "日本相机品牌，胶片模拟色彩很出名",
+      "aliases": [
+        "富士"
+      ]
+    },
+    {
+      "name": "无人机",
+      "category": "hobby",
+      "desc": "航拍用的无人飞行器，常拍风景大片",
+      "aliases": [
+        "无人机"
+      ]
+    },
+    {
+      "name": "掌机",
+      "category": "hobby",
+      "desc": "便携式的游戏机，可以随身携带游玩",
+      "aliases": [
+        "掌机"
+      ]
+    },
+    {
+      "name": "switch",
+      "category": "hobby",
+      "desc": "任天堂推出的掌机主机一体游戏机",
+      "aliases": [
+        "switch"
+      ]
+    },
+    {
+      "name": "ps5",
+      "category": "hobby",
+      "desc": "索尼推出的次世代家用游戏主机产品",
+      "aliases": [
+        "ps5"
+      ]
+    },
+    {
+      "name": "steam deck",
+      "category": "hobby",
+      "desc": "可以运行电脑游戏的掌上游戏机设备",
+      "aliases": [
+        "steam deck"
+      ]
+    },
+    {
+      "name": "外设",
+      "category": "hobby",
+      "desc": "键盘鼠标等电脑周边外接设备的统称",
+      "aliases": [
+        "外设"
+      ]
+    },
+    {
+      "name": "鼠标",
+      "category": "hobby",
+      "desc": "电脑指点设备，选购时常聊 DPI 与握持手感",
+      "aliases": [
+        "鼠标"
+      ]
+    },
+    {
+      "name": "显示器",
+      "category": "hobby",
+      "desc": "电脑屏幕，选购时讨论刷新率与分辨率",
+      "aliases": [
+        "显示器"
+      ]
+    },
+    {
+      "name": "电竞椅",
+      "category": "hobby",
+      "desc": "主打人体工学设计的电竞游戏座椅",
+      "aliases": [
+        "电竞椅"
+      ]
+    },
+    {
+      "name": "摄影",
+      "category": "hobby",
+      "desc": "用相机记录画面，讲究构图与光影运用",
+      "aliases": [
+        "摄影"
+      ]
+    },
+    {
+      "name": "vlog",
+      "category": "hobby",
+      "desc": "记录日常生活的视频形式，常拍常更",
+      "aliases": [
+        "vlog"
+      ]
+    },
+    {
+      "name": "剪辑",
+      "category": "hobby",
+      "desc": "把拍好的素材拼接成片的后期工作",
+      "aliases": [
+        "剪辑"
+      ]
+    },
+    {
+      "name": "绘画",
+      "category": "hobby",
+      "desc": "画画，包含手绘与板绘等不同的形式",
+      "aliases": [
+        "绘画",
+        "板绘"
+      ]
+    },
+    {
+      "name": "书法",
+      "category": "hobby",
+      "desc": "用毛笔或硬笔写字的传统艺术爱好",
+      "aliases": [
+        "书法"
+      ]
+    },
+    {
+      "name": "手办",
+      "category": "hobby",
+      "desc": "动漫角色的立体模型摆件，俗称手办",
+      "aliases": [
+        "手办"
+      ]
+    },
+    {
+      "name": "拼装模型",
+      "category": "hobby",
+      "desc": "自己动手拼装的高达等模型类玩具",
+      "aliases": [
+        "拼装模型",
+        "高达模型"
+      ]
+    },
+    {
+      "name": "乐高",
+      "category": "hobby",
+      "desc": "丹麦积木玩具，可以拼搭出各种造型",
+      "aliases": [
+        "乐高",
+        "积木"
+      ]
+    },
+    {
+      "name": "穿搭",
+      "category": "hobby",
+      "desc": "研究衣服搭配与塑造个人风格的爱好",
+      "aliases": [
+        "穿搭"
+      ]
+    },
+    {
+      "name": "美妆",
+      "category": "hobby",
+      "desc": "化妆以及分享彩妆产品的兴趣爱好",
+      "aliases": [
+        "美妆"
+      ]
+    },
+    {
+      "name": "护肤",
+      "category": "hobby",
+      "desc": "保养皮肤并研究护肤品成分的过程",
+      "aliases": [
+        "护肤"
+      ]
+    },
+    {
+      "name": "香水",
+      "category": "hobby",
+      "desc": "研究香调与香水品牌的小众兴趣爱好",
+      "aliases": [
+        "香水"
+      ]
+    },
+    {
+      "name": "汉服",
+      "category": "hobby",
+      "desc": "汉族传统服饰，常搭配妆造出门拍照",
+      "aliases": [
+        "汉服"
+      ]
+    },
+    {
+      "name": "jk",
+      "category": "hobby",
+      "desc": "模仿日式女高中生制服的穿搭风格",
+      "aliases": [
+        "jk"
+      ]
+    },
+    {
+      "name": "lolita",
+      "category": "hobby",
+      "desc": "以华丽蓬裙为主的洛丽塔服饰风格",
+      "aliases": [
+        "lolita"
+      ]
+    },
+    {
+      "name": "cosplay",
+      "category": "hobby",
+      "desc": "扮演动漫或游戏角色的装扮与表演",
+      "aliases": [
+        "cosplay",
+        "cos"
+      ]
+    },
+    {
+      "name": "纹身",
+      "category": "hobby",
+      "desc": "在皮肤上刺纹图案的身体艺术爱好",
+      "aliases": [
+        "纹身"
+      ]
+    },
+    {
+      "name": "养猫",
+      "category": "hobby",
+      "desc": "在家里养猫，也指撸猫的日常生活方式",
+      "aliases": [
+        "养猫",
+        "撸猫"
+      ]
+    },
+    {
+      "name": "养狗",
+      "category": "hobby",
+      "desc": "在家里养狗，经常分享遛狗的日常生活",
+      "aliases": [
+        "养狗"
+      ]
+    },
+    {
+      "name": "多肉",
+      "category": "hobby",
+      "desc": "养护叶片肥厚的多肉植物的日常爱好",
+      "aliases": [
+        "多肉"
+      ]
+    },
+    {
+      "name": "绿植",
+      "category": "hobby",
+      "desc": "在家里养护观叶植物的休闲类爱好",
+      "aliases": [
+        "绿植"
+      ]
+    },
+    {
+      "name": "养鱼",
+      "category": "hobby",
+      "desc": "饲养观赏鱼并且布置水族箱的爱好",
+      "aliases": [
+        "养鱼"
+      ]
+    },
+    {
+      "name": "钓鱼",
+      "category": "hobby",
+      "desc": "在河边或鱼塘垂钓的休闲户外爱好",
+      "aliases": [
+        "钓鱼"
+      ]
+    },
+    {
+      "name": "下厨",
+      "category": "hobby",
+      "desc": "自己动手做饭做菜的日常小兴趣爱好",
+      "aliases": [
+        "下厨"
+      ]
+    },
+    {
+      "name": "烘焙",
+      "category": "hobby",
+      "desc": "烤制蛋糕、面包等甜点的厨房类爱好",
+      "aliases": [
+        "烘焙"
+      ]
+    },
+    {
+      "name": "咖啡",
+      "category": "hobby",
+      "desc": "研究咖啡豆与冲煮方式的饮品爱好",
+      "aliases": [
+        "咖啡",
+        "手冲"
+      ]
+    },
+    {
+      "name": "奶茶",
+      "category": "hobby",
+      "desc": "加奶加料的茶饮，是年轻人的续命水",
+      "aliases": [
+        "奶茶"
+      ]
+    },
+    {
+      "name": "火锅",
+      "category": "hobby",
+      "desc": "边煮边吃的聚餐方式，以川渝最为出名",
+      "aliases": [
+        "火锅"
+      ]
+    },
+    {
+      "name": "烧烤",
+      "category": "hobby",
+      "desc": "炭火烤串配啤酒的夜宵聚餐类爱好",
+      "aliases": [
+        "烧烤"
+      ]
+    },
+    {
+      "name": "日料",
+      "category": "hobby",
+      "desc": "寿司、刺身等日本料理的统称类词语",
+      "aliases": [
+        "日料"
+      ]
+    },
+    {
+      "name": "探店",
+      "category": "hobby",
+      "desc": "专门去店里实地试吃并打卡的分享",
+      "aliases": [
+        "探店"
+      ]
+    },
+    {
+      "name": "剧本杀",
+      "category": "hobby",
+      "desc": "按剧本扮演角色、推理破案的聚会游戏",
+      "aliases": [
+        "剧本杀"
+      ]
+    },
+    {
+      "name": "狼人杀",
+      "category": "hobby",
+      "desc": "靠发言与投票找出狼人的语言游戏",
+      "aliases": [
+        "狼人杀"
+      ]
+    },
+    {
+      "name": "桌游",
+      "category": "hobby",
+      "desc": "桌面上的各类纸牌与棋类游戏统称",
+      "aliases": [
+        "桌游"
+      ]
+    },
+    {
+      "name": "麻将",
+      "category": "hobby",
+      "desc": "四人围坐对局的国粹棋牌类桌面游戏",
+      "aliases": [
+        "麻将"
+      ]
+    },
+    {
+      "name": "象棋",
+      "category": "hobby",
+      "desc": "中国象棋，隔着楚河汉界对弈的棋类游戏",
+      "aliases": [
+        "象棋"
+      ]
+    },
+    {
+      "name": "盲盒",
+      "category": "hobby",
+      "desc": "购买之前不知道款式的小摆件玩法",
+      "aliases": [
+        "盲盒"
+      ]
+    },
+    {
+      "name": "谷子",
+      "category": "hobby",
+      "desc": "动漫周边商品，徽章、立牌等物品的俗称",
+      "aliases": [
+        "谷子"
+      ]
+    },
+    {
+      "name": "露营",
+      "category": "hobby",
+      "desc": "在户外搭帐篷过夜的休闲方式，讲究装备",
+      "aliases": [
+        "露营"
+      ]
+    },
+    {
+      "name": "周杰伦",
+      "category": "music",
+      "desc": "华语流行乐坛天王，代表作《晴天》《稻香》",
+      "aliases": [
+        "周杰伦",
+        "杰伦"
+      ]
+    },
+    {
+      "name": "林俊杰",
+      "category": "music",
+      "desc": "新加坡华语男歌手，代表作《江南》《曹操》",
+      "aliases": [
+        "林俊杰",
+        "jj"
+      ]
+    },
+    {
+      "name": "陈奕迅",
+      "category": "music",
+      "desc": "香港男歌手，代表作《十年》《浮夸》《孤勇者》",
+      "aliases": [
+        "陈奕迅",
+        "eason"
+      ]
+    },
+    {
+      "name": "邓紫棋",
+      "category": "music",
+      "desc": "香港创作女歌手，代表作《光年之外》《泡沫》",
+      "aliases": [
+        "邓紫棋",
+        "gem"
+      ]
+    },
+    {
+      "name": "薛之谦",
+      "category": "music",
+      "desc": "内地歌手，代表作《演员》《丑八怪》《认真的雪》",
+      "aliases": [
+        "薛之谦"
+      ]
+    },
+    {
+      "name": "五月天",
+      "category": "music",
+      "desc": "台湾摇滚乐团，代表作《倔强》《突然好想你》",
+      "aliases": [
+        "五月天"
+      ]
+    },
+    {
+      "name": "华晨宇",
+      "category": "music",
+      "desc": "内地男歌手，以高音与舞台表现力著称",
+      "aliases": [
+        "华晨宇"
+      ]
+    },
+    {
+      "name": "毛不易",
+      "category": "music",
+      "desc": "内地创作歌手，代表作《消愁》《平凡的一天》",
+      "aliases": [
+        "毛不易"
+      ]
+    },
+    {
+      "name": "周深",
+      "category": "music",
+      "desc": "内地歌手，以空灵音色与多语种翻唱著称",
+      "aliases": [
+        "周深"
+      ]
+    },
+    {
+      "name": "许嵩",
+      "category": "music",
+      "desc": "内地创作型歌手，代表作《有何不可》《素颜》",
+      "aliases": [
+        "许嵩"
+      ]
+    },
+    {
+      "name": "汪苏泷",
+      "category": "music",
+      "desc": "内地男歌手，代表作《一笑倾城》《万有引力》",
+      "aliases": [
+        "汪苏泷"
+      ]
+    },
+    {
+      "name": "李荣浩",
+      "category": "music",
+      "desc": "内地创作型男歌手，代表作《模特》《李白》",
+      "aliases": [
+        "李荣浩"
+      ]
+    },
+    {
+      "name": "张杰",
+      "category": "music",
+      "desc": "内地实力派男歌手，代表作《逆战》《天下》",
+      "aliases": [
+        "张杰"
+      ]
+    },
+    {
+      "name": "单依纯",
+      "category": "music",
+      "desc": "内地新生代女歌手，嗓音细腻有辨识度",
+      "aliases": [
+        "单依纯"
+      ]
+    },
+    {
+      "name": "陈粒",
+      "category": "music",
+      "desc": "内地独立女歌手，代表作《小半》《奇妙能力歌》",
+      "aliases": [
+        "陈粒"
+      ]
+    },
+    {
+      "name": "房东的猫",
+      "category": "music",
+      "desc": "内地民谣女子组合，代表作《云烟成雨》",
+      "aliases": [
+        "房东的猫"
+      ]
+    },
+    {
+      "name": "告五人",
+      "category": "music",
+      "desc": "台湾独立摇滚乐队，代表作《爱人错过》",
+      "aliases": [
+        "告五人"
+      ]
+    },
+    {
+      "name": "万能青年旅店",
+      "category": "music",
+      "desc": "内地摇滚乐队，代表作《杀死那个石家庄人》",
+      "aliases": [
+        "万能青年旅店",
+        "万青"
+      ]
+    },
+    {
+      "name": "痛仰",
+      "category": "music",
+      "desc": "内地老牌摇滚乐队，代表作《公路之歌》",
+      "aliases": [
+        "痛仰"
+      ]
+    },
+    {
+      "name": "新裤子",
+      "category": "music",
+      "desc": "内地摇滚乐队，代表作《没有理想的人不伤心》",
+      "aliases": [
+        "新裤子"
+      ]
+    },
+    {
+      "name": "五条人",
+      "category": "music",
+      "desc": "内地独立乐队，用海丰话演唱风格独特",
+      "aliases": [
+        "五条人"
+      ]
+    },
+    {
+      "name": "二手玫瑰",
+      "category": "music",
+      "desc": "内地摇滚乐队，东北秧歌混搭的独特风格",
+      "aliases": [
+        "二手玫瑰"
+      ]
+    },
+    {
+      "name": "泰勒·斯威夫特",
+      "category": "music",
+      "desc": "美国创作型女歌手，粉丝都昵称她霉霉",
+      "aliases": [
+        "泰勒·斯威夫特",
+        "taylor swift",
+        "霉霉"
+      ]
+    },
+    {
+      "name": "比莉·艾利什",
+      "category": "music",
+      "desc": "美国女歌手，风格低沉个性，昵称碧梨",
+      "aliases": [
+        "比莉·艾利什",
+        "billie eilish",
+        "碧梨"
+      ]
+    },
+    {
+      "name": "防弹少年团",
+      "category": "music",
+      "desc": "韩国人气男子团体，英文简称 BTS，全球走红",
+      "aliases": [
+        "防弹少年团",
+        "bts"
+      ]
+    },
+    {
+      "name": "blackpink",
+      "category": "music",
+      "desc": "韩国人气女团，代表作《口哨》《像最后一样》",
+      "aliases": [
+        "blackpink"
+      ]
+    },
+    {
+      "name": "iu",
+      "category": "music",
+      "desc": "韩国女歌手，音色细腻，代表作《好日子》",
+      "aliases": [
+        "iu"
+      ]
+    },
+    {
+      "name": "米津玄师",
+      "category": "music",
+      "desc": "日本创作型歌手，代表作《柠檬》《打上花火》",
+      "aliases": [
+        "米津玄师"
+      ]
+    },
+    {
+      "name": "yoasobi",
+      "category": "music",
+      "desc": "日本双人音乐组合，代表作《向夜晚奔去》",
+      "aliases": [
+        "yoasobi"
+      ]
+    },
+    {
+      "name": "ado",
+      "category": "music",
+      "desc": "日本神秘系女歌手，代表作《唱》《烦死了》",
+      "aliases": [
+        "ado"
+      ]
+    },
+    {
+      "name": "久石让",
+      "category": "music",
+      "desc": "日本配乐大师，吉卜力动画御用作曲家",
+      "aliases": [
+        "久石让"
+      ]
+    },
+    {
+      "name": "坂本龙一",
+      "category": "music",
+      "desc": "日本作曲家，代表作《圣诞快乐劳伦斯先生》",
+      "aliases": [
+        "坂本龙一"
+      ]
+    },
+    {
+      "name": "说唱",
+      "category": "music",
+      "desc": "跟着节拍念歌词的演唱曲风，也叫饶舌",
+      "aliases": [
+        "说唱",
+        "rap"
+      ]
+    },
+    {
+      "name": "摇滚",
+      "category": "music",
+      "desc": "摇滚乐风格，强调吉他失真与现场感",
+      "aliases": [
+        "摇滚"
+      ]
+    },
+    {
+      "name": "民谣",
+      "category": "music",
+      "desc": "以叙事和木吉他伴奏为主的抒情曲风",
+      "aliases": [
+        "民谣"
+      ]
+    },
+    {
+      "name": "古风",
+      "category": "music",
+      "desc": "融合传统乐器与文言意象的国风曲风",
+      "aliases": [
+        "古风",
+        "国风"
+      ]
+    },
+    {
+      "name": "电音",
+      "category": "music",
+      "desc": "电子舞曲曲风的统称，常被叫作电音",
+      "aliases": [
+        "电音",
+        "edm"
+      ]
+    },
+    {
+      "name": "爵士",
+      "category": "music",
+      "desc": "讲究即兴与摇摆节奏的曲风，常配器乐",
+      "aliases": [
+        "爵士",
+        "jazz"
+      ]
+    },
+    {
+      "name": "kpop",
+      "category": "music",
+      "desc": "韩国流行音乐的统称，以偶像团体为主",
+      "aliases": [
+        "kpop"
+      ]
+    },
+    {
+      "name": "citypop",
+      "category": "music",
+      "desc": "上世纪日本都市流行曲风，复古惬意",
+      "aliases": [
+        "citypop"
+      ]
+    },
+    {
+      "name": "livehouse",
+      "category": "music",
+      "desc": "小型的现场演出场地，常有乐队演出",
+      "aliases": [
+        "livehouse"
+      ]
+    },
+    {
+      "name": "音乐节",
+      "category": "music",
+      "desc": "户外大型演出活动，如草莓音乐节、迷笛",
+      "aliases": [
+        "音乐节"
+      ]
+    },
+    {
+      "name": "演唱会",
+      "category": "music",
+      "desc": "歌手举办的大型专场音乐演出活动",
+      "aliases": [
+        "演唱会"
+      ]
+    },
+    {
+      "name": "翻唱",
+      "category": "music",
+      "desc": "重新演绎其他人的歌曲的演唱方式",
+      "aliases": [
+        "翻唱"
+      ]
+    },
+    {
+      "name": "合唱",
+      "category": "music",
+      "desc": "两人或更多人一起演唱同一首歌曲",
+      "aliases": [
+        "合唱"
+      ]
+    },
+    {
+      "name": "点歌",
+      "category": "music",
+      "desc": "观众点播歌曲，再由主播或现场演唱",
+      "aliases": [
+        "点歌"
+      ]
+    },
+    {
+      "name": "伴奏",
+      "category": "music",
+      "desc": "没有主唱、专门供人跟唱的乐器声部",
+      "aliases": [
+        "伴奏"
+      ]
+    },
+    {
+      "name": "声卡",
+      "category": "music",
+      "desc": "直播唱歌调音用的音频硬件设备之一",
+      "aliases": [
+        "声卡"
+      ]
+    }
+  ]
+}

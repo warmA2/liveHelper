@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>B站直播辅助助手</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <span class="logo">LIVE</span>
+    <div>
+      <h1>直播辅助助手</h1>
+      <div class="sub" id="room-line">直播间 --</div>
+    </div>
+  </div>
+  <div class="stats" id="stats"></div>
+  <div class="top-actions">
+    <span class="pill" id="conn-pill"><i class="dot"></i><span id="conn-text">连接中…</span></span>
+    <button class="btn ghost" id="btn-reconnect">重连</button>
+    <button class="btn ghost" id="btn-career">生涯</button>
+    <button class="btn" id="btn-settings">设置</button>
+  </div>
+</header>
+
+<main class="layout">
+  <section class="panel viewers-panel">
+    <div class="panel-head">
+      <h2>观众 <span class="count" id="viewer-count"></span></h2>
+      <label class="switch">
+        <input type="checkbox" id="session-only">
+        <span>只看本场</span>
+      </label>
+    </div>
+    <div class="panel-tools">
+      <input type="search" id="search" placeholder="搜索昵称 / UID">
+      <div class="tabs" id="sort-tabs">
+        <button class="tab active" data-sort="active">活跃</button>
+        <button class="tab" data-sort="recent">最新</button>
+        <button class="tab" data-sort="value">消费</button>
+        <button class="tab" data-sort="enter">进场</button>
+        <button class="tab" data-sort="new">新增</button>
+      </div>
+    </div>
+    <div class="viewer-list" id="viewer-list"></div>
+    <div class="pager" id="viewer-pager" hidden></div>
+  </section>
+
+  <section class="panel stream-panel">
+    <div class="panel-head">
+      <h2>弹幕流 <span class="mode-pill" id="stream-mode">实时</span></h2>
+      <div class="head-actions">
+        <div class="tabs stream-view-tabs" id="stream-view-tabs">
+          <button class="tab active" data-view="all">弹幕流</button>
+          <button class="tab" data-view="gift">礼物流水</button>
+        </div>
+        <span class="hint" id="stream-hint"></span>
+        <button class="btn ghost small" id="btn-toggle-stream">暂停</button>
+        <button class="btn ghost small" id="btn-clear-stream">清屏</button>
+      </div>
+    </div>
+    <div class="timeline-bar">
+      <span class="tl-label">时间轴</span>
+      <select id="tl-day" title="按日期回看历史弹幕"></select>
+      <select id="tl-hour" title="按小时回看历史弹幕"></select>
+      <span class="hint" id="tl-count"></span>
+      <button class="btn ghost small" id="btn-back-live" hidden>回到实时</button>
+    </div>
+    <div class="chart-bar">
+      <div class="chart-head">
+        <span class="tl-label">密度</span>
+        <div class="tabs" id="density-tabs">
+          <button class="tab active" data-metric="danmaku">弹幕</button>
+          <button class="tab" data-metric="enter">进场</button>
+          <button class="tab" data-metric="gift">礼物</button>
+          <button class="tab" data-metric="all">全部</button>
+        </div>
+        <span class="hint" id="density-hint"></span>
+      </div>
+      <div class="chart-box" id="density-chart"></div>
+    </div>
+    <div class="stream" id="stream"></div>
+    <div class="pager" id="stream-pager" hidden></div>
+  </section>
+
+  <div class="splitter" id="splitter" title="拖动调整画像栏宽度"></div>
+
+  <section class="panel profile-panel" id="profile-panel">
+    <div class="empty-state">
+      <div class="empty-icon">👤</div>
+      <p>点击左侧任一观众<br>查看 AI 画像与应对建议</p>
+    </div>
+  </section>
+</main>
+
+<div class="modal-mask" id="settings-modal">
+  <div class="modal">
+    <h3>设置</h3>
+    <label>直播间房间号
+      <input type="text" id="cfg-room" placeholder="例如 21452505">
+      <small>填短号或真实房间号都可以，修改后会自动重连</small>
+    </label>
+    <label class="row">
+      <input type="checkbox" id="cfg-llm-enabled">
+      <span>启用大模型画像分析</span>
+    </label>
+    <label>API Base URL
+      <input type="text" id="cfg-base-url" placeholder="https://api.deepseek.com/v1">
+    </label>
+    <label>模型名称
+      <input type="text" id="cfg-model" placeholder="deepseek-chat">
+    </label>
+    <label>API Key
+      <input type="password" id="cfg-api-key" placeholder="留空表示不修改">
+      <small id="cfg-key-hint">当前未配置</small>
+    </label>
+    <label>B站登录 Cookie
+      <textarea id="cfg-cookie" rows="3" placeholder="留空表示不修改。粘贴含 SESSDATA= 的完整 Cookie，例如 SESSDATA=xxx; DedeUserID=123"></textarea>
+      <small id="cfg-cookie-hint">当前未配置，弹幕昵称会被 B 站打码成 *</small>
+    </label>
+    <label class="row">
+      <input type="checkbox" id="cfg-auto">
+      <span>自动为活跃观众生成画像</span>
+    </label>
+    <div class="modal-actions">
+      <button class="btn ghost" id="btn-modal-cancel">取消</button>
+      <button class="btn" id="btn-modal-save">保存</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-mask" id="career-modal">
+  <div class="modal career-modal">
+    <h3>主播生涯</h3>
+    <div class="career-body" id="career-body"></div>
+    <div class="modal-actions">
+      <button class="btn ghost" id="btn-career-close">关闭</button>
+    </div>
+  </div>
+</div>
+
+<script src="/static/app.js"></script>
+</body>
+</html>
