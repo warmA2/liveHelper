@@ -1,0 +1,40 @@
+{
+  "actions": [
+    {
+      "key": "sing",
+      "label": "唱歌",
+      "minutes": 4,
+      "color": "#fb7299"
+    },
+    {
+      "key": "pk",
+      "label": "PK",
+      "minutes": 6,
+      "color": "#f2c14e"
+    },
+    {
+      "key": "chat",
+      "label": "杂谈",
+      "minutes": 10,
+      "color": "#5b9dff"
+    },
+    {
+      "key": "video",
+      "label": "看视频",
+      "minutes": 8,
+      "color": "#b28dff"
+    },
+    {
+      "key": "game",
+      "label": "游戏",
+      "minutes": 15,
+      "color": "#3ecf8e"
+    },
+    {
+      "key": "rest",
+      "label": "休息",
+      "minutes": 5,
+      "color": "#8b93a7"
+    }
+  ]
+}

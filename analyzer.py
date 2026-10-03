@@ -26,7 +26,9 @@ SYSTEM_PROMPT = """你是资深直播间运营分析师。你会收到某位 B �
 3. 具体偏好（游戏、音乐、动漫等）只写该观众真的提到过的具体名称，不要写泛泛的品类。
 4. 面向主播使用，结论必须具体、可执行，不要空话套话。
 5. sample_replies 必须是主播能直接照着念的中文口语，结合该观众的发言内容，不要通用模板。
-6. 只输出 JSON，不要任何解释文字或 markdown 代码块。
+6. 除弹幕外，还会收到【醒目留言原文】【消费与上舰明细】【光顾与作息】等补充数据，
+   请综合它们判断该观众的付费诉求、消费习惯、跨场次忠诚度与作息规律；这些数据同样不得编造或过度解读。
+7. 只输出 JSON，不要任何解释文字或 markdown 代码块。
 
 JSON 结构：
 {
@@ -58,6 +60,28 @@ JSON 结构：
   "sample_replies": ["2到3条可直接照读的话术"],
   "risk_note": "需要注意的雷点，没有则空字符串"
 }"""
+
+SESSION_PROMPT = """你是资深直播间运营分析师。你会收到某场 B 站直播的完整聚合数据（观众、弹幕、进场、礼物、上舰、人气、操作记录与场次时段分布）。
+请输出这场直播的复盘分析，帮助主播看懂"这一场播得怎么样、哪里出了问题、下播后该调整什么"。
+
+硬性要求：
+1. 只依据给定数据推断，绝不编造数据里没有的事实；没有的数据不要硬编。
+2. 结合「操作记录」对比不同环节（唱歌 / PK / 杂谈 …）对人气与互动的影响，指出哪些环节有效、哪些拖了后腿。
+3. 结论要具体、可执行，给出主播下播后能立刻照做的动作，不要空话套话。
+4. 用中文输出纯文本（不要 markdown 代码块、不要 JSON），可以用简短小标题与换行分条，控制在 500 字以内。
+
+建议覆盖：本场概况、亮点、问题、与观众结构/消费的关联、下一步改进建议。"""
+
+CAREER_PROMPT = """你是资深直播间运营分析师。你会收到某位主播「生涯」口径的累计数据（跨全部场次：场次时长、观众、弹幕、上舰、流水、消费趋势、忠实观众、操作类型统计、全量时段分布）。
+请输出一份阶段性的生涯经营分析，帮助主播判断长期走势与投入方向。
+
+硬性要求：
+1. 只依据给定数据推断，绝不编造数据里没有的事实；没有的数据不要硬编。
+2. 关注长期趋势：流水/观众随时间的变化、核心观众是否稳定、上下舰结构、开播时段规律。
+3. 结论要具体、可执行，给出下一步可持续经营的建议，不要空话套话。
+4. 用中文输出纯文本（不要 markdown 代码块、不要 JSON），可以用简短小标题与换行分条，控制在 600 字以内。
+
+建议覆盖：整体走势、核心资产（忠实观众/大额支持者）、内容偏好、风险点、下阶段建议。"""
 
 INTEREST_KEYWORDS = {
     "游戏": ["游戏", "开黑", "上分", "排位", "打野", "中单", "上单", "adc", "辅助", "王者",
@@ -254,7 +278,11 @@ class Analyzer:
     # ------------------------------------------------------------------
     # 规则层
     # ------------------------------------------------------------------
-    def build_metrics(self, viewer: Dict[str, Any], messages: List[dict]) -> Dict[str, Any]:
+    def build_metrics(
+        self, viewer: Dict[str, Any], messages: List[dict],
+        context: Optional[Dict[str, Any]] = None,
+    ) -> Dict[str, Any]:
+        context = context or {}
         texts = [m["content"] for m in messages if m.get("content")]
         msg_count = viewer.get("msg_count") or 0
         first_seen = viewer.get("first_seen") or 0
@@ -278,22 +306,65 @@ class Analyzer:
 
         medal_level = viewer.get("medal_level") or 0
 
+        # 发言时段：优先用全量历史直方图。analyze 只取最近 60 条弹幕，命中时段会明显失真。
+        all_hours = context.get("all_msg_hours") or {}
         hour_hist = Counter()
-        for m in messages:
-            hour_hist[time.localtime((m.get("ts") or 0) / 1000).tm_hour] += 1
+        if all_hours:
+            for hour, count in all_hours.items():
+                hour_hist[int(hour)] += int(count)
+        else:
+            for m in messages:
+                hour_hist[time.localtime((m.get("ts") or 0) / 1000).tm_hour] += 1
 
         avg_len = round(sum(len(t) for t in texts) / len(texts), 1) if texts else 0
+
+        # 潜水指数：发言数 / 进场次数，越低越「只看不说」
+        enter_count = viewer.get("enter_count") or 0
+        if enter_count > 0:
+            ratio = round(msg_count / enter_count, 2)
+            dive_label = "低" if ratio >= 1 else ("中" if ratio >= 0.3 else "高")
+            dive_index = f"{ratio}（发言/进场，{dive_label}潜水）"
+        else:
+            dive_index = "无进场记录"
+
+        now_ms = int(time.time() * 1000)
+
+        # 消费明细摘要（规则层）：只统计付费礼物金额，银瓜子等免费礼物不计流水
+        gift_summary = [
+            f"{g['name']}×{g['count']}" + (f"（¥{g['amount']:g}）" if g.get("amount") else "")
+            for g in (context.get("gift_summary") or [])[:5]
+        ]
+        guard_summary = [
+            f"{GUARD_NAMES.get(g['level'], '舰队')}×{g['count']}"
+            + (f"（¥{g['amount']:g}）" if g.get("amount") else "")
+            for g in (context.get("guard_summary") or [])
+        ]
+        sc_lines = [
+            f"¥{sc['value']:g} {sc['content']}".strip()
+            for sc in (context.get("superchats") or [])[:10]
+        ]
 
         return {
             "uid": viewer.get("uid"),
             "昵称": viewer.get("uname"),
             "首次出现": _fmt_time(first_seen),
             "最近出现": _fmt_time(last_seen),
+            "最近出现距今": _humanize_delta(now_ms - last_seen) if last_seen else "-",
             "关注时长": _humanize_delta(span),
+            "光顾场次数": int(context.get("visit_sessions") or 0),
             "累计弹幕数": msg_count,
             "本场弹幕数": len(messages),
             "进场次数": viewer.get("enter_count") or 0,
-            "关注过主播": bool(viewer.get("follow_count")),
+            "潜水指数": dive_index,
+            # B 站只在「本次开播期间发生关注」时才推 follow 事件，早就关注的老观众收不到，
+            # 所以单看 follow_count 会把绝大多数已关注的人误判成未关注。
+            # 粉丝牌 / 大航海都必须先关注主播才有，用它们补齐这个判断；
+            # 两者都没有时只能说「未知」，不能断言没关注。
+            "关注过主播": (
+                "是"
+                if (viewer.get("follow_count") or medal_level or viewer.get("guard_level"))
+                else "未知"
+            ),
             "点赞次数": viewer.get("like_count") or 0,
             "付费次数": viewer.get("spend_count") or 0,
             "累计消费(元)": round(value, 2),
@@ -301,6 +372,10 @@ class Analyzer:
             "粉丝牌等级": medal_level,
             "粉丝牌名称": viewer.get("medal_name") or "",
             "粉丝牌折算消费(估)": _medal_spend_estimate(medal_level),
+            "身份标记": viewer.get("role") or "",
+            "礼物概览(规则)": gift_summary,
+            "上舰记录(规则)": guard_summary,
+            "醒目留言(规则)": sc_lines,
             "发言平均字数": avg_len,
             "发言时段分布": {f"{h}点": c for h, c in sorted(hour_hist.items())},
             "活跃度(规则)": activity,
@@ -320,12 +395,16 @@ class Analyzer:
             tags.append(metrics["舰长等级"])
         if metrics.get("粉丝牌等级"):
             tags.append(f"粉丝牌Lv{metrics['粉丝牌等级']}")
+        if metrics.get("身份标记"):
+            tags.append(metrics["身份标记"])
         tags.extend(interests[:2])
         named = metrics.get("提及内容(规则)") or {}
+        visits = metrics.get("光顾场次数") or 0
         return {
             "nickname_hint": (metrics.get("高频词(规则)") or ["常驻观众"])[0] + "观众",
             "tags": tags[:6],
             "persona": f"{metrics.get('活跃度(规则)')}活跃度观众，"
+                       f"光顾过 {visits} 场直播，"
                        f"{metrics.get('关注时长')}内发言 {metrics.get('累计弹幕数')} 条，"
                        f"情绪{metrics.get('情绪倾向(规则)')}。",
             "interests": interests,
@@ -364,29 +443,93 @@ class Analyzer:
     # ------------------------------------------------------------------
     # 智能层
     # ------------------------------------------------------------------
-    async def _call_llm(self, metrics: Dict[str, Any], messages: List[dict]) -> Dict[str, Any]:
+    async def _call_llm(
+        self, metrics: Dict[str, Any], messages: List[dict],
+        context: Optional[Dict[str, Any]] = None,
+    ) -> Dict[str, Any]:
+        context = context or {}
         llm = self.cfg["llm"]
         url = llm["base_url"].rstrip("/") + "/chat/completions"
         recent = [
             {"时间": _fmt_time(m.get("ts")), "发言": m.get("content")}
             for m in messages[: self.cfg["analyze"]["recent_msg_limit"]]
         ]
-        user_content = (
-            "【行为指标】\n"
-            + json.dumps(metrics, ensure_ascii=False, indent=2)
-            + "\n\n【近期发言样本(新→旧)】\n"
-            + json.dumps(recent, ensure_ascii=False, indent=2)
+        sections = [
+            "【行为指标】\n" + json.dumps(metrics, ensure_ascii=False, indent=2),
+            "【近期发言样本(新→旧)】\n" + json.dumps(recent, ensure_ascii=False, indent=2),
+        ]
+        # 醒目留言原文：付费诉求与情绪的直接证据
+        superchats = context.get("superchats") or []
+        if superchats:
+            sections.append(
+                "【醒目留言原文(新→旧)】\n"
+                + json.dumps(
+                    [
+                        {"时间": _fmt_time(s["ts"]), "金额(元)": s["value"], "内容": s["content"]}
+                        for s in superchats
+                    ],
+                    ensure_ascii=False, indent=2,
+                )
+            )
+        # 礼物 / 上舰明细：判断消费习惯与支持的持续性
+        gifts = context.get("gifts") or []
+        if gifts:
+            detail = []
+            for g in gifts:
+                if g["type"] == "guard":
+                    label = f"上舰 {GUARD_NAMES.get(g['guard_level'], '舰队')}"
+                else:
+                    label = f"礼物 {g.get('name') or g.get('content')} x{g.get('num') or 1}"
+                detail.append({
+                    "时间": _fmt_time(g["ts"]),
+                    "行为": label,
+                    "金额(元)": g["value"],
+                    "付费": g["paid"],
+                })
+            sections.append(
+                "【消费与上舰明细(新→旧)】\n"
+                + json.dumps(detail, ensure_ascii=False, indent=2)
+            )
+        # 光顾与作息：跨场次忠诚度与全量发言时段
+        sections.append(
+            "【光顾与作息】\n"
+            + json.dumps(
+                {
+                    "光顾场次数": context.get("visit_sessions") or 0,
+                    "首次出现": _fmt_time(context.get("first_visit_ts")),
+                    "最近出现": _fmt_time(context.get("last_visit_ts")),
+                    "全量发言时段分布": context.get("all_msg_hours") or {},
+                },
+                ensure_ascii=False, indent=2,
+            )
         )
-        body = {
+        user_content = "\n\n".join(sections)
+        content = await self._chat(
+            SYSTEM_PROMPT, user_content, max_tokens=4000, json_mode=True
+        )
+        profile = self._parse_json(content)
+        profile["_source"] = "llm"
+        profile["_model_used"] = llm["model"]
+        return profile
+
+    async def _chat(
+        self, system_prompt: str, user_content: str,
+        max_tokens: int = 4000, json_mode: bool = True,
+    ) -> str:
+        """通用大模型对话，返回纯文本内容；部分服务不支持 response_format 时自动降级。"""
+        llm = self.cfg["llm"]
+        url = llm["base_url"].rstrip("/") + "/chat/completions"
+        body: Dict[str, Any] = {
             "model": llm["model"],
             "messages": [
-                {"role": "system", "content": SYSTEM_PROMPT},
+                {"role": "system", "content": system_prompt},
                 {"role": "user", "content": user_content},
             ],
             "temperature": llm.get("temperature", 0.4),
-            "max_tokens": 3000,
-            "response_format": {"type": "json_object"},
+            "max_tokens": max_tokens,
         }
+        if json_mode:
+            body["response_format"] = {"type": "json_object"}
         headers = {
             "Authorization": f"Bearer {llm['api_key']}",
             "Content-Type": "application/json",
@@ -405,17 +548,12 @@ class Analyzer:
             data = await _post(body)
         except RuntimeError as exc:
             # 部分服务不支持 response_format，去掉后重试一次
-            if "response_format" in str(exc) or "HTTP 400" in str(exc):
+            if json_mode and ("response_format" in str(exc) or "HTTP 400" in str(exc)):
                 body.pop("response_format", None)
                 data = await _post(body)
             else:
                 raise
-
-        content = data["choices"][0]["message"]["content"]
-        profile = self._parse_json(content)
-        profile["_source"] = "llm"
-        profile["_model_used"] = llm["model"]
-        return profile
+        return data["choices"][0]["message"]["content"]
 
     @staticmethod
     def _parse_json(content: str) -> Dict[str, Any]:
@@ -436,7 +574,8 @@ class Analyzer:
         if not viewer:
             raise ValueError(f"观众 {uid} 不存在")
         messages = self.store.viewer_messages(uid, limit=60)
-        metrics = self.build_metrics(viewer, messages)
+        context = self.store.viewer_context(uid)
+        metrics = self.build_metrics(viewer, messages, context)
 
         if not self.enabled:
             profile = self.rule_profile(metrics)
@@ -447,9 +586,144 @@ class Analyzer:
         self.store.set_profile_status(uid, "running")
         try:
             async with self._get_semaphore():
-                profile = await self._call_llm(metrics, messages)
+                profile = await self._call_llm(metrics, messages, context)
             self.store.save_profile(uid, profile, model=profile.get("_model_used", ""))
             return profile
         except Exception as exc:
             self.store.set_profile_status(uid, "error", str(exc)[:300])
             raise
+
+    # ------------------------------------------------------------------
+    # 本场直播 / 生涯 的 AI 分析
+    # ------------------------------------------------------------------
+    @staticmethod
+    def _session_rule_text(d: Dict[str, Any]) -> str:
+        lines = ["【本场直播小结（未配置大模型，当前为本地规则）】"]
+        lines.append(
+            f"时长 {_humanize_delta(d['duration_ms'])}，观众 {d['people']} 人"
+            f"（新增 {d['new_viewers']}），弹幕 {d['danmaku']} 条，进场 {d['enter']} 次。"
+        )
+        lines.append(
+            f"礼物 {d['gift']} 次、上舰 {d['guard']} 次、醒目留言 {d['superchat']} 条，"
+            f"本场流水 ¥{d['income']:g}。"
+        )
+        pop = d.get("popularity") or {}
+        if pop.get("max") is not None:
+            lines.append(f"人气峰值 {pop['max']}，均值 {pop['avg']}。")
+        top = d.get("top_speakers") or []
+        if top:
+            lines.append(
+                "发言最多：" + "、".join(
+                    f"{t['uname'] or t['uid']}({t['count']})" for t in top[:5]
+                )
+            )
+        spenders = d.get("top_spenders") or []
+        if spenders:
+            lines.append(
+                "消费最多：" + "、".join(
+                    f"{t['uname'] or t['uid']}(¥{t['amount']:g})" for t in spenders[:5]
+                )
+            )
+        hours = d.get("hour_hist") or {}
+        if hours:
+            peak = max(hours.items(), key=lambda kv: kv[1])
+            lines.append(f"弹幕最活跃时段：{peak[0]}（{peak[1]} 条）。")
+        summary = d.get("action_summary") or []
+        if summary:
+            lines.append("各环节表现（每分钟）：")
+            for g in summary[:8]:
+                lines.append(
+                    f"· {g['label']}×{g['count']}：弹幕 {g['danmaku_per_min']}、"
+                    f"进场 {g['enter_per_min']}、礼物 {g['gift_per_min']}、流水 {g['income_per_min']}"
+                )
+        else:
+            lines.append("本场暂无操作记录，无法对比各环节效果（可在时间轴记录唱歌/PK/杂谈等）。")
+        lines.append("提示：在「设置」中配置大模型 API Key 后可获得更深入的复盘与改进建议。")
+        return "\n".join(lines)
+
+    @staticmethod
+    def _career_rule_text(d: Dict[str, Any]) -> str:
+        lines = ["【生涯小结（未配置大模型，当前为本地规则）】"]
+        lines.append(
+            f"累计 {d['sessions']} 场 / {d['days']} 天，累计开播 "
+            f"{_humanize_delta(d['duration_ms'])}，首次记录 {_fmt_time(d['first_ts'])}。"
+        )
+        lines.append(
+            f"观众库 {d['total_viewers']} 人，互动 {d['active_viewers']} 人，"
+            f"累计弹幕 {d['danmaku']} 条，上舰 {d['guards']} 次。"
+        )
+        lines.append(f"累计流水 ¥{d['income']:g}，付费人数 {d['payers']} 人。")
+        spenders = d.get("top_spenders") or []
+        if spenders:
+            lines.append(
+                "核心支持者：" + "、".join(
+                    f"{t['uname'] or t['uid']}(¥{t['amount']:g})" for t in spenders[:5]
+                )
+            )
+        speakers = d.get("top_speakers") or []
+        if speakers:
+            lines.append(
+                "活跃观众：" + "、".join(
+                    f"{t['uname'] or t['uid']}({t['count']})" for t in speakers[:5]
+                )
+            )
+        daily = d.get("daily_income") or []
+        if len(daily) >= 2:
+            half = max(1, len(daily) // 2)
+            early = sum(x["amount"] for x in daily[:half])
+            late = sum(x["amount"] for x in daily[half:])
+            trend = "上升" if late > early else ("下降" if late < early else "持平")
+            lines.append(f"近期流水走势：{trend}（前半段 ¥{early:g} → 后半段 ¥{late:g}）。")
+        hours = d.get("hour_hist") or {}
+        if hours:
+            peak = max(hours.items(), key=lambda kv: kv[1])
+            lines.append(f"最活跃开播时段：{peak[0]}（累计弹幕 {peak[1]} 条）。")
+        kinds = d.get("action_kinds") or []
+        if kinds:
+            lines.append(
+                "操作类型统计：" + "、".join(
+                    f"{k['kind']}×{k['count']}" for k in kinds[:8]
+                )
+            )
+        lines.append("提示：在「设置」中配置大模型 API Key 后可获得更深入的生涯经营分析。")
+        return "\n".join(lines)
+
+    async def analyze_session(self) -> Dict[str, Any]:
+        insights = self.store.session_insights()
+        if not insights:
+            raise ValueError("当前没有进行中的直播场次")
+        key = f"session:{insights['session_id']}"
+        if not self.enabled:
+            content, model = self._session_rule_text(insights), "rule"
+        else:
+            async with self._get_semaphore():
+                content = await self._chat(
+                    SESSION_PROMPT,
+                    "【本场直播数据】\n" + json.dumps(insights, ensure_ascii=False, indent=2),
+                    # 该模型会先输出 reasoning_content，预留足够 token 免得正文被挤空
+                    max_tokens=4000, json_mode=False,
+                )
+            content, model = content.strip(), self.cfg["llm"]["model"]
+            # 大模型偶发返回空内容，退回规则文本，避免存下空白分析
+            if not content:
+                content, model = self._session_rule_text(insights), "rule"
+        self.store.save_analysis(key, content, model=model)
+        return {"kind": "session", "key": key, "content": content, "model": model}
+
+    async def analyze_career(self) -> Dict[str, Any]:
+        insights = self.store.career_insights()
+        if not self.enabled:
+            content, model = self._career_rule_text(insights), "rule"
+        else:
+            async with self._get_semaphore():
+                content = await self._chat(
+                    CAREER_PROMPT,
+                    "【生涯累计数据】\n" + json.dumps(insights, ensure_ascii=False, indent=2),
+                    max_tokens=4000, json_mode=False,
+                )
+            content, model = content.strip(), self.cfg["llm"]["model"]
+            # 大模型偶发返回空内容，退回规则文本，避免存下空白分析
+            if not content:
+                content, model = self._career_rule_text(insights), "rule"
+        self.store.save_analysis("career", content, model=model)
+        return {"kind": "career", "key": "career", "content": content, "model": model}

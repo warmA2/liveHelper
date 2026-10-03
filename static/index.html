@@ -18,7 +18,16 @@
   <div class="stats" id="stats"></div>
   <div class="top-actions">
     <span class="pill" id="conn-pill"><i class="dot"></i><span id="conn-text">连接中…</span></span>
+    <div class="rooms-wrap">
+      <button class="btn ghost" id="btn-rooms">切换房间</button>
+      <div class="rooms-pop" id="rooms-pop"></div>
+    </div>
     <button class="btn ghost" id="btn-reconnect">重连</button>
+    <button class="btn ghost" id="btn-analysis">AI 分析</button>
+    <label class="pill top-switch" id="auto-profile-wrap" title="开启后，活跃观众达到阈值才自动生成画像">
+      <input type="checkbox" id="auto-profile">
+      <span>自动画像</span>
+    </label>
     <button class="btn ghost" id="btn-career">生涯</button>
     <button class="btn" id="btn-settings">设置</button>
   </div>
@@ -67,6 +76,11 @@
       <span class="hint" id="tl-count"></span>
       <button class="btn ghost small" id="btn-back-live" hidden>回到实时</button>
     </div>
+    <div class="action-bar" id="action-bar">
+      <span class="tl-label">记录</span>
+      <div class="action-btns" id="action-btns"></div>
+      <button class="btn ghost small" id="btn-actions">查看记录</button>
+    </div>
     <div class="chart-bar">
       <div class="chart-head">
         <span class="tl-label">密度</span>
@@ -98,8 +112,8 @@
   <div class="modal">
     <h3>设置</h3>
     <label>直播间房间号
-      <input type="text" id="cfg-room" placeholder="例如 21452505">
-      <small>填短号或真实房间号都可以，修改后会自动重连</small>
+      <input type="text" id="cfg-room" placeholder="房间号，或粘贴直播间链接">
+      <small id="cfg-room-hint">可填短号 / 真实房间号，也可直接粘贴直播间链接（如 https://live.bilibili.com/1907444111）；每个主播的数据单独存库</small>
     </label>
     <label class="row">
       <input type="checkbox" id="cfg-llm-enabled">
@@ -115,7 +129,15 @@
       <input type="password" id="cfg-api-key" placeholder="留空表示不修改">
       <small id="cfg-key-hint">当前未配置</small>
     </label>
-    <label>B站登录 Cookie
+    <div class="qr-block">
+      <div class="qr-head">
+        <span class="qr-title">扫码登录（推荐）</span>
+        <button class="btn ghost small" id="btn-qr-login" type="button">获取二维码</button>
+      </div>
+      <div class="qr-status" id="qr-status">用 B 站手机 App 扫码，自动获取并保存完整 Cookie，无需手动复制</div>
+      <div class="qr-box" id="qr-box"></div>
+    </div>
+    <label>B站登录 Cookie（手动粘贴备用）
       <textarea id="cfg-cookie" rows="3" placeholder="留空表示不修改。粘贴含 SESSDATA= 的完整 Cookie，例如 SESSDATA=xxx; DedeUserID=123"></textarea>
       <small id="cfg-cookie-hint">当前未配置，弹幕昵称会被 B 站打码成 *</small>
     </label>
@@ -136,6 +158,52 @@
     <div class="career-body" id="career-body"></div>
     <div class="modal-actions">
       <button class="btn ghost" id="btn-career-close">关闭</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-mask" id="analysis-modal">
+  <div class="modal analysis-modal">
+    <h3>AI 分析</h3>
+    <div class="tabs analysis-tabs" id="analysis-tabs">
+      <button class="tab active" data-kind="session">本场直播</button>
+      <button class="tab" data-kind="career">生涯</button>
+    </div>
+    <div class="analysis-head">
+      <span class="hint" id="analysis-hint">正在读取…</span>
+      <button class="btn small" id="btn-analysis-run">生成分析</button>
+    </div>
+    <div class="analysis-body" id="analysis-body"></div>
+    <div class="modal-actions">
+      <button class="btn ghost" id="btn-analysis-close">关闭</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-mask" id="action-modal">
+  <div class="modal">
+    <h3 id="action-modal-title">记录操作</h3>
+    <div class="hint action-range" id="action-modal-range"></div>
+    <label>时长（分钟）
+      <input type="number" id="action-minutes" min="1" max="180" step="1">
+      <small>默认时长来自 data/actions.json，可临时改动；记录区间为「操作结束时间往前推」</small>
+    </label>
+    <label>备注（可选）
+      <input type="text" id="action-note" placeholder="例如：唱了《夜曲》">
+    </label>
+    <div class="modal-actions">
+      <button class="btn ghost" id="btn-action-cancel">取消</button>
+      <button class="btn" id="btn-action-save">记录</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-mask" id="actions-modal">
+  <div class="modal career-modal">
+    <h3>操作记录与效果对比</h3>
+    <div class="career-body" id="actions-body"></div>
+    <div class="modal-actions">
+      <button class="btn ghost" id="btn-actions-close">关闭</button>
     </div>
   </div>
 </div>

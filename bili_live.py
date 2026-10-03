@@ -13,12 +13,15 @@
 
 import asyncio
 import base64
+import hashlib
 import json
 import random
 import re
 import struct
 import time
+import urllib.parse
 import zlib
+from http.cookies import SimpleCookie
 from typing import Any, Callable, Dict, List, Optional
 
 import aiohttp
@@ -206,6 +209,66 @@ async def fetch_buvid(session: aiohttp.ClientSession) -> Dict[str, str]:
     return {"b_3": fake, "b_4": ""}
 
 
+def cookie_value(cookie: str, name: str) -> str:
+    """从 Cookie 串里取某个键的值。
+
+    用于复用用户浏览器 Cookie 自带的 buvid3 / buvid4 —— 它们和登录态属于同一台设备，
+    比临时新抓的 buvid 更可信（否则 B 站风控会判定设备不一致）。
+    """
+    match = re.search(rf"(?:^|;\s*){re.escape(name)}=([^;]*)", cookie or "")
+    return match.group(1).strip() if match else ""
+
+
+# 扫码登录：passport 的二维码生成 / 轮询接口
+QRCODE_GENERATE_URL = "https://passport.bilibili.com/x/passport-login/web/qrcode/generate"
+QRCODE_POLL_URL = "https://passport.bilibili.com/x/passport-login/web/qrcode/poll"
+NAV_URL = "https://api.bilibili.com/x/web-interface/nav"
+
+# 轮询返回体里的 data.code
+QR_STATUS_OK = 0
+QR_STATUS_EXPIRED = 86038
+QR_STATUS_SCANNED = 86090
+QR_STATUS_WAIT = 86101
+
+
+async def qrcode_generate(session: aiohttp.ClientSession) -> dict:
+    """申请一个登录二维码，返回 {qrcode_key, url}。"""
+    payload = await _get_json(session, QRCODE_GENERATE_URL)
+    if payload.get("code") != 0:
+        raise RuntimeError(payload.get("message") or "二维码生成失败")
+    return payload.get("data") or {}
+
+
+async def qrcode_poll(session: aiohttp.ClientSession, qrcode_key: str) -> dict:
+    """轮询扫码状态；登录成功时把响应头里的 Cookie 一并解析出来。"""
+    url = f"{QRCODE_POLL_URL}?qrcode_key={qrcode_key}"
+    async with session.get(url, headers=BASE_HEADERS) as resp:
+        payload = await resp.json(content_type=None)
+        set_cookies = resp.headers.getall("Set-Cookie", [])
+    inner = payload.get("data") or {}
+    jar = SimpleCookie()
+    for header in set_cookies:
+        try:
+            jar.load(header)
+        except Exception:
+            continue
+    cookies = {name: morsel.value for name, morsel in jar.items() if morsel.value}
+    return {
+        "status": inner.get("code"),
+        "message": inner.get("message") or payload.get("message") or "",
+        "cookies": cookies,
+    }
+
+
+async def fetch_login_name(session: aiohttp.ClientSession, cookie: str) -> str:
+    """用 Cookie 调 nav 接口确认登录状态，返回昵称（未登录返回空串）。"""
+    headers = {**BASE_HEADERS, "Cookie": cookie}
+    async with session.get(NAV_URL, headers=headers) as resp:
+        payload = await resp.json(content_type=None)
+    data = payload.get("data") or {}
+    return data.get("uname", "") if data.get("isLogin") else ""
+
+
 async def fetch_real_room_id(session: aiohttp.ClientSession, room_id: int) -> int:
     payload = await _get_json(
         session,
@@ -216,26 +279,75 @@ async def fetch_real_room_id(session: aiohttp.ClientSession, room_id: int) -> in
     return int(payload["data"]["room_id"])
 
 
+DANMU_INFO_URL = "https://api.live.bilibili.com/xlive/web-room/v1/index/getDanmuInfo"
+
+# WBI 签名：新版接口校验 w_rid，缺少签名会直接被风控挡下（code=-352）。
+# mixinKey 由 nav 接口下发的 img_key / sub_key 按固定表重排后取前 32 位。
+WBI_MIXIN_TAB = [
+    46, 47, 18, 2, 53, 8, 23, 32, 15, 50, 10, 31, 58, 3, 45, 35, 27, 43, 5, 49,
+    33, 9, 42, 19, 29, 28, 14, 39, 12, 38, 41, 13, 37, 48, 7, 16, 24, 55, 40, 61,
+    26, 17, 0, 1, 60, 51, 30, 4, 22, 25, 54, 21, 56, 59, 6, 63, 57, 62, 11, 36,
+    20, 34, 44, 52,
+]
+
+_wbi_cache: Dict[str, Any] = {"keys": None, "ts": 0.0}
+
+
+async def _fetch_wbi_keys(session: aiohttp.ClientSession, cookie: str = ""):
+    """取 WBI 密钥（img_key/sub_key），缓存 1 小时。"""
+    now = time.time()
+    keys = _wbi_cache.get("keys")
+    if keys and now - _wbi_cache.get("ts", 0.0) < 3600:
+        return keys
+    headers = {**BASE_HEADERS}
+    if cookie:
+        headers["Cookie"] = cookie
+    payload = await _get_json(session, NAV_URL, headers=headers)
+    wbi = (payload.get("data") or {}).get("wbi_img") or {}
+    img = (wbi.get("img_url") or "").rsplit("/", 1)[-1].split(".")[0]
+    sub = (wbi.get("sub_url") or "").rsplit("/", 1)[-1].split(".")[0]
+    if not img or not sub:
+        return None
+    keys = (img, sub)
+    _wbi_cache["keys"] = keys
+    _wbi_cache["ts"] = now
+    return keys
+
+
+def _wbi_signed_query(params: Dict[str, str], keys) -> str:
+    img, sub = keys
+    mixin = "".join((img + sub)[i] for i in WBI_MIXIN_TAB)[:32]
+    signed = {**params, "wts": str(int(time.time()))}
+    query = urllib.parse.urlencode(sorted(signed.items()))
+    query = re.sub(r"[!'()*]", "", query)
+    w_rid = hashlib.md5((query + mixin).encode("utf-8")).hexdigest()
+    return f"{query}&w_rid={w_rid}"
+
+
 async def fetch_danmu_info(
     session: aiohttp.ClientSession,
     real_room_id: int,
-    buvid: Dict[str, str],
+    buvid,
     cookie: str = "",
 ) -> dict:
-    parts = []
-    if cookie:
-        parts.append(cookie.strip().rstrip(";"))
-    if buvid.get("b_3"):
+    text = (cookie or "").strip().rstrip(";")
+    parts = [text] if text else []
+    # 用户 Cookie 若已带 buvid，就不要再叠加新抓的，避免同名 Cookie 冲突
+    if buvid.get("b_3") and not cookie_value(text, "buvid3"):
         parts.append(f"buvid3={buvid['b_3']}")
-    if buvid.get("b_4"):
+    if buvid.get("b_4") and not cookie_value(text, "buvid4"):
         parts.append(f"buvid4={buvid['b_4']}")
     headers = {**BASE_HEADERS, "Cookie": "; ".join(parts)}
-    payload = await _get_json(
-        session,
-        "https://api.live.bilibili.com/xlive/web-room/v1/index/getDanmuInfo"
-        f"?id={real_room_id}&type=0",
-        headers=headers,
-    )
+    # 带 WBI 签名后风控才会放行，拿到与登录态绑定的正式 token，
+    # 弹幕服务端才会下发真实昵称（否则昵称会被打码成「首字***」）。
+    url = f"{DANMU_INFO_URL}?id={real_room_id}&type=0"
+    try:
+        keys = await _fetch_wbi_keys(session, "; ".join(parts))
+    except Exception:
+        keys = None
+    if keys:
+        url = f"{DANMU_INFO_URL}?{_wbi_signed_query({'id': str(real_room_id), 'type': '0'}, keys)}"
+    payload = await _get_json(session, url, headers=headers)
     if payload.get("code") != 0:
         raise RuntimeError(
             f"getDanmuInfo 失败({payload.get('code')}): {payload.get('message')}"
@@ -639,12 +751,12 @@ class BiliLiveClient:
         return int(matched.group(1)) if matched else 0
 
     def _cookie_header(self) -> str:
-        parts = []
-        if self.cookie and self._use_cookie:
-            parts.append(self.cookie.strip().rstrip(";"))
-        if self._buvid:
+        text = (self.cookie or "").strip().rstrip(";")
+        parts = [text] if (text and self._use_cookie) else []
+        # 用户 Cookie 自带 buvid 时不重复追加，保持设备指纹与登录态一致
+        if self._buvid and not cookie_value(text, "buvid3"):
             parts.append(f"buvid3={self._buvid}")
-        if self._buvid4:
+        if self._buvid4 and not cookie_value(text, "buvid4"):
             parts.append(f"buvid4={self._buvid4}")
         return "; ".join(p for p in parts if p)
 
@@ -727,8 +839,9 @@ class BiliLiveClient:
 
     async def _prepare(self, session: aiohttp.ClientSession):
         buvid = await fetch_buvid(session)
-        self._buvid = buvid.get("b_3", "")
-        self._buvid4 = buvid.get("b_4", "")
+        # 优先复用 Cookie 自带的 buvid（与登录态同设备），没有才用新抓取的
+        self._buvid = cookie_value(self.cookie, "buvid3") or buvid.get("b_3", "")
+        self._buvid4 = cookie_value(self.cookie, "buvid4") or buvid.get("b_4", "")
         self.real_room_id = await fetch_real_room_id(session, self.room_id)
         try:
             info = await fetch_danmu_info(

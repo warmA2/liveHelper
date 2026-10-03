@@ -15,7 +15,7 @@ from aiohttp import web
 
 from analyzer import Analyzer
 from bili_live import BiliLiveClient
-from config import db_file, load_config, save_config
+from config import load_config, prepare_db_file, save_config
 from store import Store
 from web import Dashboard
 
@@ -29,7 +29,7 @@ LIGHT_FIELDS = (
 class App:
     def __init__(self, cfg):
         self.cfg = cfg
-        self.store = Store(db_file(cfg))
+        self.store = Store(prepare_db_file(cfg))
         self.analyzer = Analyzer(self.store, cfg)
         self.client: Optional[BiliLiveClient] = None
         self.client_task: Optional[asyncio.Task] = None
@@ -51,6 +51,8 @@ class App:
             "status_message": self.status.get("message", ""),
             "popularity": self.status.get("popularity", 0),
             "room_id": self.cfg["room_id"],
+            # 顶栏「自动画像」常驻开关需要实时状态，跟着 stats 一起下发
+            "auto": bool(self.cfg["analyze"].get("auto")),
         }
 
     async def on_status(self, message: str, meta: Optional[dict] = None):
@@ -117,12 +119,25 @@ class App:
         self.client_task = asyncio.ensure_future(self.client.run_forever())
 
     async def restart_client(self, room_id: int):
-        # 只有房间号真的变了才新开场次。
-        # 单纯点「重连」或更新 Cookie 时续用当前场次，否则时间轴会被切成一堆碎片。
-        if self.store.session_id is None or self._session_room != room_id:
+        # 只有房间号真的变了才新开场次 / 换库。
+        # 单纯点「重连」或更新 Cookie 时续用当前场次与当前库，
+        # 否则时间轴会被切成一堆碎片、不同主播的数据也会串到一起。
+        if self._session_room != room_id:
+            # 先停掉旧连接，避免切换库期间旧房间的事件写进新库
+            if self.client_task:
+                self.client_task.cancel()
+                try:
+                    await self.client_task
+                except (asyncio.CancelledError, Exception):
+                    pass
+                self.client_task = None
             self.store.end_session()
+            # 一主播一库：切到目标房间对应的库（首次会自动迁移老库）
+            self.store.reopen(prepare_db_file(self.cfg))
             self.store.start_session(room_id)
             self._session_room = room_id
+        elif self.store.session_id is None:
+            self.store.start_session(room_id)
         self._auto_queued.clear()
         await self.start_client(room_id)
 
@@ -146,7 +161,13 @@ class App:
         while True:
             await asyncio.sleep(10)
             if self.client:
-                self.status["popularity"] = self.client.popularity
+                pop = int(self.client.popularity or 0)
+                self.status["popularity"] = pop
+                # 人气值原本只活在内存里，落库采样后操作记录才能对比「这段操作涨没涨人气」
+                try:
+                    self.store.record_popularity(pop, self.store.session_id)
+                except Exception:
+                    pass
 
     # ------------------------------------------------------------------
     async def run(self):
@@ -204,12 +225,13 @@ def main():
             pass
 
     cfg = load_config()
+    prepare_db_file(cfg)  # 首次启动时把老库迁移到 data/room_<room_id>.db
     save_config(cfg)  # 补齐新增的默认字段
     app = App(cfg)
     try:
         asyncio.run(app.run())
     except KeyboardInterrupt:
-        print("\n已退出，数据已保存在 data/live.db")
+        print("\n已退出，数据已保存在 data/ 目录下当前房间的库文件中")
     except Exception as exc:
         print(f"启动失败：{exc!r}", file=sys.stderr)
         raise

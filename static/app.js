@@ -15,6 +15,10 @@ const state = {
   profileTab: 'overview',   // 右侧画像面板当前分类
   behaviorFilter: 'all',    // 「行为」分类下的事件筛选
   behaviorPage: 1,          // 「行为」分类当前页码
+  msgPage: 1,               // 「发言」分类当前页码
+  msgKeyword: '',           // 「发言」关键词搜索
+  msgSessionOnly: false,    // 「发言」只看本场
+  msgOrder: 'desc',         // 「发言」时间排序：desc 倒序 | asc 正序
   // 分页 / 时间轴
   viewerPage: 1,
   viewerTotal: 0,
@@ -28,6 +32,7 @@ const state = {
   historyLimit: 200,
   streamView: 'all',         // 'all' 全部弹幕 | 'gift' 只看礼物流水
   roles: {},                // 观众身份标记：uid -> role（AI助手 / 房管 …）
+  currentRoom: 0,           // 当前直播间房间号（切换房间列表用）
   // 图表
   densityMetric: 'danmaku',  // 顶部密度曲线当前指标
   densityChart: null,
@@ -37,9 +42,17 @@ const state = {
   // 热门元素库
   topicRe: null,             // 弹幕高亮用：所有别名合成的正则
   topicMap: null,            // 别名（小写）-> 词条
+  // 操作记录（唱歌 / PK / 杂谈 …）
+  actions: [],               // 轻量记录，时间轴色带用；随 SSE 刷新
+  actionKinds: [],           // 可选操作类型（来自 data/actions.json）
+  actionSummary: [],         // 按类型汇总，对比表用
+  actionBaseline: null,      // 本场全程基线，对比表的参照行
+  pendingKind: null,         // 正在记录的操作类型
+  analysisKind: 'session',   // AI 分析面板当前标签：'session' 本场 | 'career' 生涯
 };
 
 const BEHAVIOR_PAGE_SIZE = 100;
+const MESSAGE_PAGE_SIZE = 100;
 
 const $ = (id) => document.getElementById(id);
 
@@ -93,7 +106,45 @@ function renderStats(data) {
   $('stats').innerHTML = items
     .map(([v, l]) => `<div class="stat"><b>${esc(v)}</b><span>${l}</span></div>`)
     .join('');
+  state.currentRoom = data.room_id || 0;
   $('room-line').textContent = `直播间 ${data.room_id || '--'} · 累计观众库 ${data.total_viewers ?? 0} 人`;
+  // 顶栏常驻「自动画像」开关：状态由后端下发，保证刷新后仍然一致
+  if (typeof data.auto === 'boolean') syncAutoProfile(data.auto);
+}
+
+function syncAutoProfile(enabled) {
+  const box = $('auto-profile');
+  const wrap = $('auto-profile-wrap');
+  if (!box) return;
+  box.checked = !!enabled;
+  wrap.classList.toggle('on', !!enabled);
+  wrap.title = enabled
+    ? '自动画像已开启：观众达到阈值后才会生成'
+    : '自动画像已关闭：不会自动生成任何画像';
+}
+
+async function toggleAutoProfile() {
+  const box = $('auto-profile');
+  const wrap = $('auto-profile-wrap');
+  const next = box.checked;
+  box.disabled = true;
+  wrap.classList.add('busy');
+  try {
+    await api('/api/config', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ auto: next }),
+    });
+    syncAutoProfile(next);
+  } catch (err) {
+    box.checked = !next; // 保存失败时回滚开关
+    wrap.classList.remove('busy');
+    box.disabled = false;
+    alert('切换失败：' + err.message);
+    return;
+  }
+  wrap.classList.remove('busy');
+  box.disabled = false;
 }
 
 function setConn(connected, message) {
@@ -614,6 +665,17 @@ async function loadDensity() {
   const total = series.reduce((sum, s) => sum + s.points.reduce((a, p) => a + p[1], 0), 0);
   const peak = series.reduce((max, s) => Math.max(max, ...s.points.map((p) => p[1]), 0), 0);
   $('density-hint').textContent = `${win.label} · 共 ${total} 条 · 峰值 ${peak}/分`;
+  // 操作记录色带：只画与当前可视窗口有交集的，越界的裁到窗口边缘
+  const bands = (state.actions || [])
+    .filter((a) => a.end_ts >= win.from_ts && a.start_ts <= win.to_ts)
+    .map((a) => [
+      {
+        xAxis: Math.max(a.start_ts, win.from_ts),
+        name: a.label || a.kind,
+        itemStyle: { color: a.color || '#8b93a7', opacity: 0.16 },
+      },
+      { xAxis: Math.min(a.end_ts, win.to_ts) },
+    ]);
   state.densityChart.setOption(
     {
       animation: false,
@@ -631,19 +693,222 @@ async function loadDensity() {
       },
       xAxis: { type: 'time', min: win.from_ts, max: win.to_ts, ...AXIS_STYLE, splitLine: { show: false } },
       yAxis: { type: 'value', minInterval: 1, ...AXIS_STYLE, splitLine: { lineStyle: { color: 'rgba(38,44,57,.5)' } } },
-      series: series.map((s) => ({
-        name: s.name,
-        type: 'line',
-        smooth: true,
-        showSymbol: false,
-        lineStyle: { width: 1.6, color: s.color },
-        itemStyle: { color: s.color },
-        areaStyle: { opacity: series.length === 1 ? 0.18 : 0.12, color: s.color },
-        data: s.points,
-      })),
+      series: series.map((s, i) => {
+        const item = {
+          name: s.name,
+          type: 'line',
+          smooth: true,
+          showSymbol: false,
+          lineStyle: { width: 1.6, color: s.color },
+          itemStyle: { color: s.color },
+          areaStyle: { opacity: series.length === 1 ? 0.18 : 0.12, color: s.color },
+          data: s.points,
+        };
+        // markArea 只挂第一条：挂多条会叠色加深，而且 silent 才不会吃掉 tooltip
+        if (i === 0 && bands.length) {
+          item.markArea = {
+            silent: true,
+            label: { show: true, position: 'insideTop', fontSize: 9, color: '#c9d1de' },
+            data: bands,
+          };
+        }
+        return item;
+      }),
     },
     true
   );
+}
+
+/* -------------------------------------------------- 操作记录（唱歌 / PK / 杂谈 …） */
+function fmtClock(ts) {
+  const d = new Date(ts);
+  const p = (n) => String(n).padStart(2, '0');
+  return `${p(d.getHours())}:${p(d.getMinutes())}`;
+}
+
+/* 记录锚点：实时就是现在，回看时落在所选小时的末尾，色带才不会跑到窗口外 */
+function actionAnchor() {
+  return densityWindow().to_ts;
+}
+
+function renderActionBar() {
+  const wrap = $('action-btns');
+  if (!wrap) return;
+  wrap.innerHTML = state.actionKinds
+    .map(
+      (k) =>
+        `<button class="action-btn" data-kind="${esc(k.key)}" title="默认 ${k.minutes} 分钟">` +
+        `<i style="background:${esc(k.color)}"></i>${esc(k.label)}</button>`
+    )
+    .join('');
+  wrap.querySelectorAll('.action-btn').forEach((btn) => {
+    btn.onclick = () => openActionModal(btn.dataset.kind);
+  });
+}
+
+function updateActionRange() {
+  const kind = state.pendingKind;
+  if (!kind) return;
+  const raw = Number($('action-minutes').value) || kind.minutes;
+  const minutes = Math.min(Math.max(raw, 1), 180);
+  const end = actionAnchor();
+  $('action-modal-range').textContent =
+    `记录区间 ${fmtClock(end - minutes * 60000)} – ${fmtClock(end)}（共 ${minutes} 分钟）`;
+}
+
+function openActionModal(kindKey) {
+  const kind = state.actionKinds.find((k) => k.key === kindKey);
+  if (!kind) return;
+  state.pendingKind = kind;
+  $('action-modal-title').textContent = `记录「${kind.label}」`;
+  $('action-minutes').value = String(kind.minutes);
+  $('action-note').value = '';
+  updateActionRange();
+  $('action-modal').classList.add('show');
+}
+
+function closeActionModal() {
+  $('action-modal').classList.remove('show');
+  state.pendingKind = null;
+}
+
+async function saveAction() {
+  const kind = state.pendingKind;
+  if (!kind) return;
+  const minutes = Number($('action-minutes').value) || kind.minutes;
+  const note = $('action-note').value.trim();
+  const btn = $('btn-action-save');
+  btn.disabled = true;
+  try {
+    await api('/api/actions', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ kind: kind.key, minutes, note, end_ts: actionAnchor() }),
+    });
+  } catch (err) {
+    btn.disabled = false;
+    alert('记录失败：' + err.message);
+    return;
+  }
+  btn.disabled = false;
+  closeActionModal();
+  await loadActions();
+  if (state.densityChart) loadDensity();
+}
+
+async function loadActions() {
+  try {
+    const data = await api('/api/actions?limit=200');
+    state.actions = data.items || [];
+    state.actionKinds = data.kinds || [];
+  } catch (err) {
+    console.error('加载操作记录失败', err);
+  }
+  renderActionBar();
+}
+
+async function openActionsModal() {
+  $('actions-modal').classList.add('show');
+  $('actions-body').innerHTML = '<div class="chart-fallback">正在统计…</div>';
+  await loadActionMetrics();
+}
+
+async function loadActionMetrics() {
+  let data;
+  try {
+    data = await api('/api/actions?metrics=1&limit=200');
+  } catch (err) {
+    $('actions-body').innerHTML = `<div class="chart-fallback">读取失败：${esc(err.message)}</div>`;
+    return;
+  }
+  state.actionSummary = data.summary || [];
+  state.actionBaseline = data.baseline || null;
+  renderActionsModal(data.items || []);
+}
+
+const ACTION_COLUMNS = [
+  ['danmaku_per_min', '弹幕/分'],
+  ['enter_per_min', '进场/分'],
+  ['gift_per_min', '礼物/分'],
+  ['interact_per_min', '互动/分'],
+  ['income_per_min', '流水/分'],
+];
+
+function actionCells(row) {
+  return ACTION_COLUMNS.map(([, key]) => `<td>${row[key] ?? '—'}</td>`).join('');
+}
+
+function renderActionsModal(items) {
+  const body = $('actions-body');
+  if (!items.length) {
+    body.innerHTML = '<div class="chart-fallback">还没有操作记录。点上方「记录」按钮记一条吧。</div>';
+    return;
+  }
+  const head =
+    '<tr><th>操作</th><th>次数</th><th>时长(分)</th>' +
+    ACTION_COLUMNS.map(([label]) => `<th>${label}</th>`).join('') +
+    '<th>人气均值</th></tr>';
+
+  const summaryRows = state.actionSummary
+    .map(
+      (r) =>
+        `<tr><td class="a-name"><i style="background:${esc(r.color || '#8b93a7')}"></i>${esc(r.label)}</td>` +
+        `<td>${r.count}</td><td>${r.minutes_avg}</td>${actionCells(r)}<td>${r.popularity_avg ?? '—'}</td></tr>`
+    )
+    .join('');
+  const base = state.actionBaseline;
+  const baseRow = base
+    ? `<tr class="baseline"><td class="a-name"><i style="background:#8b93a7"></i>本场平均</td>` +
+      `<td>—</td><td>${base.minutes ?? '—'}</td>${actionCells(base)}` +
+      `<td>${base.popularity_avg ?? '—'}</td></tr>`
+    : '';
+
+  const records = items
+    .map((it) => {
+      const m = it.metrics || {};
+      const bits = [
+        `弹幕 ${m.danmaku ?? 0}`,
+        `进场 ${m.enter ?? 0}`,
+        `礼物 ${m.gift ?? 0}`,
+        `互动 ${m.interact ?? 0}`,
+        `流水 ¥${m.income ?? 0}`,
+      ];
+      if (m.popularity_avg != null) bits.push(`人气均值 ${m.popularity_avg}`);
+      return (
+        `<li class="action-row">` +
+        `<span class="a-dot" style="background:${esc(it.color || '#8b93a7')}"></span>` +
+        `<div class="a-main">` +
+        `<div class="a-title">${esc(it.label || it.kind)}` +
+        `<span class="a-time">${fmtClock(it.start_ts)}–${fmtClock(it.end_ts)} · ${m.minutes ?? '—'} 分钟</span></div>` +
+        `<div class="a-meta">${bits.join(' · ')}${it.note ? ' · 备注：' + esc(it.note) : ''}</div>` +
+        `</div>` +
+        `<button class="btn ghost small" data-del="${it.id}">删除</button>` +
+        `</li>`
+      );
+    })
+    .join('');
+
+  body.innerHTML =
+    '<div class="section-title">效果对比（每分钟均值）</div>' +
+    `<table class="actions-table"><thead>${head}</thead><tbody>${summaryRows}${baseRow}</tbody></table>` +
+    '<div class="section-title">全部记录</div>' +
+    `<ul class="actions-list">${records}</ul>`;
+  body.querySelectorAll('button[data-del]').forEach((btn) => {
+    btn.onclick = () => deleteAction(Number(btn.dataset.del));
+  });
+}
+
+async function deleteAction(actionId) {
+  if (!window.confirm('删除这条操作记录？')) return;
+  try {
+    await api('/api/actions/' + actionId, { method: 'DELETE' });
+  } catch (err) {
+    alert('删除失败：' + err.message);
+    return;
+  }
+  await loadActions();
+  if (state.densityChart) loadDensity();
+  if ($('actions-modal').classList.contains('show')) await loadActionMetrics();
 }
 
 /* -------------------------------------------------- 观众个人曲线（概览页） */
@@ -864,13 +1129,35 @@ function tabBehaviorHtml(data) {
     <div class="pager" id="behavior-pager" hidden></div>`;
 }
 
-function tabMessagesHtml(events, total) {
-  if (!events.length) return `<div class="section" style="border-bottom:none"><p class="muted-note">TA 还没有发过言</p></div>`;
-  const suffix = total && total > events.length ? ` / ${total}` : '';
-  return `<div class="section" style="border-bottom:none">
-    <h4>最近发言（${events.length}${suffix}）</h4>
-    ${events.map((m) => `<div class="mini-msg"><span class="t">${fmtTime(m.ts)}</span><span>${esc(m.content)}</span></div>`).join('')}
-  </div>`;
+/* 「发言」列表内容，配合筛选项做局部刷新 */
+function messageListHtml(events) {
+  if (!events.length) {
+    return `<p class="muted-note" style="padding:10px 16px">没有符合条件的发言。</p>`;
+  }
+  return events
+    .map(
+      (m) => `<div class="mini-msg"><span class="t">${fmtFull(m.ts)}</span><span>${markTopics(m.content)}</span></div>`
+    )
+    .join('');
+}
+
+/* 「发言」分类：只取弹幕，带关键词 / 只看本场 / 正倒序筛选与分页 */
+function tabMessagesHtml() {
+  const orderLabel = state.msgOrder === 'asc' ? '时间正序 ↑' : '时间倒序 ↓';
+  return `
+    <div class="section">
+      <h4>发言筛选</h4>
+      <div class="msg-tools">
+        <input type="search" id="msg-search" placeholder="搜索发言关键词…" value="${esc(state.msgKeyword)}">
+        <div class="msg-tools-row">
+          <label class="switch"><input type="checkbox" id="msg-session" ${state.msgSessionOnly ? 'checked' : ''}>只看本场</label>
+          <button class="tab" id="msg-order">${orderLabel}</button>
+        </div>
+        <span class="hint" id="msg-hint"></span>
+      </div>
+    </div>
+    <div id="msg-list"></div>
+    <div class="pager" id="msg-pager" hidden></div>`;
 }
 
 function tabNoteHtml(viewer) {
@@ -886,7 +1173,7 @@ function tabHtml(tab, data) {
   if (tab === 'ai') return tabAiHtml(viewer, viewer.profile);
   if (tab === 'behavior') return tabBehaviorHtml(data);
   if (tab === 'spend') return tabSpendHtml(events.filter((e) => GIFT_TYPES.has(e.type)), viewer);
-  if (tab === 'messages') return tabMessagesHtml(events.filter((e) => e.type === 'danmaku'), 0);
+  if (tab === 'messages') return tabMessagesHtml();
   if (tab === 'note') return tabNoteHtml(viewer);
   return tabOverviewHtml(viewer, metrics);
 }
@@ -948,16 +1235,29 @@ function topicChipsHtml(metrics) {
 function tabOverviewHtml(viewer, metrics) {
   const spanDays = Math.max(1, Math.ceil((viewer.last_seen - viewer.first_seen) / 86400000));
   const avgPerDay = (viewer.msg_count / spanDays).toFixed(1);
+  const giftSummary = metrics['礼物概览(规则)'] || [];
+  const guardSummary = metrics['上舰记录(规则)'] || [];
+  const scLines = metrics['醒目留言(规则)'] || [];
+  const hasSpend = giftSummary.length || guardSummary.length || scLines.length;
+  const metricCards = [
+    [viewer.msg_count, '弹幕总数', 'var(--accent)'],
+    [viewer.enter_count, '进场次数', 'var(--blue)'],
+    [`¥${viewer.gift_value}`, '实际消费(记录)', 'var(--green)'],
+    [viewer.spend_count || 0, '付费次数', 'var(--red)'],
+  ];
+  const info = (label, value, cls = '') =>
+    `<div class="info-card"><span>${label}</span><b class="${cls}">${value}</b></div>`;
   return `
     <div class="section">
       <h4>活跃分布</h4>
       <div class="mini-stats">
-        <span class="mini-stat">发言 ${viewer.msg_count}</span>
-        <span class="mini-stat">进场 ${viewer.enter_count}</span>
-        <span class="mini-stat">付费 ${viewer.spend_count || 0} 次</span>
-        <span class="mini-stat">礼物 ¥${viewer.gift_value}</span>
-        <span class="mini-stat">活跃 ${spanDays} 天</span>
-        <span class="mini-stat">日均 ${avgPerDay} 条</span>
+        <span class="mini-stat">发言 <b>${viewer.msg_count}</b></span>
+        <span class="mini-stat">进场 <b>${viewer.enter_count}</b></span>
+        <span class="mini-stat">光顾 <b>${metrics['光顾场次数'] || 0}</b> 场</span>
+        <span class="mini-stat">付费 <b>${viewer.spend_count || 0}</b> 次</span>
+        <span class="mini-stat">礼物 <b>¥${viewer.gift_value}</b></span>
+        <span class="mini-stat">活跃 <b>${spanDays}</b> 天</span>
+        <span class="mini-stat">日均 <b>${avgPerDay}</b> 条</span>
       </div>
       <div class="chart-box tall" id="user-hour-chart"></div>
       <div class="chart-box tall" id="user-trend-chart"></div>
@@ -966,30 +1266,50 @@ function tabOverviewHtml(viewer, metrics) {
     ${topicChipsHtml(metrics)}
     <div class="section">
       <h4>行为数据</h4>
-      <div class="metric-grid">
-        <div class="metric"><b>${viewer.msg_count}</b><span>弹幕总数</span></div>
-        <div class="metric"><b>${viewer.enter_count}</b><span>进场次数</span></div>
-        <div class="metric"><b>¥${viewer.gift_value}</b><span>实际消费(记录)</span></div>
-        <div class="metric"><b>${viewer.follow_count || 0}</b><span>关注次数</span></div>
-        <div class="metric"><b>${viewer.like_count || 0}</b><span>点赞次数</span></div>
-        <div class="metric"><b>${viewer.spend_count || 0}</b><span>付费次数</span></div>
+      <div class="metric-grid two">
+        ${metricCards
+          .map(([value, label, color]) => `<div class="metric" style="--c:${color}"><b>${value}</b><span>${label}</span></div>`)
+          .join('')}
       </div>
     </div>
     <div class="section">
       <h4>时间</h4>
-      <div class="kv"><span>首次出现</span><span>${esc(metrics['首次出现'])}</span></div>
-      <div class="kv"><span>最近出现</span><span>${esc(metrics['最近出现'])}</span></div>
-      <div class="kv"><span>最后活跃</span><span>${fmtFull(viewer.last_seen)}</span></div>
-      <div class="kv"><span>关注时长</span><span>${esc(metrics['关注时长'])}</span></div>
+      <div class="info-grid">
+        ${info('首次出现', esc(metrics['首次出现']))}
+        ${info('最近出现', esc(metrics['最近出现']))}
+        ${info('最近出现距今', esc(metrics['最近出现距今'] || '-'), 'hl')}
+        ${info('光顾场次', `${metrics['光顾场次数'] || 0} 场`, 'hl-blue')}
+        <div class="info-card wide"><span>关注时长</span><b>${esc(metrics['关注时长'])}</b></div>
+      </div>
     </div>
+    <div class="section">
+      <h4>互动倾向</h4>
+      <div class="info-grid">
+        ${info('潜水指数', esc(metrics['潜水指数'] || '-'))}
+        ${metrics['身份标记'] ? info('身份标记', esc(metrics['身份标记']), 'hl') : ''}
+        ${info('关注过主播', esc(metrics['关注过主播'] || '未知'), metrics['关注过主播'] === '是' ? 'hl-blue' : '')}
+        ${info('最后活跃', fmtFull(viewer.last_seen))}
+      </div>
+    </div>
+    ${hasSpend ? `
+    <div class="section">
+      <h4>消费与留言</h4>
+      ${giftSummary.length ? `<div class="kv"><span>礼物概览</span><span>${esc(giftSummary.join('、'))}</span></div>` : ''}
+      ${guardSummary.length ? `<div class="kv"><span>上舰记录</span><span>${esc(guardSummary.join('、'))}</span></div>` : ''}
+      ${scLines.length ? `
+        <div class="sub-label">醒目留言</div>
+        <div class="quote-list">${scLines.slice(0, 5).map((t) => `<div class="quote">${esc(t)}</div>`).join('')}</div>` : ''}
+    </div>` : ''}
     <div class="section" style="border-bottom:none">
       <h4>身份与偏好</h4>
-      <div class="kv"><span>舰长等级</span><span>${esc(metrics['舰长等级'])}</span></div>
-      <div class="kv"><span>粉丝牌</span><span>${esc(metrics['粉丝牌名称'] || '-')} Lv${metrics['粉丝牌等级'] || 0}</span></div>
-      <div class="kv"><span>粉丝牌折算(估)</span><span>${esc(metrics['粉丝牌折算消费(估)'] || (metrics['粉丝牌等级'] ? '-' : '无牌子'))}</span></div>
-      <div class="kv"><span>关注过主播</span><span>${metrics['关注过主播'] ? '是' : '否'}</span></div>
-      <div class="kv"><span>情绪倾向(规则)</span><span>${esc(metrics['情绪倾向(规则)'])}</span></div>
-      <div class="kv"><span>高频词(规则)</span><span>${esc((metrics['高频词(规则)'] || []).join(' ')) || '-'}</span></div>
+      <div class="info-grid">
+        ${info('舰长等级', esc(metrics['舰长等级']), 'hl')}
+        ${info('粉丝牌', `${esc(metrics['粉丝牌名称'] || '-')} Lv${metrics['粉丝牌等级'] || 0}`)}
+        <div class="info-card wide"><span>粉丝牌折算(估)</span><b>${esc(metrics['粉丝牌折算消费(估)'] || (metrics['粉丝牌等级'] ? '-' : '无牌子'))}</b></div>
+        ${info('关注过主播', esc(metrics['关注过主播'] || '未知'), metrics['关注过主播'] === '是' ? 'hl-blue' : '')}
+        ${info('情绪倾向(规则)', esc(metrics['情绪倾向(规则)']))}
+        <div class="info-card wide"><span>高频词(规则)</span><b>${esc((metrics['高频词(规则)'] || []).join(' ')) || '-'}</b></div>
+      </div>
     </div>
   `;
 }
@@ -1015,21 +1335,30 @@ function profileExtrasHtml(profile) {
   if (profile.location || profile.active_hours) {
     html += `<div class="section">
       <h4>基本信息</h4>
-      ${profile.location ? `<div class="kv"><span>常驻地点</span><span>${esc(profile.location)}</span></div>` : ''}
-      ${profile.active_hours ? `<div class="kv"><span>活跃时段</span><span>${esc(profile.active_hours)}</span></div>` : ''}
+      <div class="info-grid">
+        ${profile.location ? `<div class="info-card"><span>常驻地点</span><b class="hl">${esc(profile.location)}</b></div>` : ''}
+        ${profile.active_hours ? `<div class="info-card wide"><span>活跃时段</span><b>${esc(profile.active_hours)}</b></div>` : ''}
+      </div>
     </div>`;
   }
   if (lifeRows.length) {
     html += `<div class="section">
       <h4>生活状态</h4>
-      ${lifeRows.map(([k, v]) => `<div class="kv"><span>${k}</span><span>${esc(v)}</span></div>`).join('')}
-      <p class="muted-note" style="margin-top:6px">仅整理观众本人在直播间公开说过的信息。</p>
+      <div class="info-grid">
+        ${lifeRows.map(([k, v]) => `<div class="info-card"><span>${k}</span><b>${esc(v)}</b></div>`).join('')}
+      </div>
+      <p class="muted-note" style="margin-top:8px">仅整理观众本人在直播间公开说过的信息。</p>
     </div>`;
   }
   if (favRows.length) {
     html += `<div class="section">
       <h4>具体偏好</h4>
-      ${favRows.map(([k, list]) => `<div class="kv"><span>${k}</span><span>${list.map(esc).join(' / ')}</span></div>`).join('')}
+      ${favRows
+        .map(([k, list]) => `<div class="fav-row">
+          <span class="fav-label">${k}</span>
+          <div class="topic-chips">${list.map((x) => `<span class="tag">${esc(x)}</span>`).join('')}</div>
+        </div>`)
+        .join('')}
     </div>`;
   }
   if (!html) {
@@ -1057,19 +1386,26 @@ function tabAiHtml(viewer, profile) {
   return `
     <div class="section">
       <h4>AI 画像</h4>
-      <div class="kv"><span>记忆点</span><span>${esc(profile.nickname_hint || '-')}</span></div>
-      <div class="kv"><span>人设</span><span>${esc(profile.persona || '-')}</span></div>
-      <div class="kv"><span>关系</span><span>${esc(profile.relationship || '-')}</span></div>
-      <div class="kv"><span>当前情绪</span><span>${esc(profile.mood_now || '-')}</span></div>
-      <div class="kv"><span>活跃/消费</span><span>${esc(profile.activity_level || '-')} / ${esc(profile.value_level || '-')}</span></div>
-      <div class="kv"><span>一句话记住</span><span>${esc(profile.memory_hook || '-')}</span></div>
-      <div class="tag-row">${(profile.tags || []).map((t) => `<span class="tag">${esc(t)}</span>`).join('')}</div>
-      <div class="kv" style="margin-top:8px"><span>兴趣点</span><span>${esc((profile.interests || []).join(' ')) || '-'}</span></div>
+      <div class="persona-hero">
+        <div class="persona-name">${esc(profile.nickname_hint || '这位观众')}</div>
+        <p class="persona-text">${esc(profile.persona || '暂无概括')}</p>
+        <div class="tag-row">${(profile.tags || []).map((t) => `<span class="tag">${esc(t)}</span>`).join('')}</div>
+      </div>
+      <div class="chip-row">
+        <span class="pchip rel">关系 · ${esc(profile.relationship || '未知')}</span>
+        <span class="pchip mood">情绪 · ${esc(profile.mood_now || '未知')}</span>
+        <span class="pchip act">活跃 ${esc(profile.activity_level || '-')}</span>
+        <span class="pchip val">消费 ${esc(profile.value_level || '-')}</span>
+      </div>
+      <div class="kv" style="margin-top:10px"><span>一句话记住</span><span>${esc(profile.memory_hook || '-')}</span></div>
+      <div class="kv"><span>兴趣点</span><span>${esc((profile.interests || []).join(' ')) || '-'}</span></div>
     </div>
     ${profileExtrasHtml(profile)}
     <div class="section">
       <h4>应对方法</h4>
-      <ul class="strategy">${(profile.response_strategy || []).map((s) => `<li>${esc(s)}</li>`).join('') || '<li>暂无</li>'}</ul>
+      <ol class="strategy">${(profile.response_strategy || [])
+        .map((s, i) => `<li><i>${i + 1}</i><span>${esc(s)}</span></li>`)
+        .join('') || '<li><span>暂无</span></li>'}</ol>
     </div>
     <div class="section" style="border-bottom:none">
       <h4>可以直接说</h4>
@@ -1101,14 +1437,28 @@ async function loadBehaviorPage(uid, filter, page) {
   }
 }
 
-/* 「发言」分类单独拉取（只取弹幕），避免混入进场等事件 */
-async function loadMessages(uid) {
+/* 「发言」分类翻页 / 筛选：只刷新列表、计数与分页条，不重建整个画像面板 */
+async function loadMessagePage(uid, page) {
+  state.msgPage = page;
+  const params = new URLSearchParams({
+    types: 'danmaku',
+    limit: String(MESSAGE_PAGE_SIZE),
+    offset: String((page - 1) * MESSAGE_PAGE_SIZE),
+    order: state.msgOrder,
+  });
+  if (state.msgKeyword) params.set('keyword', state.msgKeyword);
+  if (state.msgSessionOnly) params.set('session_only', '1');
   try {
-    const data = await api(`/api/viewers/${uid}?types=danmaku&limit=60`);
+    const data = await api(`/api/viewers/${uid}?${params.toString()}`);
     if (state.selectedUid !== uid || state.profileTab !== 'messages') return;
-    $('profile-body').innerHTML = tabMessagesHtml(data.events || [], data.total || 0);
+    const total = data.total || 0;
+    $('msg-list').innerHTML = messageListHtml(data.events || []);
+    const hint = $('msg-hint');
+    if (hint) hint.textContent = `共 ${total} 条`;
+    renderPager($('msg-pager'), page, total, MESSAGE_PAGE_SIZE, (p) => loadMessagePage(uid, p));
   } catch (err) {
-    console.error('加载发言失败', err);
+    $('msg-list').innerHTML =
+      `<p class="muted-note" style="padding:10px 16px">加载失败：${esc(err.message)}</p>`;
   }
 }
 
@@ -1158,6 +1508,34 @@ function bindTabContent(tab, data) {
       );
     }
   }
+  if (tab === 'messages') {
+    const search = $('msg-search');
+    if (search) {
+      let timer = null;
+      search.oninput = () => {
+        clearTimeout(timer);
+        timer = setTimeout(() => {
+          state.msgKeyword = search.value.trim();
+          loadMessagePage(viewer.uid, 1);
+        }, 300);
+      };
+    }
+    const sessionBox = $('msg-session');
+    if (sessionBox) {
+      sessionBox.onchange = () => {
+        state.msgSessionOnly = sessionBox.checked;
+        loadMessagePage(viewer.uid, 1);
+      };
+    }
+    const orderBtn = $('msg-order');
+    if (orderBtn) {
+      orderBtn.onclick = () => {
+        state.msgOrder = state.msgOrder === 'asc' ? 'desc' : 'asc';
+        orderBtn.textContent = state.msgOrder === 'asc' ? '时间正序 ↑' : '时间倒序 ↓';
+        loadMessagePage(viewer.uid, 1);
+      };
+    }
+  }
 }
 
 function switchProfileTab(tab) {
@@ -1166,7 +1544,7 @@ function switchProfileTab(tab) {
   panel.querySelectorAll('.ptab').forEach((n) => n.classList.toggle('active', n.dataset.tab === tab));
   $('profile-body').innerHTML = tabHtml(tab, state.detail);
   bindTabContent(tab, state.detail);
-  if (tab === 'messages' && state.detail) loadMessages(state.detail.viewer.uid);
+  if (tab === 'messages' && state.detail) loadMessagePage(state.detail.viewer.uid, 1);
   if (tab === 'overview' && state.detail) mountUserCharts(state.detail.viewer);
   else disposeUserCharts();
 }
@@ -1221,7 +1599,7 @@ function renderProfile(data) {
     node.onclick = () => switchProfileTab(node.dataset.tab);
   });
   bindTabContent(tab, data);
-  if (tab === 'messages') loadMessages(viewer.uid);
+  if (tab === 'messages') loadMessagePage(viewer.uid, 1);
   if (tab === 'spend') loadSpend(viewer.uid);
   if (tab === 'overview') mountUserCharts(viewer);
 }
@@ -1312,6 +1690,31 @@ function connectSSE() {
       if (data.status === 'error') console.warn('画像失败', data.error);
     } else if (data.type === 'profile_status') {
       patchViewer({ ...(state.viewers.get(data.uid) || {}), uid: data.uid, profile_status: data.status });
+    } else if (data.type === 'action') {
+      // 别的窗口新记/删了一条操作，本窗口的色带与面板跟着更新
+      loadActions().then(() => { if (state.densityChart) loadDensity(); });
+      if ($('actions-modal').classList.contains('show')) loadActionMetrics();
+    } else if (data.type === 'analysis') {
+      // AI 分析（本场 / 生涯）异步生成，进度与结果都靠 SSE 回推
+      if ($('analysis-modal').classList.contains('show') && data.kind === state.analysisKind) {
+        if (data.status === 'running') {
+          $('analysis-hint').textContent = 'AI 生成中…';
+          $('btn-analysis-run').disabled = true;
+          $('btn-analysis-run').textContent = '生成中…';
+        } else if (data.status === 'done') {
+          renderAnalysis({
+            kind: data.kind,
+            content: data.content,
+            model: data.model,
+            created_at: Date.now(),
+            llm_enabled: true,
+          });
+        } else if (data.status === 'error') {
+          $('analysis-hint').textContent = `生成失败：${data.error || '未知错误'}`;
+          $('btn-analysis-run').disabled = false;
+          $('btn-analysis-run').textContent = '重新生成';
+        }
+      }
     } else if (data.type === 'status') {
       setConn(data.connected, data.message || data.status_message);
     }
@@ -1323,11 +1726,190 @@ function connectSSE() {
   };
 }
 
+/* ------------------------------------------------------------------ 切换房间 */
+async function toggleRooms() {
+  const pop = $('rooms-pop');
+  if (pop.classList.contains('show')) {
+    pop.classList.remove('show');
+    return;
+  }
+  pop.classList.add('show');
+  pop.innerHTML = '<div class="room-empty">读取中…</div>';
+  try {
+    const data = await api('/api/rooms');
+    renderRooms(data.items || []);
+  } catch (err) {
+    pop.innerHTML = `<div class="room-empty">读取失败：${esc(err.message)}</div>`;
+  }
+}
+
+function renderRooms(items) {
+  const pop = $('rooms-pop');
+  if (!items.length) {
+    pop.innerHTML = '<div class="room-empty">还没有已保存的房间</div>';
+    return;
+  }
+  pop.innerHTML = items.map((r) => {
+    const meta = `${r.viewers} 位观众`;
+    const when = r.last_active ? ` · ${fmtDelta(r.last_active)}` : '';
+    return `<button class="room-item${r.current ? ' current' : ''}" data-room="${r.room_id}">
+      <span class="room-id">${r.room_id}${r.current ? ' · 当前' : ''}</span>
+      <span class="room-meta">${meta}${when}</span>
+    </button>`;
+  }).join('');
+  pop.querySelectorAll('.room-item').forEach((node) => {
+    node.addEventListener('click', () => switchRoom(Number(node.dataset.room)));
+  });
+}
+
+async function switchRoom(roomId) {
+  const pop = $('rooms-pop');
+  if (roomId === state.currentRoom) {
+    pop.classList.remove('show');
+    return;
+  }
+  pop.querySelectorAll('.room-item').forEach((n) => { n.disabled = true; });
+  try {
+    await api('/api/config', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ room_id: roomId }),
+    });
+    state.currentRoom = roomId;
+    pop.classList.remove('show');
+    setTimeout(() => { loadStats(); loadViewers(); }, 1200);
+  } catch (err) {
+    alert('切换失败：' + err.message);
+    pop.querySelectorAll('.room-item').forEach((n) => { n.disabled = false; });
+  }
+}
+
+/* ------------------------------------------------------------------ 扫码登录 */
+const QRCODE_CDNS = [
+  'https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js',
+  'https://unpkg.com/qrcodejs@1.0.0/qrcode.min.js',
+  'https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js',
+];
+let qrcodePromise = null;
+/* 依次尝试多个 CDN 加载二维码组件 */
+function ensureQRCode() {
+  if (window.QRCode) return Promise.resolve(window.QRCode);
+  if (qrcodePromise) return qrcodePromise;
+  qrcodePromise = new Promise((resolve, reject) => {
+    let index = 0;
+    const tryNext = () => {
+      if (index >= QRCODE_CDNS.length) {
+        qrcodePromise = null;
+        reject(new Error('二维码组件加载失败'));
+        return;
+      }
+      const script = document.createElement('script');
+      script.src = QRCODE_CDNS[index++];
+      script.onload = () => (window.QRCode ? resolve(window.QRCode) : tryNext());
+      script.onerror = tryNext;
+      document.head.appendChild(script);
+    };
+    tryNext();
+  });
+  return qrcodePromise;
+}
+
+const QR_IDLE_TEXT = '用 B 站手机 App 扫码，自动获取并保存完整 Cookie，无需手动复制';
+let qrTimer = null;
+
+function stopQrLogin() {
+  if (qrTimer) {
+    clearInterval(qrTimer);
+    qrTimer = null;
+  }
+}
+
+async function startQrLogin() {
+  const box = $('qr-box');
+  const status = $('qr-status');
+  stopQrLogin();
+  box.innerHTML = '';
+  status.textContent = '正在获取二维码…';
+
+  let data;
+  try {
+    data = await api('/api/login/qrcode');
+  } catch (err) {
+    status.textContent = '获取二维码失败：' + err.message;
+    return;
+  }
+  if (!data.ok || !data.url) {
+    status.textContent = '获取二维码失败：' + (data.error || '未知错误');
+    return;
+  }
+  try {
+    const QRCode = await ensureQRCode();
+    new QRCode(box, { text: data.url, width: 168, height: 168 });
+  } catch (err) {
+    status.textContent = err.message + '，可改用下方手动粘贴 Cookie';
+    return;
+  }
+
+  status.textContent = '请用 B 站手机 App 扫码';
+  const key = data.qrcode_key;
+  qrTimer = setInterval(async () => {
+    let res;
+    try {
+      res = await api('/api/login/poll?key=' + encodeURIComponent(key));
+    } catch (err) {
+      return; // 网络抖动，下个周期再试
+    }
+    if (res.status === 'scanned') {
+      status.textContent = '已扫码，请在手机上点击确认';
+    } else if (res.status === 'expired') {
+      status.textContent = '二维码已过期，请重新获取';
+      stopQrLogin();
+    } else if (res.status === 'confirmed') {
+      stopQrLogin();
+      box.innerHTML = '';
+      status.textContent = `登录成功：${res.uname}，Cookie 已保存`;
+      $('cfg-cookie-hint').textContent = `当前已登录：${res.uname}`;
+      setTimeout(() => { loadStats(); loadViewers(); }, 1200);
+    } else if (res.ok === false && res.error) {
+      stopQrLogin();
+      status.textContent = res.error;
+    }
+  }, 2000);
+}
+
 /* ------------------------------------------------------------------ 设置 */
+// 解析房间号输入：支持纯数字与直播间链接（如 https://live.bilibili.com/1907444111）
+function parseRoomInput(text) {
+  const raw = (text || '').trim();
+  if (!raw) return NaN; // 空表示未填写
+  if (/^\d+$/.test(raw)) return Number(raw);
+  const link = raw.match(/live\.bilibili\.com\/(?:blanc\/|h5\/|blackboard\/)?(\d+)/i);
+  if (link) return Number(link[1]);
+  const digits = raw.match(/(\d{3,})/);
+  if (digits) return Number(digits[1]);
+  return null;
+}
+
+function updateRoomHint() {
+  const hint = $('cfg-room-hint');
+  if (!hint) return;
+  const parsed = parseRoomInput($('cfg-room').value);
+  if (Number.isNaN(parsed)) {
+    hint.textContent = '可填短号 / 真实房间号，也可直接粘贴直播间链接（如 https://live.bilibili.com/1907444111）；每个主播的数据单独存库';
+  } else if (parsed === null) {
+    hint.textContent = '无法识别，请填写数字或直播间链接';
+  } else {
+    hint.textContent = `已识别房间号：${parsed}（保存后自动切换，各主播数据单独存库）`;
+  }
+}
+
 async function openSettings() {
   // 先把弹窗显示出来，再异步读取配置。
   // 否则配置接口一失败（比如程序没启动），点击就会毫无反应。
   $('settings-modal').classList.add('show');
+  stopQrLogin();
+  $('qr-box').innerHTML = '';
+  $('qr-status').textContent = QR_IDLE_TEXT;
   $('cfg-key-hint').textContent = '正在读取配置…';
 
   let cfg;
@@ -1340,6 +1922,7 @@ async function openSettings() {
   }
 
   $('cfg-room').value = cfg.room_id || '';
+  updateRoomHint();
   $('cfg-llm-enabled').checked = !!cfg.llm_enabled;
   $('cfg-base-url').value = cfg.base_url || '';
   $('cfg-model').value = cfg.model || '';
@@ -1354,13 +1937,20 @@ async function openSettings() {
 
 async function saveSettings() {
   const button = $('btn-modal-save');
+  // 支持直接粘贴直播间链接，这里先本地解析，解析不出来就不提交
+  const parsedRoom = parseRoomInput($('cfg-room').value);
+  if (parsedRoom === null) {
+    alert('无法识别房间号，请填写数字或直播间链接（如 https://live.bilibili.com/1907444111）');
+    return;
+  }
+  const roomValue = Number.isNaN(parsedRoom) ? 0 : parsedRoom;
   button.disabled = true;
   try {
     await api('/api/config', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        room_id: $('cfg-room').value.trim() || 0,
+        room_id: roomValue,
         llm_enabled: $('cfg-llm-enabled').checked,
         base_url: $('cfg-base-url').value.trim(),
         model: $('cfg-model').value.trim(),
@@ -1369,6 +1959,7 @@ async function saveSettings() {
         auto: $('cfg-auto').checked,
       }),
     });
+    stopQrLogin();
     $('settings-modal').classList.remove('show');
     setTimeout(() => { loadStats(); loadViewers(); }, 1200);
   } catch (err) {
@@ -1440,6 +2031,143 @@ async function openCareer() {
     $('career-body').innerHTML = careerHtml(await api('/api/career'));
   } catch (err) {
     $('career-body').innerHTML = `<div class="chart-fallback">读取失败：${esc(err.message)}</div>`;
+  }
+}
+
+/* ------------------------------------------------------------------ AI 分析 */
+async function openAnalysis() {
+  // 与其它弹窗一致：先显示，再异步取缓存，避免点了没反应
+  $('analysis-modal').classList.add('show');
+  await loadAnalysis(state.analysisKind);
+}
+
+async function loadAnalysis(kind) {
+  state.analysisKind = kind;
+  document.querySelectorAll('#analysis-tabs .tab').forEach((node) => {
+    node.classList.toggle('active', node.dataset.kind === kind);
+  });
+  $('analysis-body').innerHTML = '<div class="chart-fallback">正在读取…</div>';
+  $('btn-analysis-run').disabled = false;
+  let data;
+  try {
+    data = await api('/api/analysis?kind=' + encodeURIComponent(kind));
+  } catch (err) {
+    $('analysis-body').innerHTML =
+      `<div class="chart-fallback">读取失败：${esc(err.message)}</div>`;
+    $('analysis-hint').textContent = '';
+    return;
+  }
+  renderAnalysis(data);
+}
+
+/* 判断一行是否是小节标题（【标题】、**标题**、#标题、短行+冒号、编号短标题） */
+function asAnalysisHeader(line) {
+  const text = line.replace(/^#{1,6}\s*/, '').replace(/\*\*/g, '').trim();
+  const bracket = text.match(/^【(.{1,24})】$/);
+  if (bracket) return bracket[1].trim();
+  const colon = text.match(/^(.{2,20})[：:]$/);
+  if (colon) return colon[1].trim();
+  const num = text.match(/^(?:[一二三四五六七八九十]+[、.．)）]|\d+[、.．)）]|[（(]\d+[)）])\s*(.+)$/);
+  if (num) {
+    const body = num[1].trim();
+    if (body.length <= 20 && !/[。！？；]/.test(body)) return body;
+    return null;
+  }
+  if (text.length <= 12 && !/[。！？；，、：:,.]/.test(text) && !/^[·•\-–*]/.test(text)) return text;
+  return null;
+}
+
+/* 判断一行是否是列表条目，返回去掉项目符号后的正文 */
+function asAnalysisItem(line) {
+  const match = line.match(/^[·•▪◦\-–—*]\s*(.+)$/)
+    || line.match(/^[①-⑳]\s*(.+)$/)
+    || line.match(/^(?:[一二三四五六七八九十]+[、.．)）]|\d+[、.．)）]|[（(]\d+[)）])\s*(.+)$/);
+  return match ? match[1].trim() : null;
+}
+
+/* 把大模型输出的纯文本切成「小节 + 段落/条目」，避免整段糊在一起 */
+function splitAnalysis(text) {
+  const sections = [];
+  let current = null;
+  const openSection = (title) => {
+    current = { title: title || '', blocks: [] };
+    sections.push(current);
+  };
+  String(text || '').split(/\r?\n/).forEach((raw) => {
+    const line = raw.trim();
+    if (!line) return;
+    // 「小标题：正文」写在同一行时，拆成小节标题 + 正文
+    const inline = line.match(/^([^\s：:]{2,10})[：:]\s*(\S.*)$/);
+    if (inline && !/[。！？；]/.test(inline[1])) {
+      openSection(inline[1]);
+      const rest = inline[2].trim();
+      const restItem = asAnalysisItem(rest);
+      current.blocks.push(restItem ? { kind: 'item', text: restItem } : { kind: 'p', text: rest });
+      return;
+    }
+    const header = asAnalysisHeader(line);
+    if (header) { openSection(header); return; }
+    const item = asAnalysisItem(line);
+    if (item) {
+      if (!current) openSection('');
+      current.blocks.push({ kind: 'item', text: item });
+      return;
+    }
+    if (!current) openSection('');
+    const last = current.blocks[current.blocks.length - 1];
+    if (last && last.kind === 'p') last.text += ' ' + line;
+    else current.blocks.push({ kind: 'p', text: line });
+  });
+  return sections.filter((s) => s.title || s.blocks.length);
+}
+
+function analysisHtml(text) {
+  const sections = splitAnalysis(text);
+  if (!sections.length) return `<pre class="analysis-text-plain">${esc(text)}</pre>`;
+  return sections
+    .map((section) => `
+      <div class="an-sec">
+        ${section.title ? `<div class="an-sec-title">${esc(section.title)}</div>` : ''}
+        <div class="an-sec-body">
+          ${section.blocks.map((b) => (b.kind === 'item'
+            ? `<div class="an-item">${esc(b.text)}</div>`
+            : `<p class="an-p">${esc(b.text)}</p>`)).join('')}
+        </div>
+      </div>`)
+    .join('');
+}
+
+function renderAnalysis(data) {
+  $('analysis-body').innerHTML = data.content
+    ? `<div class="analysis-text">${analysisHtml(data.content)}</div>`
+    : '<div class="chart-fallback">暂无分析，点右上角「生成分析」让 AI 总结。</div>';
+  const parts = [];
+  if (data.created_at) parts.push('生成于 ' + fmtFull(data.created_at));
+  if (data.model) parts.push(data.model === 'rule' ? '本地规则' : `模型 ${data.model}`);
+  if (!data.content) {
+    parts.push(data.llm_enabled ? '尚未生成' : '未配置大模型，将用本地规则');
+  }
+  $('analysis-hint').textContent = parts.join(' · ');
+  $('btn-analysis-run').disabled = false;
+  $('btn-analysis-run').textContent = data.content ? '重新生成' : '生成分析';
+}
+
+async function runAnalysis() {
+  const button = $('btn-analysis-run');
+  button.disabled = true;
+  button.textContent = '生成中…';
+  $('analysis-hint').textContent = 'AI 生成中…';
+  try {
+    await api('/api/analysis', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ kind: state.analysisKind }),
+    });
+    // 结果与状态由 SSE 的 analysis 事件回推
+  } catch (err) {
+    button.disabled = false;
+    button.textContent = '生成分析';
+    $('analysis-hint').textContent = `发起失败：${err.message}`;
   }
 }
 
@@ -1560,11 +2288,39 @@ function bind() {
       applyStreamView();
     });
   });
+  $('btn-rooms').addEventListener('click', (e) => { e.stopPropagation(); toggleRooms(); });
+  document.addEventListener('click', (e) => {
+    const pop = $('rooms-pop');
+    if (pop.classList.contains('show') && !e.target.closest('.rooms-wrap')) {
+      pop.classList.remove('show');
+    }
+  });
   $('btn-settings').addEventListener('click', openSettings);
-  $('btn-modal-cancel').addEventListener('click', () => $('settings-modal').classList.remove('show'));
+  $('auto-profile').addEventListener('change', toggleAutoProfile);
+  $('cfg-room').addEventListener('input', updateRoomHint);
+  $('cfg-room').addEventListener('blur', updateRoomHint);
+  $('btn-qr-login').addEventListener('click', startQrLogin);
+  $('btn-modal-cancel').addEventListener('click', () => {
+    stopQrLogin();
+    $('settings-modal').classList.remove('show');
+  });
   $('btn-modal-save').addEventListener('click', saveSettings);
   $('btn-career').addEventListener('click', openCareer);
   $('btn-career-close').addEventListener('click', () => $('career-modal').classList.remove('show'));
+  // AI 分析：本场 / 生涯两个标签
+  $('btn-analysis').addEventListener('click', openAnalysis);
+  $('btn-analysis-close').addEventListener('click', () => $('analysis-modal').classList.remove('show'));
+  $('btn-analysis-run').addEventListener('click', runAnalysis);
+  $('analysis-tabs').addEventListener('click', (e) => {
+    const tab = e.target.closest('.tab');
+    if (tab) loadAnalysis(tab.dataset.kind);
+  });
+  // 操作记录：记录条 + 记录确认弹窗 + 记录/对比弹窗
+  $('btn-actions').addEventListener('click', openActionsModal);
+  $('btn-actions-close').addEventListener('click', () => $('actions-modal').classList.remove('show'));
+  $('btn-action-cancel').addEventListener('click', closeActionModal);
+  $('btn-action-save').addEventListener('click', saveAction);
+  $('action-minutes').addEventListener('input', updateActionRange);
   $('btn-reconnect').addEventListener('click', async () => {
     await api('/api/reconnect', { method: 'POST' });
   });
@@ -1604,6 +2360,7 @@ async function init() {
   await loadStats();
   await loadViewers();
   await loadTimeline();
+  await loadActions();  // 操作记录条 + 密度曲线色带所需的轻量数据
   setInterval(() => { if (!state.streamPaused) loadStats(); }, 10000);
   setInterval(loadViewers, 30000);
   // 顶部密度曲线：懒加载 ECharts 后初始化，并每 5 秒滚动刷新

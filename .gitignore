@@ -6,6 +6,10 @@ config.json
 data/live.db
 data/live.db-shm
 data/live.db-wal
+# 一主播一库：每个房间的库都含真实观众数据，绝不提交
+data/room_*.db
+data/room_*.db-shm
+data/room_*.db-wal
 
 # ============ Python ============
 .venv/
